@@ -5,7 +5,12 @@ STORAGE=stocare
 
 if ! command -v docker &> /dev/null
 then
-    echo "Docker is not installed"
+    echo "Docker nu este instalat"
+    exit
+fi
+
+if [ ! "$( docker images licenta/programa:latest -q )" ]; then
+    echo "Imaginea de baza nu este creata si anume: licenta/program:latest" 
     exit
 fi
 
@@ -14,5 +19,5 @@ if [ ! "$( docker volume ls -q --filter name=$STORAGE )" ]; then
     docker create volume $STORAGE
 fi
 
-echo "Run development container on port 8080"
-docker run -v $STORAGE:/usr/licenta -p 8080:8080 licenta/program
+echo "Pornesc containerul de dezvoltare pe portul 8080"
+docker run -v $STORAGE:/usr/licenta -p 8080:8080 licenta/program:latest
