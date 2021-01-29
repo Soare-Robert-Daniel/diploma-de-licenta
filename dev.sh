@@ -9,7 +9,7 @@ then
     exit
 fi
 
-if [ ! "$( docker images licenta/programa:latest -q )" ]; then
+if [ ! "$( docker images licenta/program:latest -q )" ]; then
     echo "Imaginea de baza nu este creata si anume: licenta/program:latest" 
     exit
 fi
