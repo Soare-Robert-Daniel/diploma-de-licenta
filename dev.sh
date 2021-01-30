@@ -2,6 +2,7 @@
 
 # Volumul de baza unde dorim sa ne salvam datele
 STORAGE=stocare
+NAME=dev_serv
 
 if ! command -v docker &> /dev/null
 then
@@ -19,5 +20,12 @@ if [ ! "$( docker volume ls -q --filter name=$STORAGE )" ]; then
     docker create volume $STORAGE
 fi
 
-echo "Pornesc containerul de dezvoltare pe portul 8080"
-docker run -v $STORAGE:/usr/licenta -p 8080:8080 licenta/program:latest
+if [ ! "$( docker ps -a | grep $NAME )" ]; then 
+    echo "Pornesc containerul de dezvoltare: " $NAME " pe portul 8080"
+    docker run -v $STORAGE:/usr/licenta -p 8080:8080 --name $NAME --gpus all licenta/program:latest
+    exit
+fi
+
+docker restart $NAME
+
+
