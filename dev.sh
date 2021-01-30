@@ -26,6 +26,7 @@ if [ ! "$( docker ps -a | grep $NAME )" ]; then
     exit
 fi
 
+echo "Reposnesc containerul de dezvoltare: " $NAME " pe portul 8080"
 docker restart $NAME
 
 
