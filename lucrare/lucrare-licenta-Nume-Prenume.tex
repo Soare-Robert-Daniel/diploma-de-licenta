@@ -1,0 +1,174 @@
+% Lucrare de Licenta
+
+\documentclass[11pt,twoside]{book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{wrapfig}
+
+%macro-uri
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{corolar}[theorem]{\noindent \textbf{Corolarul}}
+\newtheorem{definition}{Defini\c{t}ia}[chapter]
+\newtheorem{definitia}[definition]{\noindent \textbf{Defini\c{t}ia}}
+\newtheorem{example}{Exemplul}[section]
+\newtheorem{exemplu}[example]{\noindent \textbf{Exemplul}}
+\newtheorem{lema}[theorem]{\noindent \textbf{Lema}}
+\newtheorem{proposition}[theorem]{\noindent \textbf{Propozi\c{t}ia}}
+\newtheorem{remark}{Observa\c{t}ia}[chapter]
+\newtheorem{observatia}[remark]{\noindent \textbf{Observa\c{t}ia}}
+\newtheorem{teorema}[theorem]{\noindent \textbf{Teorema}}
+\newcommand{\bdfn}{\begin{definition} \begin{rm}}
+\newcommand{\edfn}{\end{rm} \end{definition}}
+\newcommand{\bthm}{\begin{theorem} \begin{rm}}
+\newcommand{\ethm}{\end{rm} \end{theorem}}
+\newcommand{\bprop}{\begin{proposition} \begin{rm}}
+\newcommand{\eprop}{\end{rm} \end{proposition}}
+\newcommand{\bcor}{\begin{corolar}\begin{rm}}
+\newcommand{\ecor}{\end{rm} \end{corolar}}
+\newcommand{\blem}{\begin{lema} \begin{rm}}
+\newcommand{\elem}{\end{rm} \end{lema}}
+\newcommand{\bex}{\begin{example} \begin{rm}}
+\newcommand{\eex}{\end{rm} \end{example}}
+\newcommand{\bobs}{\begin{remark}\begin{rm}}
+\newcommand{\eobs}{\end{rm} \end{remark}}
+\newcommand{\proof}{\noindent \textbf{Demonstra\c{t}ie}}
+
+\input{macros}
+\makeindex
+
+%dimensionare pagina
+\setlength{\oddsidemargin}{1.0cm}
+\setlength{\evensidemargin}{0.3cm} \setlength{\textwidth}{15cm}
+\setlength{\topmargin}{0cm} \setlength{\textheight}{22cm}%{22cm}
+\def\baselinestretch{1.1}
+
+\begin{document}
+
+%COPERTA
+% pagina de titlu 1
+\thispagestyle{empty}
+
+\centerline{\bf UNIVERSITATEA POLITEHNICA DIN BUCURE\c STI}
+
+\vspace{0.5cm}
+
+\centerline{\bf FACULTATEA DE \c STIIN\c TE APLICATE}
+
+\vspace{0.5cm}
+
+\centerline{\bf Matematic\u a \c si Informatic@a Aplicat@a @in
+Inginerie}
+
+\vspace{5cm}
+
+\centerline{\Huge\bf PROIECT DE DIPLOM@A}
+
+\vspace{6cm}
+
+\noindent{CONDUC@ATOR @STIIN@TIFIC,} \hfill {ABSOLVENT,}
+
+\noindent{\bf Lect.univ.dr. Iuliana MUNTEANU} \hfill{\bf Soare Robert Daniel}
+
+
+\vspace{3cm}
+
+\centerline{\bf Bucure@sti}
+
+\vspace{0.5cm}
+
+\centerline{\bf 2021}
+\newpage
+\thispagestyle{empty}
+%~~~
+
+\newpage
+% pagina de titlu 2
+\thispagestyle{empty}
+
+\begin{wrapfigure}{L}{0.16\textwidth}
+\vspace{-3.4cm}
+\begin{center}
+ \includegraphics[width=0.15\textwidth]{sigla-Poli.eps}
+\end{center}
+\end{wrapfigure}
+
+\newpage
+% pagina de titlu 2
+\thispagestyle{empty}
+
+\centerline{UNIVERSITATEA POLITEHNICA DIN BUCURE\c STI}
+
+\centerline{FACULTATEA DE \c STIIN\c TE APLICATE}
+
+\centerline{Matematic\u a \c si Informatic@a Aplicat@a @in
+Inginerie}
+
+\begin{wrapfigure}{r}{0.16\textwidth}
+\vspace{-4.7cm}
+\begin{center}
+  \includegraphics[width=0.15\textwidth]{sigla-Poli-FSA.eps}
+\end{center}
+\end{wrapfigure}
+
+~~~
+
+\begin{flushright}
+{\bf Aprobat Decan},
+
+\vspace{0.2cm}
+
+{\bf Prof.dr. Emil PETRESCU}
+\end{flushright}
+
+\vspace{2cm}
+
+\centerline{\huge \bf PROIECT DE DIPLOM@A}
+
+\vspace{1.5cm}
+
+\centerline{\Large \bf @Inv@atarea automat@a pentru un agent @intr-un mediu 2D} \vspace{0.35cm}
+
+\centerline{\Large \bf ............}
+
+\vspace{3cm}
+
+\noindent{CONDUC@ATOR @STIIN@TIFIC,} \hfill {ABSOLVENT,}
+
+\noindent{\bf Lect.univ.dr. Iuliana MUNTEANU} \hfill{\bf Soare Robert Daniel}
+
+\vspace{3cm}
+
+\centerline{\bf Bucure\c sti}
+
+\vspace{0.5cm}
+
+\centerline{\bf 2021}
+
+\newpage
+
+\markboth{\bf Cuprins}{\bf Cuprins}
+\setcounter{page}{3}
+\tableofcontents
+\markboth{\bf Cuprins}{\bf Cuprins}
+
+%\include{intro}    % Introducere; prefata
+\include{lucrarea}     % Lucrarea
+\input{capbib}  % Bibliografia
+
+\addcontentsline{toc}{chapter}{Index}
+%\markboth{\bf Index}{\bf Index}
+\printindex  \markboth{\bf Index}{\bf Index} \thispagestyle{empty}
+
+% pentru ca index-ul sa fie tiparit se ruleaza din fereastra "Command prompt"
+%     makeindex Nume.Fisier.idx
+% comnada care creeaza fisierul Nume.Fisier.ind
+% dupa care se face iarasi o compilare a intregii lucrari
+
+
+\end{document}
