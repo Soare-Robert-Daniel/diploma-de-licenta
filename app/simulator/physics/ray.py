@@ -26,14 +26,13 @@ class Ray:
         t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den
         u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den
 
-        print(t)
-        print(u)
+        print(f"Ray Coll => Angle: {np.rad2deg(self.angle)} - t: {t} - u: {u}")
 
         if u > 0 and 0 < t < 1:
             info["intersect"] = True
             info["kind"] = wall.get_kind()
             info["point"] = np.array([x1 + t * (x2 - x1), y1 + t * (y2 - y1)])
-            info["length"] = np.linalg.norm(info["point"])
+            info["length"] = np.linalg.norm(info["point"] - self.start)
 
         return info
 
