@@ -32,10 +32,11 @@ if __name__ == '__main__':
     game_map.add_wall(wall2)
 
     coll = game_map.get_cars_collisions()
+    print(coll)
 
     game_map.generate_image()
 
-    print(coll)
+
 
 
 

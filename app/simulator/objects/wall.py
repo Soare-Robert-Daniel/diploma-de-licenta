@@ -14,5 +14,8 @@ class Wall:
     def get_kind(self):
         return self.kind
 
+    def get_draw_info(self):
+        return [tuple(self.start), tuple(self.end)]
+
     def __str__(self):
         return f"#Wall - Start: {self.start} - End: {self.end}"

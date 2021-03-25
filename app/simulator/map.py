@@ -29,12 +29,23 @@ class Map:
         return cars_collisions
 
     def generate_image(self):
-        img = Image.new(mode="RGB", size=self.size, color = (209, 123, 193))
+        img = Image.new(mode="RGB", size=self.size, color=(209, 123, 193))
         pen = ImageDraw.Draw(img)
 
         for car in self.cars.values():
             pos = car.get_draw_info()
             pen.ellipse(pos, outline="#00ff00", fill="#ff0000")
+
+            collisions = car.check_walls_collision(self.walls)
+            for collision in collisions:
+                if collision["intersect"]:
+                    start_point = tuple(car.pos)
+                    end_point = tuple(collision["point"])
+                    pen.line([start_point, end_point], fill="#000")
+
+        for wall in self.walls:
+            pos = wall.get_draw_info()
+            pen.line(pos)
 
         img.show()
 

@@ -27,7 +27,7 @@ class Car:
             ray.updates_from_car(self.pos, self.dir)
 
     def check_walls_collision(self, walls: List[Wall]):
-        if len(walls) == 0:
+        if len(walls) == 0 or len(self.rays) == 0:
             return []
         total_collisions = []
         for wall in walls:
