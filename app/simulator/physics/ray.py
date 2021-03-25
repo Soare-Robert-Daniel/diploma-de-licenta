@@ -1,13 +1,16 @@
 import numpy as np
+from simulator.objects.wall import Wall
 
 
 class Ray:
     def __init__(self, ray_start, ray_dir_angle):
-        self.start = ray_start
+        self.start = np.copy(ray_start)
         self.angle = np.deg2rad(ray_dir_angle)
         self.dir = np.array([np.cos(self.angle), np.sin(self.angle)])
+        self.rotation_matrix = np.array([[np.cos(self.angle), -np.sin(self.angle)],
+                                         [np.sin(self.angle),  np.cos(self.angle)]])
 
-    def get_intersection(self, wall):
+    def get_intersection(self, wall: Wall):
         info = {
             "intersect": False
         }
@@ -30,8 +33,13 @@ class Ray:
             info["intersect"] = True
             info["kind"] = wall.get_kind()
             info["point"] = np.array([x1 + t * (x2 - x1), y1 + t * (y2 - y1)])
+            info["length"] = np.linalg.norm(info["point"])
 
         return info
+
+    def updates_from_car(self, car_pos, car_direction):
+        self.start = np.copy(car_pos)
+        self.dir = self.rotation_matrix.dot(car_direction)
 
     def __str__(self):
         return f"   -> Ray - Start: {self.start} - Dir: {self.dir} - Angle: {np.rad2deg(self.angle)}"
