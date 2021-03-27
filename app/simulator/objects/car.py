@@ -1,6 +1,7 @@
 import numpy as np
 from typing import List
 
+from simulator.objects.target import Target
 from simulator.physics.ray import Ray
 from simulator.objects.wall import Wall
 
@@ -18,20 +19,25 @@ class Car:
 
     def move(self):
         self.pos += self.dir * self.speed
+        self.update_rays()
 
     def update(self, direction):
         self.dir = np.copy(direction)
+        self.update_rays()
 
     def update_rays(self):
         for ray in self.rays:
             ray.updates_from_car(self.pos, self.dir)
 
-    def check_walls_collision(self, walls: List[Wall]):
+    def check_collision(self, walls: List[Wall], targets: List[Target]):
         if len(walls) == 0 or len(self.rays) == 0:
             return []
         total_collisions = []
         for wall in walls:
             total_collisions.append(self.check_wall_collision(wall))
+
+        for target in targets:
+            total_collisions.append(self.check_target_collision(target))
 
         close_collisions = total_collisions[0]
         for collision in total_collisions:
@@ -47,7 +53,20 @@ class Car:
         collision_data = []
         for ray in self.rays:
             # print(ray)
-            collision_data.append(ray.get_intersection(wall))
+            collision_data.append(ray.get_intersection_with_wall(wall))
+
+        # add car length in consideration for the distance between car and the wall
+        for data in collision_data:
+            if data["intersect"]:
+                data["length"] -= self.length
+
+        return collision_data
+
+    def check_target_collision(self, target: Target):
+        collision_data = []
+        for ray in self.rays:
+            # print(ray)
+            collision_data.append(ray.get_intersection_with_target(target))
 
         # add car length in consideration for the distance between car and the wall
         for data in collision_data:
