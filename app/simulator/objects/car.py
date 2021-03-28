@@ -23,6 +23,7 @@ class Car:
         rotation_matrix = np.array([[np.cos(turn_angle), -np.sin(turn_angle)],
                                          [np.sin(turn_angle),  np.cos(turn_angle)]])
         self.dir = rotation_matrix.dot(self.dir)
+        self.update_rays()
 
     def move_to(self, new_pos):
         self.pos = new_pos
@@ -66,7 +67,7 @@ class Car:
         # add car length in consideration for the distance between car and the wall
         for data in collision_data:
             if data["intersect"]:
-                data["length"] -= self.length
+                data["length"] -= self.length / 2
 
         return collision_data
 
@@ -79,7 +80,7 @@ class Car:
         # add car length in consideration for the distance between car and the wall
         for data in collision_data:
             if data["intersect"]:
-                data["length"] -= self.length
+                data["length"] -= self.length / 2
 
         return collision_data
 

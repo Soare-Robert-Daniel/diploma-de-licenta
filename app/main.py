@@ -13,16 +13,20 @@ from simulator.simulator import Simulator
 
 if __name__ == '__main__':
     simulator = Simulator()
+    simulator.reset()
 
-    simulator.apply_action_to_car("car_1", "turn_right")
-
+    # simulator.apply_action_to_car("car_1", "turn_right")
+    # simulator.apply_action_to_car("car_2", "turn_right")
     for i in range(50):
-        if i % 10 == 0:
-            simulator.apply_action_to_car("car_1", "turn_right")
+        # if i % 10 == 0:
+        #     simulator.apply_action_to_car("car_1", "turn_right")
+        # if i % 15 == 0:
+        #     simulator.apply_action_to_car("car_1", "turn_left")
         simulator.run()
-        print(simulator.is_car_crashed("car_1"))
+    print(f"Crashed: {simulator.is_car_crashed('car_2')} - On Target: {simulator.is_car_on_target('car_2')}")
 
     simulator.render()
+    print(simulator.get_cars_sensor_data())
     # car = Car("car1", np.array([15.0, 10.0]), np.array([1.0, 0]))
 
     # wall1 = Wall(np.array([10, 0]), np.array([30, 0]))
@@ -83,9 +87,5 @@ if __name__ == '__main__':
     # print(coll)
     #
     # game_map.generate_image()
-
-
-
-
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

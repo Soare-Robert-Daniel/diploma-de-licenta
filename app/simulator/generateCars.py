@@ -1,21 +1,24 @@
 from typing import List
 
-from simulator.objects.car import Car
 import numpy as np
 
+from simulator.objects.car import Car
 from simulator.physics.ray import Ray
 
 
 class CarsGenerator:
-    def __init__(self, cars_number=1):
+    def __init__(self, cars_number=1, rays_number=8):
         self.cars_number = cars_number
+        self.rays_number = rays_number
 
     def build(self) -> List[Car]:
         cars = []
-        for car_id in range(1, self.cars_number + 1):
-            car = Car(f"car_{car_id}",  np.array([15.0, 10.0]), np.array([1.0, 0]))
-            spawn_angle = 45
-            for a in range(360 // spawn_angle):
+        start_dir_angle = np.random.randint(low=0, high=360, size=self.cars_number + 1)
+        for car_number in range(1, self.cars_number + 1):
+            car = Car(car_id=f"car_{car_number}", car_pos=np.array([15.0, 10.0]),
+                      car_dir=np.array([np.cos(start_dir_angle[car_number]), np.sin(start_dir_angle[car_number])]))
+            spawn_angle = 360 / self.rays_number
+            for a in range(self.rays_number):
                 ray = Ray(np.array([15, 10]), a * spawn_angle)
                 car.rays.append(ray)
             cars.append(car)

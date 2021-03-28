@@ -73,5 +73,10 @@ class Map:
         plt.imshow(img)
         plt.show()
 
+    def clear(self):
+        self.cars.clear()
+        self.walls.clear()
+        self.targets.clear()
+
     def __str__(self):
         return f"#Map - Size: {self.size} - Delta Time: {self.delta_time}"

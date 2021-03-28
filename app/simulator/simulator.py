@@ -1,3 +1,5 @@
+from typing import List
+
 from simulator.generateCars import CarsGenerator
 from simulator.generateWalls import WallsGenerator
 from simulator.map import Map
@@ -9,18 +11,19 @@ class Simulator:
     def __init__(self):
         self.sim_map = Map(size=(150, 150))
 
-        wall_generator = WallsGenerator(map_size=self.sim_map.size)
-        cars_generator = CarsGenerator()
+        self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
+        self.cars_generator = CarsGenerator(cars_number=2)
         target = Target(np.array([50.0, 17.0]), size=15)
 
-        self.sim_map.extend_walls(wall_generator.build_walls())
-        self.sim_map.extend_cars(cars_generator.build())
+        self.sim_map.extend_walls(self.wall_generator.build_walls())
+        self.sim_map.extend_cars(self.cars_generator.build())
         self.sim_map.add_target(target)
         self.cars_collisions = self.sim_map.get_cars_collisions()
 
     def run(self):
         for car_id in self.sim_map.cars.keys():
-            self.compute_movement_for_car(car_id)
+            if not self.is_car_crashed(car_id):
+                self.compute_movement_for_car(car_id)
         self.cars_collisions = self.sim_map.get_cars_collisions()
 
     def send_actions_to_cars(self, actions):
@@ -47,5 +50,53 @@ class Simulator:
                         return True
         return False
 
+    def is_car_on_target(self, car_id: str) -> bool:
+        collision = self.cars_collisions[car_id]
+        for data in collision:
+            if data["intersect"]:
+                if data["kind"] == "target":
+                    if data["length"] <= 0:
+                        return True
+        return False
+
+    def get_cars_sensor_data(self):
+        data = []
+        for car_id, car in self.sim_map.cars.items():
+            collision = self.cars_collisions[car_id]
+            data_car = []
+            for info in collision:
+
+                data_car.append(info["length"])
+                if info["kind"] == "target":
+                    data_car.append(0)
+                else:
+                    data_car.append(1)
+            data.append(np.array(data_car).reshape(len(car.rays), 2))
+        return data
+
+    def get_crashed_cars(self) -> List[str]:
+        crashed_cars = []
+        for car_id in self.sim_map.cars.keys():
+            if self.is_car_crashed(car_id):
+                crashed_cars.append(car_id)
+        return crashed_cars
+
+    def get_on_target_cars(self) -> List[str]:
+        on_target = []
+        for car_id in self.sim_map.cars.keys():
+            if self.is_car_on_target(car_id):
+                on_target.append(car_id)
+        return on_target
+
     def render(self):
         self.sim_map.generate_image()
+
+    def reset(self):
+        target = Target(np.array([50.0, 17.0]), size=15)
+
+        self.sim_map.clear()
+        self.sim_map.extend_walls(self.wall_generator.build_walls())
+        self.sim_map.extend_cars(self.cars_generator.build())
+        self.sim_map.add_target(target)
+        self.cars_collisions = self.sim_map.get_cars_collisions()
+
