@@ -1,8 +1,10 @@
 from typing import Tuple, List
 
+from simulator.objects.car import Car
 from simulator.objects.target import Target
 from simulator.objects.wall import Wall
 from PIL import Image, ImageDraw
+import matplotlib.pyplot as plt
 
 
 class Map:
@@ -20,13 +22,17 @@ class Map:
     def extend_walls(self, walls: List[Wall]):
         self.walls.extend(walls)
 
+    def extend_cars(self, cars: List[Car]):
+        for car in cars:
+            self.add_car(car)
+
     def add_wall(self, wall: Wall):
         self.walls.append(wall)
 
     def add_target(self, target: Target):
         self.targets.append(target)
 
-    def add_car(self, car):
+    def add_car(self, car: Car):
         self.cars[car.id] = car
 
     def get_cars_collisions(self):
@@ -52,6 +58,9 @@ class Map:
                     end_point = tuple(collision["point"])
                     pen.line([start_point, end_point], fill="#000")
 
+            for path in car.get_path_draw():
+                pen.line(path, fill="#126789")
+
         for wall in self.walls:
             pos = wall.get_draw_info()
             pen.line(pos)
@@ -60,7 +69,9 @@ class Map:
             pos = target.get_draw_info()
             pen.ellipse(pos, outline="#0000ff")
 
-        img.show()
+        # img.show()
+        plt.imshow(img)
+        plt.show()
 
     def __str__(self):
         return f"#Map - Size: {self.size} - Delta Time: {self.delta_time}"

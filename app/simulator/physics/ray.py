@@ -28,7 +28,7 @@ class Ray:
         t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den
         u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den
 
-        print(f"    Ray Wall Coll => Angle: {np.rad2deg(self.angle)} - t: {t} - u: {u}")
+        # print(f"    Ray Wall Coll => Angle: {np.rad2deg(self.angle)} - t: {t} - u: {u}")
 
         if u > 0 and 0 < t < 1:
             info["intersect"] = True
@@ -60,7 +60,7 @@ class Ray:
         t1 = (-b + np.sqrt(discriminant)) / (2 * a)
         t2 = (-b - np.sqrt(discriminant)) / (2 * a)
 
-        print(f"    ------>  t1: {t1} - t2: {t2}")
+        # print(f"    ------>  t1: {t1} - t2: {t2}")
 
         t = np.min([t1, t2])
 

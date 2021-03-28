@@ -16,10 +16,18 @@ class Car:
         self.length: float = length
         self.speed: float = speed
         self.rays: List[Ray] = []
+        self.past_pos = [np.copy(self.pos)]
 
-    def move(self):
-        self.pos += self.dir * self.speed
+    def turn(self, turn_angle):
+        turn_angle = np.deg2rad(turn_angle)
+        rotation_matrix = np.array([[np.cos(turn_angle), -np.sin(turn_angle)],
+                                         [np.sin(turn_angle),  np.cos(turn_angle)]])
+        self.dir = rotation_matrix.dot(self.dir)
+
+    def move_to(self, new_pos):
+        self.pos = new_pos
         self.update_rays()
+        self.past_pos.append(np.copy(self.pos))
 
     def update(self, direction):
         self.dir = np.copy(direction)
@@ -77,6 +85,13 @@ class Car:
 
     def get_draw_info(self):
         return [tuple(self.pos - self.length/2), tuple(self.pos + self.length/2)]
+
+    def get_path_draw(self):
+        path = []
+        if len(self.past_pos) >= 2:
+            for i in range(len(self.past_pos) - 1):
+                path.append([tuple(self.past_pos[i]), tuple(self.past_pos[i + 1])])
+        return path
 
     def __str__(self):
         return f"#Car - ID: {self.id} - Pos: {self.pos} - Dir: {self.dir}"
