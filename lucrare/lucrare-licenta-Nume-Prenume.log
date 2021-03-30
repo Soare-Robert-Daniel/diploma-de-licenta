@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  20 MAR 2021 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  30 MAR 2021 19:50
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -292,48 +292,60 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[8
+[8]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
 
-]
-Capitolul 2.
 [9]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[10
+[10]
+Capitolul 2.
+[11
 
-]) [11] (capbib.tex
+]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [12
 
+]) [13] (capbib.tex
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[14
 
 
-]) (lucrare-licenta-Nume-Prenume.ind [13] [14
+
+]) (lucrare-licenta-Nume-Prenume.ind [15] [16
 
 
 ])
 (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux)) ) 
 Here is how much of TeX's memory you used:
- 2726 strings out of 479618
- 36235 string characters out of 2874899
- 309303 words of memory out of 3000000
- 19854 multiletter control sequences out of 15000+200000
- 411336 words of font info for 58 fonts, out of 3000000 for 9000
+ 2736 strings out of 479618
+ 36374 string characters out of 2874899
+ 316312 words of memory out of 3000000
+ 19862 multiletter control sequences out of 15000+200000
+ 412030 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,10n,74p,246b,257s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmcsc10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.p
-fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progr
-am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (14 pages, 119604 bytes).
+ 68i,13n,74p,942b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Robert\AppData\Lo
+cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Fi
+les/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on lucrare-licenta-Nume-Prenume.pdf (16 pages, 145631 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
+ 95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

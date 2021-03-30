@@ -1,10 +1,11 @@
 from typing import List
 
+import numpy as np
+
 from simulator.generateCars import CarsGenerator
 from simulator.generateWalls import WallsGenerator
 from simulator.map import Map
 from simulator.objects.target import Target
-import numpy as np
 
 
 class Simulator:
@@ -99,4 +100,3 @@ class Simulator:
         self.sim_map.extend_cars(self.cars_generator.build())
         self.sim_map.add_target(target)
         self.cars_collisions = self.sim_map.get_cars_collisions()
-

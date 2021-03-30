@@ -9,26 +9,119 @@
 \label{capintro}
 \markboth{\bf Introducere}{\bf Introducere}
 
-\^ In aceast\u a lucrare ....
+@Inv@a@tarea automat@a a devenit un subiect de interes din ce @in ce mai important, aceast@a fiind utilizat@a @in vaste domenii, precum: industria auto, alimentar@a, agricol@a, industrial@a, aerospa@tial@a @si mai cu seam@a @in industria tehnologiei informa@tiei. Unul din rolurile ei cele mai importante const@a @in analiza @si clasificarea datelor, predic@tia unor evenimente @in baza unor fapte deja @int@amplate, crearea unui profil virtual pentru un grup de utilizatori.
+
+
+
+\^ In aceast\u a lucrare se va analiza cum algoritmii de @inv@a@tare automat@a  pot fi folosi@ti @in crearea unui agent autonom care s@a @indeplineasc@a sarcinii @intr-un spa@tiu 2-dimensional.
 \hspace{0.2cm}
 
-\^ In primul capitol .......
+\^ In primul capitol este descris termenul de @inv@a@atre automat@a, cum este folosit @in @industire. 
 
 /newpage
 
 %%CAPITOLUL 1
 %%
 %%
-\chapter{.......}
-
+\chapter{ @Inv@a@tare automat@a }
 \index{capitol!C1}
-\section{....}
 
-
+\section{Istoric}
 \index{sectiune!S1.1}
-\section{....}
 
+	@Inv@a@tarea automat@a este o ramur@a a @inteligen@tei artificiale care se ocup@a cu studiul tehnicilor @si metodelor prin care se ofer@a unui calculator abilitatea de a @inv@a@ta. Prin @inv@a@tare ne referim la posibilitatea de a oferii o decizie @in baza unor cuno@stin@te deduse din experien@te anterioare.
 
+ Multe tehnici din @inv@a@tarea automat@a au la baz@a modelul de interac@tiune al neuronilor, descris de c@atre Donal Hebb @in cartea sa {\sl The Organization of Behavior} \cite{donald-hebb-book}. Termenul de @inv@a@tare automat@a (@in englez@a {\sl machine learning}) a aparut @in anul 1953, dat de Arthur Samuel, creatorul unui program de jucat checker, capabil s@a ia decizii bazate pe experien@tele anterioare \cite{arthur-samuel}. @In anul 1957, Frank Rosenblatt creaz@a Perceptron-ul - utilizat @in crearea unui calculatorul capabil s@a recunoasc@a forme @intr-o imagine - folosindu-se de observa@tiile din lucr@arile lui Donald Hebb @si Arthur Samuel. Perceptron-ul de unul singur are o putere destul de limitat@a, dar odat@a cu descoperirea utiliz@arii sale @in combina@tii de mai multe straturi a dat na@stere la termenul de re@tea neuronal@a. 
+ 
+ De-a lungul timpului, acest domeniu a avut o evolu@tie @inceat@a, un factor important find capabilit@a@tile limitate de procesarea ale calculatoarelor. Dar odat@a cu avansurile tehnologice, cercetarea @in acest domeniu a @inceput s@a fie din ce @in ce mai activ@a, @in ultimii ani culmin\^ and cu evenimente care au atras interesului publicului general, precum: IBM's Deep Blue, IBM's Watson, Google's Deepmind @si Google's AlphaGo.
+ 
+ 
+\newpage
+
+\section{Clasificare}
+
+Fiind un domeniu foarte vast @si cuprinz@tor, aceasta se @imparte @in 3 mari categorii:
+\hspace{0.2cm}\begin{itemize}
+	\item @Inv@a@tare supervizat@a
+	\item @Inv@a@tare nesupervizat@a
+	\item @Inv@a@tare prin recompens@a
+\end{itemize}
+
+\vspace{0.3cm}
+@In @inv@a@tarea supervizat@a, procesul de antrenare se bazeaz@a pe analiza unor date formate din perechi de valori intrare-ie@sire (set de date etichetat) pentru calibrarea func@tiilor de deducere. Este folosit pentru rezolvarea problemelor de clasificare.
+
+Exemple de algoritmi:
+\begin{itemize}
+	\item Support-vector machines
+	\item Regresia liniar@a
+	\item Regresia logistic@a
+	\item Arbori de decizie
+	\item Re@tele neurale
+	\item Clasificator bayesian naiv
+\end{itemize}
+
+Pentru @inv@atarea nesupervizat@a, procesul de antrenare const@a @in crearea unor modele interne de recunoa@stere a unor tipare @in urma analizei unui set de date neetichetat. Este deseori folosit @in descoperirea similarit@a@tilor @si diferen@telor @intr-un set de date.
+
+Exemple de algoritmi:
+\begin{itemize}
+	\item K-means clustering
+	\item Autoencoders
+	\item Analiza componentei principale
+	\item Descompunerea valorilor singulare
+\end{itemize}
+
+@In @inv@a@tarea prin recompens@a, procesul de antrenare const@a @in maximizarea unei func@tii de recompens@a, modelul calibr@andu-se astfel @incat deciziile luate s@a duc@a spre ob@tinerea unei recompense c\^ at mai mari.
+
+Exemple de algoritmi:
+\begin{itemize}
+	\item Monte Carlo
+	\item Q-learning
+	\item SARSA
+	\item Deep Q Network
+	\item Proximal Policy Optimization
+	\item Deep Deterministic Policy Gradient
+	\item Trust Region Policy Optimization
+\end{itemize}
+
+\section{Industrie}
+
+	@In ultimiii ani, tot mai multe aplica@tii folosesc tehnici de @inv@a@tare automat@a pentru optimizarea produselor, servicilor @si interac@tiunilor cu utilizatorii. Cele mai notabile utiliz@ari fiind:
+\begin{itemize}
+	\item Algoritimi de c@autare a @stirilor @in baza unor preferin@te oferite explicit sau implicit de catre utilizator.
+	\item Reclame personalizate generate dup@a profilele utilizatorilor.
+	\item Sisteme de recomand@ari produse.
+	\item Etichetarea obiectelor sau persoanelor @in imagini, @inregistr@ari audio sau video.
+	\item Sisteme robotice autonome.
+	\item Ma@sini autonome.
+	\item Sisteme meteorologice
+	\item Sisteme de detectare a fraudelor @intr-un sistem bancar.
+	\item Clasificare @si predic@tia evenimentelor. 
+	\item Optimizarea proceselor de produc@tie a m@arfurilor.
+	\item Optimizarea procesului de antrenare pentru atle@ti.
+\end{itemize}
+
+\section{Programe software pentru dezvoltare}
+
+Interesul puternic pentru acest domeniu a venit @in principal din partea marilor companii software @si hardware, ele dezvolt@and puternice libr@ari pentru procesarea datelor, crearea de re@tele neurale, algoritmi de @inv@a@tare, etc. Pentru sprijinirea domeniului, aceste unelte sunt oferite dupa ca aplica@tii cu surs@a deschis@a ( @in englez@a {\sl open source} ), av@and o licen@t@a deseori foarte permisibil@a @in vederea utiliz@ari @si comercializ@arii.
+
+Calitatea acestor unelte le-a f@acut s@a devin@a un standard @in industrie, at@at comercial@a c\^ at @si academic@a.
+
+Example de libr@arii sau aplica@tii software:
+
+\begin{itemize}
+	\item Tensorflow - libr@rie dezvoltat@a de c@atre Google @in vederea utiliz@ari cu usurin@t@ a algoritmilor de @inv@a@tare, c@at @si func@tii utilitare pentru manipularea datelor.
+	\item PyTorch - libr@arie dezvoltat@a de c@atre Facebook pentru protiparea aplica@tilor de viziune computerizate, procesarea limbajului natural, etc.
+	\item ML.NET - libr@rie dezvoltat@a de Microsoft pentru crearea rapid@a a unor aplica@tii de procesare a datelor folosind algoritmi de @inv@a@tare.
+	\item scikit-Learn - libr@arie care con@tine func@tii statistice folosite pentru analiza datelor.
+	\item Apache Spark - colec@tie de aplica@tii destinate pentru procesarea unui volum foarte mare de date.
+	\item Apache Kafka - aplica@tie care permite stocarea @si distribuirea unui volum foarte mare de date @in timp real c@atre mai mul@ti consumatori.
+	\item Caffe - libr@rie pentru dezvoltare aplica@tilor pentru medii de lucru care nu dispun de o putere de procesare foarte mare, precum dispozitivele mobile.
+	\item Keras - libr@rie pentru dezvoltarea re@telelor neural@e
+	\item H2O.ai - platform@a de procesare @si analiz@a a datelor pentru mediul comercial
+	
+\end{itemize}
+
+	
 %%CAPITOLUL 2
 %%
 %%
