@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  31 MAR 2021 11:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  31 MAR 2021 15:05
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -283,11 +283,11 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[6
+[6]
+Capitolul 1.
+[7
 
 ]
-Capitolul 1.
-[7]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -330,7 +330,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 Here is how much of TeX's memory you used:
  2736 strings out of 479618
  36374 string characters out of 2874899
- 316312 words of memory out of 3000000
+ 317312 words of memory out of 3000000
  19862 multiletter control sequences out of 15000+200000
  412030 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -343,7 +343,7 @@ msfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C
 :/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Fi
 les/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (16 pages, 147280 bytes).
+Output written on lucrare-licenta-Nume-Prenume.pdf (16 pages, 147686 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
