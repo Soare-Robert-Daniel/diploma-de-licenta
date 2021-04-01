@@ -9,17 +9,18 @@ from simulator.objects.target import Target
 
 
 class Simulator:
-    def __init__(self):
-        self.sim_map = Map(size=(150, 150))
+    def __init__(self, mode="image", size=(600, 600)):
+        self.sim_map = Map(size)
 
         self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
-        self.cars_generator = CarsGenerator(cars_number=2)
+        self.cars_generator = CarsGenerator(cars_number=1)
         target = Target(np.array([50.0, 17.0]), size=15)
 
         self.sim_map.extend_walls(self.wall_generator.build_walls())
         self.sim_map.extend_cars(self.cars_generator.build())
         self.sim_map.add_target(target)
         self.cars_collisions = self.sim_map.get_cars_collisions()
+        self.mode = mode
 
     def run(self):
         for car_id in self.sim_map.cars.keys():
@@ -33,9 +34,9 @@ class Simulator:
 
     def apply_action_to_car(self, car_id: str, command):
         if command == "turn_left":
-            self.sim_map.cars[car_id].turn(-30)
+            self.sim_map.cars[car_id].turn(-5)
         elif command == "turn_right":
-            self.sim_map.cars[car_id].turn(30)
+            self.sim_map.cars[car_id].turn(5)
 
     def compute_movement_for_car(self, car_id: str):
         car = self.sim_map.cars[car_id]
@@ -66,13 +67,15 @@ class Simulator:
             collision = self.cars_collisions[car_id]
             data_car = []
             for info in collision:
-
                 data_car.append(info["length"])
                 if info["kind"] == "target":
                     data_car.append(0)
                 else:
                     data_car.append(1)
-            data.append(np.array(data_car).reshape(len(car.rays), 2))
+            data.append({
+                "car_id": car_id,
+                "sensor_data": np.array(data_car).reshape(len(car.rays), 2)
+            })
         return data
 
     def get_crashed_cars(self) -> List[str]:
@@ -89,8 +92,11 @@ class Simulator:
                 on_target.append(car_id)
         return on_target
 
-    def render(self):
-        self.sim_map.generate_image()
+    def render(self, mode):
+        if self.mode == "image" or mode == "image":
+            self.sim_map.generate_image()
+        elif self.mode == "pyglet" or mode == "pyglet":
+            return self.sim_map.generate_pyglet_data()
 
     def reset(self):
         target = Target(np.array([50.0, 17.0]), size=15)

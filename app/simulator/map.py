@@ -73,6 +73,38 @@ class Map:
         plt.imshow(img)
         plt.show()
 
+    def generate_pyglet_data(self):
+        draw_data = []
+        for car in self.cars.values():
+
+            collisions = car.check_collision(self.walls, self.targets)
+            for collision in collisions:
+                if collision["intersect"]:
+                    start_point = tuple(car.pos)
+                    end_point = tuple(collision["point"])
+                    draw_data.append({
+                        "type": "line",
+                        "x": start_point[0],
+                        "y": start_point[1],
+                        "x2": end_point[0],
+                        "y2": end_point[1],
+                        "color": (201, 105, 100)
+                    })
+            draw_data.append(car.get_pyglet_info())
+            draw_data.append(car.get_pyglet_info_direction())
+            # for path in car.get_path_draw():
+            #     draw_data.append({
+            #
+            #     })
+
+        for wall in self.walls:
+            draw_data.append(wall.get_pyglet_info())
+
+        for target in self.targets:
+            draw_data.append(target.get_pyglet_info())
+
+        return draw_data
+
     def clear(self):
         self.cars.clear()
         self.walls.clear()

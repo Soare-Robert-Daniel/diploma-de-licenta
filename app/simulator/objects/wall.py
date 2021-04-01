@@ -17,5 +17,15 @@ class Wall:
     def get_draw_info(self):
         return [tuple(self.start), tuple(self.end)]
 
+    def get_pyglet_info(self):
+        return {
+            "type": "line",
+            "x": self.start[0],
+            "y": self.start[1],
+            "x2": self.end[0],
+            "y2": self.end[1],
+            "color": (0, 0, 255)
+        }
+
     def __str__(self):
         return f"#Wall - Start: {self.start} - End: {self.end}"

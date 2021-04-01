@@ -26,10 +26,13 @@ class WallsGenerator:
 
     def generate_inner_walls(self) -> List[Wall]:
         width, height = self.map_size
-        wall1 = Wall(np.array([width // 2, 30]), np.array([width // 2, height - 30]))
-        wall2 = Wall(np.array([30, height // 2]), np.array([width - 30, height // 2]))
-
-        return [wall1, wall2]
+        # wall1 = Wall(np.array([width // 2, 30]), np.array([width // 2, height - 30]))
+        # wall2 = Wall(np.array([30, height // 2]), np.array([width - 30, height // 2]))
+        wall1 = Wall(np.array([int(width * 0.2), int(height * 0.2)]), np.array([width - int(width * 0.2), int(height * 0.2)]))
+        wall2 = Wall(np.array([width - int(width * 0.2), int(height * 0.2)]), np.array([width - int(width * 0.2), height - int(height * 0.2)]))
+        wall3 = Wall(np.array([width - int(width * 0.2), height - int(height * 0.2)]), np.array([int(width * 0.2), height - int(height * 0.2)]))
+        wall4 = Wall(np.array([int(width * 0.2), height - int(height * 0.2)]), np.array([int(width * 0.2), int(height * 0.2)]))
+        return [wall1, wall2, wall3, wall4]
 
     def __str__(self):
         return f"=> Walls Generator - Walls: {self.walls_number}"

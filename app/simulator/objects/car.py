@@ -87,6 +87,25 @@ class Car:
     def get_draw_info(self):
         return [tuple(self.pos - self.length/2), tuple(self.pos + self.length/2)]
 
+    def get_pyglet_info(self):
+        return {
+            "type": "circle",
+            "x": self.pos[0],
+            "y": self.pos[1],
+            "radius": self.length,
+            "color": (255, 0, 0)
+        }
+
+    def get_pyglet_info_direction(self):
+        return {
+            "type": "line",
+            "x": self.pos[0],
+            "y": self.pos[1],
+            "x2": self.pos[0] + self.dir[0] * self.length,
+            "y2": self.pos[1] + self.dir[1] * self.length,
+            "color": (0, 150, 150)
+        }
+
     def get_path_draw(self):
         path = []
         if len(self.past_pos) >= 2:

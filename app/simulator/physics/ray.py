@@ -12,6 +12,7 @@ class Ray:
         self.rotation_matrix = np.array([[np.cos(self.angle), -np.sin(self.angle)],
                                          [np.sin(self.angle),  np.cos(self.angle)]])
 
+    # TODO: Bug on the corners
     def get_intersection_with_wall(self, wall: Wall):
         info = {
             "intersect": False
