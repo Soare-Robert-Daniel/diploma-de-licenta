@@ -3,7 +3,6 @@ from typing import List
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from collections import deque
 
 from simulator.generateCars import CarsGenerator
 from simulator.generateWalls import WallsGenerator
