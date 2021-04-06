@@ -8,26 +8,40 @@ class GameSimulator(pyglet.window.Window):
         super(GameSimulator, self).__init__()
         self.simulator = _simulator
         self.set_size(*size)
+        self.current_command = "keep_direction"
 
-        self.label = pyglet.text.Label('Game Simulator')
+        self.label_command = pyglet.text.Label(f"Current Command: {self.current_command}", x=10, y=10,
+                                               color=(243, 255, 198, 255))
+        self.label_history = pyglet.text.Label(f"Saved records: {len(self.simulator.history)}/5000", x=590, y=10,
+                                               anchor_x='right')
 
     def on_draw(self):
         self.clear()
 
         self.draw_simulator_objects()
-        self.label.draw()
+
+        self.label_command.text = f"Current Command: {self.current_command}"
+        self.label_history.text = f"Saved records: {len(self.simulator.history)}/5000"
+        self.label_command.draw()
+        self.label_history.draw()
 
     def update(self):
         if self.simulator is not None:
             car = self.simulator.get_cars_sensor_data()[0]
-            return lambda _: self.simulator.execute([{"car_id": car["car_id"], "command": "keep_direction"}])
+            return lambda _: self.simulator.execute([{"car_id": car["car_id"], "command": self.current_command}])
 
     def on_key_press(self, symbol, modifiers):
-        car = self.simulator.get_cars_sensor_data()[0]
-        if symbol == pyglet.window.key.S:
-            self.simulator.send_actions_to_cars([{"car_id": car["car_id"], "command": "turn_left"}])
-        elif symbol == pyglet.window.key.W:
-            self.simulator.send_actions_to_cars([{"car_id": car["car_id"], "command": "turn_right"}])
+        if symbol == pyglet.window.key.Q or symbol == pyglet.window.key.LEFT:
+            self.current_command = "turn_right"
+        elif symbol == pyglet.window.key.W or symbol == pyglet.window.key.UP:
+            self.current_command = "keep_direction"
+        elif symbol == pyglet.window.key.E or symbol == pyglet.window.key.RIGHT:
+            self.current_command = "turn_left"
+        # car = self.simulator.get_cars_sensor_data()[0]
+        # if symbol == pyglet.window.key.S or symbol == pyglet.window.key.DOWN:
+        #     self.simulator.send_actions_to_cars([{"car_id": car["car_id"], "command": "turn_left"}])
+        # elif symbol == pyglet.window.key.W or symbol == pyglet.window.key.UP:
+        #     self.simulator.send_actions_to_cars([{"car_id": car["car_id"], "command": "turn_right"}])
 
     def draw_simulator_objects(self):
         if self.simulator is not None:
@@ -58,5 +72,5 @@ if __name__ == '__main__':
     keys = pyglet.window.key.KeyStateHandler()
     window.push_handlers(keys)
 
-    pyglet.clock.schedule_interval(window.update(), 1/120.0)
+    pyglet.clock.schedule_interval(window.update(), 1 / 120.0)
     pyglet.app.run()

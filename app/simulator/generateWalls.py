@@ -36,7 +36,7 @@ class WallsGenerator:
         return [wall1, wall2, wall3, wall4]
 
     def generate_route(self) -> List[Wall]:
-        path = np.array([[10.0, 10.0], [600.0, 10.0], [600.0, 600.0], [310.0, 310.0], [10.0, 600.0]])
+        path = np.array([[10.0, 50.0], [600.0, 50.0], [600.0, 600.0], [310.0, 310.0], [10.0, 600.0]])
         route = shp.Polygon(path)
         margin = route.buffer(-80, join_style=JOIN_STYLE.round)
 

@@ -24,7 +24,7 @@ class Wall:
             "y": self.start[1],
             "x2": self.end[0],
             "y2": self.end[1],
-            "color": (0, 0, 255)
+            "color": (0, 255, 255)
         }
 
     def __str__(self):

@@ -16,12 +16,12 @@ class Simulator:
 
         self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
         self.cars_generator = CarsGenerator(cars_number=1)
-        target = Target(np.array([50.0, 17.0]), size=15)
+        # target = Target(np.array([50.0, 17.0]), size=15)
         print(self.wall_generator.generate_route())
 
         self.sim_map.extend_walls(self.wall_generator.build_walls())
         self.sim_map.extend_cars(self.cars_generator.build())
-        self.sim_map.add_target(target)
+        # self.sim_map.add_target(target)
         self.cars_collisions = self.sim_map.get_cars_collisions()
         self.history = []
         self.mode = mode
@@ -31,7 +31,7 @@ class Simulator:
         self.set_actions_record(actions)
         self.run()
 
-        if len(self.history) >= 50000:
+        if len(self.history) >= 5000:
             self.save_csv()
 
     def run(self):
@@ -46,9 +46,9 @@ class Simulator:
 
     def apply_action_to_car(self, car_id: str, command):
         if command == "turn_left":
-            self.sim_map.cars[car_id].turn(-5)
+            self.sim_map.cars[car_id].turn(-1)
         elif command == "turn_right":
-            self.sim_map.cars[car_id].turn(5)
+            self.sim_map.cars[car_id].turn(1)
 
     def compute_movement_for_car(self, car_id: str):
         car = self.sim_map.cars[car_id]

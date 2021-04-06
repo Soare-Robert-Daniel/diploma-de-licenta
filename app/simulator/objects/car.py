@@ -21,7 +21,7 @@ class Car:
     def turn(self, turn_angle):
         turn_angle = np.deg2rad(turn_angle)
         rotation_matrix = np.array([[np.cos(turn_angle), -np.sin(turn_angle)],
-                                         [np.sin(turn_angle),  np.cos(turn_angle)]])
+                                    [np.sin(turn_angle), np.cos(turn_angle)]])
         self.dir = rotation_matrix.dot(self.dir)
         self.update_rays()
 
@@ -85,7 +85,7 @@ class Car:
         return collision_data
 
     def get_draw_info(self):
-        return [tuple(self.pos - self.length/2), tuple(self.pos + self.length/2)]
+        return [tuple(self.pos - self.length / 2), tuple(self.pos + self.length / 2)]
 
     def get_pyglet_info(self):
         return {
