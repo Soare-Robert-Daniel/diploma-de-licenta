@@ -17,6 +17,7 @@ class Simulator:
         self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
         self.cars_generator = CarsGenerator(cars_number=1)
         target = Target(np.array([50.0, 17.0]), size=15)
+        print(self.wall_generator.generate_route())
 
         self.sim_map.extend_walls(self.wall_generator.build_walls())
         self.sim_map.extend_cars(self.cars_generator.build())
@@ -30,7 +31,7 @@ class Simulator:
         self.set_actions_record(actions)
         self.run()
 
-        if len(self.history) >= 100:
+        if len(self.history) >= 50000:
             self.save_csv()
 
     def run(self):
