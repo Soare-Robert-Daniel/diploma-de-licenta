@@ -1,6 +1,13 @@
 import pyglet
 
+from agent.trained_agent import TrainedAgent
 from simulator.simulator import Simulator
+
+import tensorflow as tf
+
+physical_devices = tf.config.list_physical_devices('GPU')
+for device in physical_devices:
+    tf.config.experimental.set_memory_growth(device, True)
 
 
 class GameSimulator(pyglet.window.Window):
@@ -8,12 +15,16 @@ class GameSimulator(pyglet.window.Window):
         super(GameSimulator, self).__init__()
         self.simulator = _simulator
         self.set_size(*size)
-        self.current_command = "keep_direction"
 
+        self.available_cars = [car["car_id"] for car in self.simulator.get_cars_sensor_data()[1:]]
+
+        self.current_command = "keep_direction"
         self.label_command = pyglet.text.Label(f"Current Command: {self.current_command}", x=10, y=10,
                                                color=(243, 255, 198, 255))
         self.label_history = pyglet.text.Label(f"Saved records: {len(self.simulator.history)}/5000", x=590, y=10,
                                                anchor_x='right')
+
+        self.agents = []
 
     def on_draw(self):
         self.clear()
@@ -21,18 +32,31 @@ class GameSimulator(pyglet.window.Window):
         self.draw_simulator_objects()
 
         self.label_command.text = f"Current Command: {self.current_command}"
-        self.label_history.text = f"Saved records: {len(self.simulator.history)}/5000"
+        self.label_history.text = f"Saved records: {len(self.simulator.history)}/8000"
         self.label_command.draw()
         self.label_history.draw()
 
     def update(self):
         if not self.simulator.is_simulation_over():
             car = self.simulator.get_cars_sensor_data()[0]
-            self.simulator.execute([{"car_id": car["car_id"], "command": self.current_command}])
+            commands = self.get_commands_from_agents()
+            commands.append({"car_id": car["car_id"], "command": self.current_command})
+            self.simulator.execute(commands)
 
     def run(self):
         if self.simulator is not None:
             return lambda _: self.update()
+
+    def get_commands_from_agents(self):
+        commands = []
+        for data_sensor in self.simulator.get_cars_sensor_data():
+            for agent in self.agents:
+                if data_sensor['car_id'] == agent['car_id']:
+                    commands.append({
+                        "car_id": agent["car_id"],
+                        "command": agent["agent"].predict_command(data_sensor["sensors_data"])
+                    })
+        return commands
 
     def on_key_press(self, symbol, modifiers):
         if symbol == pyglet.window.key.Q or symbol == pyglet.window.key.LEFT:
@@ -69,12 +93,22 @@ class GameSimulator(pyglet.window.Window):
                         width=1
                     ).draw()
 
+    def assign_car_to_agent(self, agent):
+        if len(self.available_cars) > 0:
+            self.agents.append({
+                "car_id": self.available_cars.pop(),
+                "agent": agent
+            })
+
 
 if __name__ == '__main__':
-    simulator = Simulator(mode="pyglet")
+    simulator = Simulator(mode="pyglet", cars_number=2)
     window = GameSimulator(size=(600, 600), _simulator=simulator)
     keys = pyglet.window.key.KeyStateHandler()
     window.push_handlers(keys)
 
-    pyglet.clock.schedule_interval(window.run(), 1 / 120.0)
+    trained_agent = TrainedAgent('models/test')
+    window.assign_car_to_agent(agent=trained_agent)
+
+    pyglet.clock.schedule_interval(window.run(), 1 / 160.0)
     pyglet.app.run()

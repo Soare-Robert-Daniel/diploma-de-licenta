@@ -6,21 +6,26 @@ from simulator.objects.car import Car
 from simulator.physics.ray import Ray
 
 
+def build_ray_angles(start: float, end: float, n: int):
+    return np.linspace(start=start, stop=end, num=n)
+
+
 class CarsGenerator:
-    def __init__(self, cars_number=1, rays_number=8, map_size=(600, 600)):
+    def __init__(self, cars_number=1, rays_number=16, map_size=(600, 600)):
         self.cars_number = cars_number
         self.rays_number = rays_number
         self.map_size = map_size
 
     def build(self) -> List[Car]:
         cars = []
-        start_dir_angle = np.zeros(self.cars_number + 1) # np.random.randint(low=0, high=360, size=self.cars_number + 1)
+        start_dir_angle = np.zeros(
+            self.cars_number + 1)  # np.random.randint(low=0, high=360, size=self.cars_number + 1)
         for car_number in range(1, self.cars_number + 1):
-            car = Car(car_id=f"car_{car_number}", car_pos=np.array([self.map_size[0] * 0.12, self.map_size[1] * 0.10]),
+            car = Car(car_id=f"car_{car_number}", car_pos=np.array([self.map_size[0] * 0.15, self.map_size[1] * 0.15]),
                       car_dir=np.array([np.cos(start_dir_angle[car_number]), np.sin(start_dir_angle[car_number])]))
-            spawn_angle = 360 / self.rays_number
-            for a in range(self.rays_number):
-                ray = Ray(np.array([self.map_size[0] * 0.10, self.map_size[1] * 0.10]), a * spawn_angle)
+
+            for a in build_ray_angles(-60, 60, self.rays_number):
+                ray = Ray(np.array([self.map_size[0] * 0.10, self.map_size[1] * 0.10]), a)
                 car.rays.append(ray)
             cars.append(car)
         return cars

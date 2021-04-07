@@ -11,11 +11,11 @@ from simulator.objects.target import Target
 
 
 class Simulator:
-    def __init__(self, mode="image", size=(600, 600)):
+    def __init__(self, mode="image", size=(600, 600), cars_number=1):
         self.sim_map = Map(size)
 
         self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
-        self.cars_generator = CarsGenerator(cars_number=1)
+        self.cars_generator = CarsGenerator(cars_number=cars_number)
         # target = Target(np.array([50.0, 17.0]), size=15)
         print(self.wall_generator.generate_route())
 
@@ -31,7 +31,7 @@ class Simulator:
         self.set_actions_record(actions)
         self.run()
 
-        if len(self.history) >= 5000:
+        if len(self.history) >= 8000:
             self.save_csv()
 
     def run(self):
