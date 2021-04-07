@@ -44,6 +44,15 @@ class Simulator:
         for action in actions:
             self.apply_action_to_car(action["car_id"], action["command"])
 
+    def is_simulation_over(self):
+        crashed_cars = []
+        for car_id in self.sim_map.cars.keys():
+            if self.is_car_crashed(car_id):
+                crashed_cars.append(True)
+            else:
+                crashed_cars.append(False)
+        return all(crashed_cars)
+
     def apply_action_to_car(self, car_id: str, command):
         if command == "turn_left":
             self.sim_map.cars[car_id].turn(-1)
@@ -118,9 +127,10 @@ class Simulator:
         sensors_data = self.get_cars_sensor_data()
         for action in actions:
             car_id = action["car_id"]
-            for sensor_data in sensors_data:
-                if car_id == sensor_data["car_id"]:
-                    self.history.append({**action, **sensor_data})
+            if not self.is_car_crashed(car_id):
+                for sensor_data in sensors_data:
+                    if car_id == sensor_data["car_id"]:
+                        self.history.append({**action, **sensor_data})
 
     def save_csv(self):
         time_template = "%Y_%m_%d__%H_%M_%S"
@@ -131,7 +141,7 @@ class Simulator:
         }
         for data in self.history:
 
-            print(data)
+            # print(data)
             export_data["car_id"].append(data["car_id"])
             export_data["command"].append(data["command"])
             for sensor_id, sensor_value in np.ndenumerate(data["sensors_data"]):

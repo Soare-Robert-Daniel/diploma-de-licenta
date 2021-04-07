@@ -26,9 +26,13 @@ class GameSimulator(pyglet.window.Window):
         self.label_history.draw()
 
     def update(self):
-        if self.simulator is not None:
+        if not self.simulator.is_simulation_over():
             car = self.simulator.get_cars_sensor_data()[0]
-            return lambda _: self.simulator.execute([{"car_id": car["car_id"], "command": self.current_command}])
+            self.simulator.execute([{"car_id": car["car_id"], "command": self.current_command}])
+
+    def run(self):
+        if self.simulator is not None:
+            return lambda _: self.update()
 
     def on_key_press(self, symbol, modifiers):
         if symbol == pyglet.window.key.Q or symbol == pyglet.window.key.LEFT:
@@ -72,5 +76,5 @@ if __name__ == '__main__':
     keys = pyglet.window.key.KeyStateHandler()
     window.push_handlers(keys)
 
-    pyglet.clock.schedule_interval(window.update(), 1 / 120.0)
+    pyglet.clock.schedule_interval(window.run(), 1 / 120.0)
     pyglet.app.run()
