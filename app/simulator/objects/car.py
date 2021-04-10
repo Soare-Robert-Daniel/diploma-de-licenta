@@ -18,6 +18,7 @@ class Car:
         self.speed: float = speed
         self.rays: List[Ray] = []
         self.past_pos = [np.copy(self.pos)]
+        self.path = None
 
     def turn(self, turn_angle):
         turn_angle = np.deg2rad(turn_angle)
@@ -118,6 +119,9 @@ class Car:
         self.id = car_id
         if car_id == "player":
             self.color = (255, 0, 255)
+
+    def set_path(self, path):
+        self.path = path
 
     def __str__(self):
         return f"#Car - ID: {self.id} - Pos: {self.pos} - Dir: {self.dir}"

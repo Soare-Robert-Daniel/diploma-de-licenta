@@ -9,6 +9,7 @@ class WallsGenerator:
     def __init__(self, walls_number=3, map_size=(150, 150)):
         self.walls_number = walls_number
         self.map_size = map_size
+        self.path = np.array([[10.0, 50.0], [600.0, 50.0], [600.0, 600.0], [310.0, 310.0], [10.0, 600.0]])
 
     def build_walls(self) -> List[Wall]:
         map_walls = self.generate_outer_walls()
@@ -36,8 +37,7 @@ class WallsGenerator:
         return [wall1, wall2, wall3, wall4]
 
     def generate_route(self) -> List[Wall]:
-        path = np.array([[10.0, 50.0], [600.0, 50.0], [600.0, 600.0], [310.0, 310.0], [10.0, 600.0]])
-        route = shp.Polygon(path)
+        route = shp.Polygon(self.path)
         margin = route.buffer(-80, join_style=JOIN_STYLE.round)
 
         walls1_points = np.array(route.exterior)
@@ -52,6 +52,9 @@ class WallsGenerator:
             walls.append(Wall(walls2_points[idx], walls2_points[idx + 1]))
 
         return walls
+
+    def get_route(self):
+        return np.array(shp.Polygon(self.path).exterior)
 
     def __str__(self):
         return f"=> Walls Generator - Walls: {self.walls_number}"
