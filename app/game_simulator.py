@@ -16,7 +16,8 @@ class GameSimulator(pyglet.window.Window):
         self.simulator = _simulator
         self.set_size(*size)
 
-        self.available_cars = [car["car_id"] for car in self.simulator.get_cars_sensor_data()[1:]]
+        self.available_cars = list(filter(lambda car_id: car_id != "player",
+                                          [car["car_id"] for car in self.simulator.get_cars_sensor_data()]))
 
         self.current_command = "keep_direction"
         self.label_command = pyglet.text.Label(f"Current Command: {self.current_command}", x=10, y=10,
@@ -38,9 +39,9 @@ class GameSimulator(pyglet.window.Window):
 
     def update(self):
         if not self.simulator.is_simulation_over():
-            car = self.simulator.get_cars_sensor_data()[0]
+            # car = self.simulator.get_cars_sensor_data()[0]
             commands = self.get_commands_from_agents()
-            commands.append({"car_id": car["car_id"], "command": self.current_command})
+            commands.append({"car_id": "player", "command": self.current_command})
             self.simulator.execute(commands)
 
     def run(self):
@@ -102,7 +103,7 @@ class GameSimulator(pyglet.window.Window):
 
 
 if __name__ == '__main__':
-    simulator = Simulator(mode="pyglet", cars_number=2)
+    simulator = Simulator(mode="pyglet", cars_number=2, allow_human=True)
     window = GameSimulator(size=(600, 600), _simulator=simulator)
     keys = pyglet.window.key.KeyStateHandler()
     window.push_handlers(keys)

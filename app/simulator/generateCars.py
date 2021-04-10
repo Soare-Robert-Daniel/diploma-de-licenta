@@ -11,10 +11,11 @@ def build_ray_angles(start: float, end: float, n: int):
 
 
 class CarsGenerator:
-    def __init__(self, cars_number=1, rays_number=16, map_size=(600, 600)):
+    def __init__(self, cars_number=1, rays_number=16, map_size=(600, 600), allow_human=True):
         self.cars_number = cars_number
         self.rays_number = rays_number
         self.map_size = map_size
+        self.allow_human = allow_human
 
     def build(self) -> List[Car]:
         cars = []
@@ -28,6 +29,10 @@ class CarsGenerator:
                 ray = Ray(np.array([self.map_size[0] * 0.10, self.map_size[1] * 0.10]), a)
                 car.rays.append(ray)
             cars.append(car)
+
+        if self.allow_human and len(cars) > 0:
+            cars[0].set_id('player')
+
         return cars
 
     def __str__(self):

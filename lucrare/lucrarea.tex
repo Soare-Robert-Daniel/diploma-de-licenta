@@ -22,7 +22,9 @@ Tot acest mare volum de informa@tii @si metodele de manipulare, stocare @intr@a 
 \^ In aceast\u a lucrare se va analiza cum algoritmii de @inv@a@tare automat@a  pot fi folosi@ti @in crearea unui agent autonom care s@a @indeplineasc@a sarcinii @intr-un spa@tiu 2-dimensional. Problema va consta @in crearea unui mediu 2-dimensional @in care un agent trebuie s@a ghideze o ma@sin@a astfel @inc\^ at aceast@a s@a parcurg@a cu succes un traseu.
 \hspace{0.2cm}
 
-\^ In primul capitol este descris termenul de @inv@a@atre automat@a, care sunt subdomeniile sale, cum este folosit @in @industire. 
+\^ In primul capitol este descris termenul de @inv@a@tare automat@a, care sunt subdomeniile sale, cum este folosit @in @industire. @In al doilea capitol este o mic@a introducere pentru re@telele neuronale artificiale.
+
+\^ In al treilea capitol vor fi prezenta@ti c@a@tiva algoritmi de @inv@a@tare, iar al patrulea descrierea aplica@tiei.
 
 \newpage
 
@@ -62,7 +64,7 @@ Exemple de algoritmi:
 	\item Regresia liniar@a
 	\item Regresia logistic@a
 	\item Arbori de decizie
-	\item Re@tele neurale
+	\item Re@tele neuronale
 	\item Clasificator bayesian naiv
 \end{itemize}
 
@@ -110,7 +112,7 @@ Exemple de algoritmi:
 	 
 \section{Programe software pentru dezvoltare}
 
-Interesul puternic pentru acest domeniu a venit @in principal din partea marilor companii software @si hardware, ele dezvolt@and puternice biblioteci pentru procesarea datelor, crearea de re@tele neurale, algoritmi de @inv@a@tare, etc. Pentru sprijinirea domeniului, aceste unelte sunt oferite dupa ca aplica@tii cu surs@a deschis@a ( @in englez@a {\sl open source} ), av@and o licen@t@a deseori foarte permisibil@a @in vederea utiliz@ari personale @si comerciale.
+Interesul puternic pentru acest domeniu a venit @in principal din partea marilor companii software @si hardware, ele dezvolt@and puternice biblioteci pentru procesarea datelor, crearea de re@tele neuronale, algoritmi de @inv@a@tare, etc. Pentru sprijinirea domeniului, aceste unelte sunt oferite dupa ca aplica@tii cu surs@a deschis@a ( @in englez@a {\sl open source} ), av@and o licen@t@a deseori foarte permisibil@a @in vederea utiliz@ari personale @si comerciale.
 
 Calitatea acestor unelte le-a f@acut s@a devin@a un standard @in industrie, at@at comercial@a c\^ at @si academic@a.
 
@@ -124,7 +126,7 @@ Example de biblioteci sau aplica@tii software:
 	\item Apache Spark - bibliotec@a de aplica@tii destinate pentru procesarea unui volum foarte mare de date.
 	\item Apache Kafka - aplica@tie care permite stocarea @si distribuirea unui volum foarte mare de date @in timp real c@atre mai mul@ti consumatori.
 	\item Caffe - bibliotec@a pentru dezvoltare aplica@tilor pentru medii de lucru care nu dispun de o putere de procesare foarte mare, precum dispozitivele mobile.
-	\item Keras - bibliotec@a pentru dezvoltarea re@telelor neurale
+	\item Keras - bibliotec@a pentru dezvoltarea re@telelor neuronale
 	\item H2O.ai - platform@a de procesare @si analiz@a a datelor pentru mediul comercial
 	
 \end{itemize}
@@ -167,14 +169,184 @@ Exemple de servicii:
 %%
 %%
 
-\chapter{...............}
+\chapter{Re@tele neuronale artificiale}
 
 \index{capitol!C2}
-\section{.....}
+
+\section{Introducere}
+
+O re@tea neuronal@a artificial@a este un model computa@tional inspirat din structura @si modul de fun@tionare al creierului biologic. Conexiunile dintre neuronii artificiali se asem\^ an@a sinapselor, fiecare neuron se conecteaz@a cu alt neuron prin intermediul unor muchii. Semnalul trimis prin aceste muchii este ponderat de ni@ste parametri numi@ti ponderi sinaptice. Mai mul@ti neuroni grupa@ti formeaza un strat, iar mai multe straturi formeaz@a o re@tea.
+
+Procesul de @inv@a@tare presupune g@asirea unor valori potrivite pentru ponderile sinaptice astfel @inc\^ at procesarea semnalului de intrare s@a ofere rezultatul dorit.
 
 
-\section{.....}
+\section{Structur@a}
 
+Structura principal@a al unui neuron artificial este bazat pe modelul Perceptron-ului al lui Donald Hebb, modelul matematic fiind:
+
+$$
+	y = \varphi \left( \sum_{k=1}^{n} w_k * x_k + b \right)
+$$
+
+,unde $x$ este vectorul de intrare, $y$ vectorul de ie@sire, $w$ ponderea sinaptic@a, $b$ deplasarea @si $\varphi$ este func@tia de activare.
+
+Vectorul de intrare este format din numerele reale, aceste numere put\^ and reprezenta: imagini, frecven@te, etichete codificate, valori provenite din senzori, etc. Ponderile sinaptice au rolul de a cre@ste sau descreste puterea semnalul reprezentat de valorile vectorului de intrare. Func@tia de activare preia semnalul ponderat @si ofer@a o valoarea spefic@a @in baza acestuia. Deplasarea ajut@a la deplasarea semnalului ponderat pentru o mai bun@a aproximare necesar@a pentru @indeplirea anumitor condi@tii ale func@tiei de activare.
+
+\begin{exemplu}
+
+	Un neuron artificial care ac@tioneaz@a precum o poarta logic@a {\bf SAU}(OR) pentru dou@a numere binare are forma:
+$$
+	y = \varphi ( x_1 + x_2 - 0.5 )
+$$
+,unde $x = \{ x_i | x_i \in \{0, 1\} \}$, $y \in \{0, 1\}$, $w_1 = 1$, $w_2 = 1$,$b = -0.5$, iar func@tia de activare este: 
+$$
+	\varphi ( u ) = \left\lbrace
+		\begin{array}{lc}
+			1 & u \geq 0 \\
+			0 & u < 0
+		\end{array}
+	\right.
+$$
+\end{exemplu}
+
+{\bf Verificare}. Pentru $x = [1, 0]$, avem $u = 1 + 0 - 0.5 = 0.5$ @si $y = \varphi(u) = \varphi(0.5) = 1$ (acela@si rezultat @si pentru $x = [0, 1]$ - datorit@a propieta@tii de comutativitate a adun@arii).
+Pentru $x = [1, 1]$, avem $u = 1 + 1 - 0.5 = 1.5$ cu $\varphi (u) = \varphi ( 2 ) = 1$. Ultimul caz pentru $x = [0, 0]$, vom avea $u = $
+
+\begin{observatia}
+	F@ar@a func@tia de activare, perceptronul ac@tioneaz@a precum o func@tie liniar@a. Prin utilizarea unei func@tii de activare potrivite, puteam aborda mai u@sor problemele neliniare, precum cele pentru clasificarea datelor @in diverse categorii.
+\end{observatia}
+
+Un singur perceptron ofer@a doar o singur@a valoare de ie@sire. Dac@a dorim s@a avem mai multe valori de ie@siri trebuie s@a mai adaug@am perceptroni. Gruparea de neuroni artificiali se nume@ste {\sl strat}.
+
+Structura unui strat arat@a astfel @in form@a matriceal@a:
+
+$$
+	\begin{bmatrix}
+		u_1 \\
+		u_2 \\
+		\vdots \\ 
+		u_n \\
+	\end{bmatrix}	
+	= 
+	\begin{bmatrix}
+		w_{11} & w_{12} & \cdots & w_{1n} \\
+		w_{21} & w_{22} & \cdots & w_{2n} \\
+		\cdots & \cdots & \cdots & \cdots \\
+		w_{n1} & w_{n2} & \cdots & w_{nn} \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		x_1 \\
+		x_2 \\
+		\vdots \\
+		x_n \\
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		b_1 \\
+		b_2 \\
+		\vdots \\
+		b_n
+	\end{bmatrix}
+$$
+
+$$
+\begin{bmatrix}
+		y_1 \\
+		y_2 \\
+		\vdots \\ 
+		y_n \\
+	\end{bmatrix}	
+	=
+	\begin{bmatrix}
+		\varphi (u_1)\\
+		\varphi	(u_2) \\
+		\vdots \\
+		\varphi (u_n)
+	\end{bmatrix}
+$$
+
+Rezultatele acestui strat pot fi transmise c@atre un alt strat care poate avea o alt@a func@tie de activare, astfel putem crea modele matematice mai complexe. Aceast@a @in@siruire de straturi se nume@ste {\sl re@tea}.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[scale=0.4]{nn_schema_1}
+%	\caption{Structura unei re@tele neuronale}
+%	\label{nn:schema}
+%\end{figure}
+
+
+
+
+\section{Func@tii de activare @si metode de optimizare}
+Func@tia de activare ajut@a re@teaua neuronal@a pentru @in@a@tarea de tipare complexe aflate @in setul de date analizat. Alegerea unei func@tii de activare este critic@a pentru performan@ta re@telei, @in special cazul problemelor neliniare.
+
+Unele din cele mai folosite func@tii sunt:
+
+$$
+\begin{array}{rlcc}
+	{\rm Identitate} & \varphi (x) &=& x \\
+	{\rm Binary \, Step} & \varphi (x) &=& \left\lbrace
+		\begin{array}{lc}
+			1 & x \geq 0 \\
+			0 & x < 0
+		\end{array}
+	\right. \\
+	{\rm Logistic, Sigmoid} & \varphi (x) &=& \displaystyle\frac{1}{1 + e^{-x}} \\
+	{\rm Rectified\, liniar\, unit (ReLU)}& \varphi (x) &=& \left\lbrace
+		\begin{array}{lc}
+			x & x \geq 0 \\
+			0 & x < 0
+		\end{array}
+	\right. \\
+	{\rm Softplus} & \varphi (x) &=& \ln ( 1 + e^x) \\
+\end{array}
+$$
+
+
+
+\section{Tipuri de re@tele}
+
+De-a lungul anilor, au fost create foarte multe tipuri de re@tele neuronale artificiale pentru a servii la rezolvarea de probleme din domenii dificile.
+
+Exemple de tipuri de re@tele:
+
+\begin{itemize}
+	\item Feed Forward (FD)
+	\item Deep Feed Forward (DFF)
+	\item Radial Basis Network (RBF)
+	\item Recurrent Neural Network (RNN)
+	\item Long/Short Term Memory (LSTM)
+	\item Markov Chain (MC)
+	\item Deep Convolutional Network (DCN)
+	\item Deconvolutional Network (DN)
+	\item Support Vector Machine (SVM)
+	\item Deep Belief Network (DBN)
+\end{itemize}
+
+%%CAPITOLUL 3
+%%
+%%
+\chapter{Metode de @inv@a@tare}
+\index{capitol!C3}
+
+\section{Q-Learning}
+
+%%CAPITOLUL 4
+%%
+%%
+\chapter{Aplica@tie}
+\index{capitol!C3}
+\section{Structur@a}
+
+
+
+\section{Simulator}
+
+\section{Interfa@t@a}
+
+\section{Model de @inv@a@tare}
+
+\section{Agent}
 
 %% capitolul de concluzii
 %%

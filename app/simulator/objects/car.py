@@ -8,6 +8,7 @@ from simulator.objects.wall import Wall
 
 class Car:
     kind = "car"
+    color = (255, 0, 0)
 
     def __init__(self, car_id, car_pos, car_dir, speed=1.0, length=10.0):
         self.id: str = car_id
@@ -93,7 +94,7 @@ class Car:
             "x": self.pos[0],
             "y": self.pos[1],
             "radius": self.length,
-            "color": (255, 0, 0)
+            "color": self.color
         }
 
     def get_pyglet_info_direction(self):
@@ -103,7 +104,7 @@ class Car:
             "y": self.pos[1],
             "x2": self.pos[0] + self.dir[0] * self.length,
             "y2": self.pos[1] + self.dir[1] * self.length,
-            "color": (0, 150, 150)
+            "color": (255, 255, 255)
         }
 
     def get_path_draw(self):
@@ -112,6 +113,11 @@ class Car:
             for i in range(len(self.past_pos) - 1):
                 path.append([tuple(self.past_pos[i]), tuple(self.past_pos[i + 1])])
         return path
+
+    def set_id(self, car_id):
+        self.id = car_id
+        if car_id == "player":
+            self.color = (255, 0, 255)
 
     def __str__(self):
         return f"#Car - ID: {self.id} - Pos: {self.pos} - Dir: {self.dir}"

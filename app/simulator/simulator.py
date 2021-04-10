@@ -11,11 +11,11 @@ from simulator.objects.target import Target
 
 
 class Simulator:
-    def __init__(self, mode="image", size=(600, 600), cars_number=1):
+    def __init__(self, mode="image", size=(600, 600), cars_number=1, allow_human=True):
         self.sim_map = Map(size)
 
         self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
-        self.cars_generator = CarsGenerator(cars_number=cars_number)
+        self.cars_generator = CarsGenerator(cars_number=cars_number, allow_human=allow_human)
         # target = Target(np.array([50.0, 17.0]), size=15)
         print(self.wall_generator.generate_route())
 

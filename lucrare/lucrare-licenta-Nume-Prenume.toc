@@ -5,9 +5,19 @@
 \contentsline {section}{\numberline {1.3}Industrie}{9}{}%
 \contentsline {section}{\numberline {1.4}Programe software pentru dezvoltare}{10}{}%
 \contentsline {section}{\numberline {1.5}Big Data}{10}{}%
-\contentsline {chapter}{\numberline {2}...............}{13}{}%
-\contentsline {section}{\numberline {2.1}.....}{13}{}%
-\contentsline {section}{\numberline {2.2}.....}{13}{}%
-\contentsline {chapter}{Concluzii finale}{13}{}%
-\contentsline {chapter}{Bibliografie}{16}{}%
-\contentsline {chapter}{Index}{17}{}%
+\contentsline {chapter}{\numberline {2}Re\c {t}ele neuronale artificiale}{13}{}%
+\contentsline {section}{\numberline {2.1}Introducere}{13}{}%
+\contentsline {section}{\numberline {2.2}Structur\u {a}}{13}{}%
+\contentsline {section}{\numberline {2.3}Func\c {t}ii de activare \c {s}i metode de optimizare}{14}{}%
+\contentsline {section}{\numberline {2.4}Tipuri de re\c {t}ele}{15}{}%
+\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{17}{}%
+\contentsline {section}{\numberline {3.1}Q-Learning}{17}{}%
+\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{19}{}%
+\contentsline {section}{\numberline {4.1}Structur\u {a}}{19}{}%
+\contentsline {section}{\numberline {4.2}Simulator}{19}{}%
+\contentsline {section}{\numberline {4.3}Interfa\c {t}\u {a}}{19}{}%
+\contentsline {section}{\numberline {4.4}Model de \^{\i }nv\u {a}\c {t}are}{19}{}%
+\contentsline {section}{\numberline {4.5}Agent}{19}{}%
+\contentsline {chapter}{Concluzii finale}{19}{}%
+\contentsline {chapter}{Bibliografie}{22}{}%
+\contentsline {chapter}{Index}{23}{}%
