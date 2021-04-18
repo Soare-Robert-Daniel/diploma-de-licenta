@@ -10,9 +10,9 @@ def point_projection_on_segment(segment_start, segment_end, point):
     return segment_start + t * segment
 
 
-def route_completion(route, point):
-    segments = [(route[i], route[i + 1]) for i in range(len(route) - 1)]
-    total_distance = np.sum([np.linalg.norm(route[i + 1] - route[i]) for i in range(len(route) - 1)])
+def route_completion(car_route, point):
+    segments = [(car_route[i], car_route[i + 1]) for i in range(len(car_route) - 1)]
+    total_distance = np.sum([np.linalg.norm(car_route[i + 1] - car_route[i]) for i in range(len(car_route) - 1)])
     proj_points = []
     for segment in segments:
         proj_points.append(point_projection_on_segment(segment[0], segment[1], point))
@@ -30,7 +30,7 @@ def route_completion(route, point):
 
     traveled_distance += np.linalg.norm(segments[segment_location_index][0] - point_location)
 
-    print(traveled_distance)
+    # print(traveled_distance)
 
     return traveled_distance / total_distance
 

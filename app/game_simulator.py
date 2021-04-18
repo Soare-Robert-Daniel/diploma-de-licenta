@@ -22,7 +22,10 @@ class GameSimulator(pyglet.window.Window):
         self.current_command = "keep_direction"
         self.label_command = pyglet.text.Label(f"Current Command: {self.current_command}", x=10, y=10,
                                                color=(243, 255, 198, 255))
-        self.label_history = pyglet.text.Label(f"Saved records: {len(self.simulator.history)}/5000", x=590, y=10,
+
+        self.route_completion = pyglet.text.Label(f"Completion: 12.4%", x=265, y=10,
+                                                  color=(180, 100, 198, 255))
+        self.label_history = pyglet.text.Label(f"Saved records: {len(self.simulator.history)}/5000", font_size=11, x=590, y=10,
                                                anchor_x='right')
 
         self.agents = []
@@ -34,14 +37,20 @@ class GameSimulator(pyglet.window.Window):
 
         self.label_command.text = f"Current Command: {self.current_command}"
         self.label_history.text = f"Saved records: {len(self.simulator.history)}/8000"
+
+        if self.simulator.allow_human:
+            self.route_completion.text = f"Completion: {round( 100.0 * self.simulator.get_human_player().check_route_completion() , 2)}% "
+
         self.label_command.draw()
         self.label_history.draw()
+        self.route_completion.draw()
 
     def update(self):
         if not self.simulator.is_simulation_over():
             # car = self.simulator.get_cars_sensor_data()[0]
             commands = self.get_commands_from_agents()
-            commands.append({"car_id": "player", "command": self.current_command})
+            if self.simulator.allow_human:
+                commands.append({"car_id": "player", "command": self.current_command})
             self.simulator.execute(commands)
 
     def run(self):
@@ -55,7 +64,7 @@ class GameSimulator(pyglet.window.Window):
                 if data_sensor['car_id'] == agent['car_id']:
                     commands.append({
                         "car_id": agent["car_id"],
-                        "command": agent["agent"].predict_command(data_sensor["sensors_data"])
+                        "command": agent["agent"].predict_command(data_sensor)
                     })
         return commands
 
@@ -103,12 +112,12 @@ class GameSimulator(pyglet.window.Window):
 
 
 if __name__ == '__main__':
-    simulator = Simulator(mode="pyglet", cars_number=2, allow_human=True)
+    simulator = Simulator(mode="pyglet", cars_number=1, allow_human=False)
     window = GameSimulator(size=(600, 600), _simulator=simulator)
     keys = pyglet.window.key.KeyStateHandler()
     window.push_handlers(keys)
 
-    trained_agent = TrainedAgent('models/test')
+    trained_agent = TrainedAgent('models/test-1')
     window.assign_car_to_agent(agent=trained_agent)
 
     pyglet.clock.schedule_interval(window.run(), 1 / 160.0)

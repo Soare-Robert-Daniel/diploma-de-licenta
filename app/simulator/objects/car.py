@@ -4,6 +4,7 @@ from typing import List
 from simulator.objects.target import Target
 from simulator.physics.ray import Ray
 from simulator.objects.wall import Wall
+from simulator.physics.utility import route_completion
 
 
 class Car:
@@ -18,7 +19,7 @@ class Car:
         self.speed: float = speed
         self.rays: List[Ray] = []
         self.past_pos = [np.copy(self.pos)]
-        self.path = None
+        self.route_to_complete = None
 
     def turn(self, turn_angle):
         turn_angle = np.deg2rad(turn_angle)
@@ -58,6 +59,8 @@ class Car:
                         close_collisions[index] = ray_info
                 elif not close_collisions[index]["intersect"]:
                     close_collisions[index] = ray_info
+        # print(close_collisions)
+        # close_collisions["route_completion"] = self.check_route_completion()
         return close_collisions
 
     def check_wall_collision(self, wall: Wall):
@@ -85,6 +88,9 @@ class Car:
                 data["length"] -= self.length / 2
 
         return collision_data
+
+    def check_route_completion(self):
+        return route_completion(self.route_to_complete, self.pos)
 
     def get_draw_info(self):
         return [tuple(self.pos - self.length / 2), tuple(self.pos + self.length / 2)]
@@ -120,8 +126,8 @@ class Car:
         if car_id == "player":
             self.color = (255, 0, 255)
 
-    def set_path(self, path):
-        self.path = path
+    def set_route_to_complete(self, path):
+        self.route_to_complete = path
 
     def __str__(self):
         return f"#Car - ID: {self.id} - Pos: {self.pos} - Dir: {self.dir}"

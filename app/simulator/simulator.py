@@ -15,9 +15,9 @@ class Simulator:
         self.sim_map = Map(size)
 
         self.wall_generator = WallsGenerator(map_size=self.sim_map.size)
-        self.cars_generator = CarsGenerator(cars_number=cars_number, allow_human=allow_human)
+        self.cars_generator = CarsGenerator(cars_number=cars_number, allow_human=allow_human, route=self.wall_generator.get_route())
         # target = Target(np.array([50.0, 17.0]), size=15)
-        print(self.wall_generator.generate_route())
+        # print(self.wall_generator.generate_route())
 
         self.sim_map.extend_walls(self.wall_generator.build_walls())
         self.sim_map.extend_cars(self.cars_generator.build())
@@ -25,6 +25,7 @@ class Simulator:
         self.cars_collisions = self.sim_map.get_cars_collisions()
         self.history = []
         self.mode = mode
+        self.allow_human = allow_human
 
     def execute(self, actions):
         self.send_actions_to_cars(actions)
@@ -99,7 +100,8 @@ class Simulator:
                     data_car.append(-1)
             data.append({
                 "car_id": car_id,
-                "sensors_data": np.array(data_car).reshape(len(car.rays), 2)
+                "sensors_data": np.array(data_car).reshape(len(car.rays), 2),
+                "route_completion": car.check_route_completion()
             })
         return data
 
@@ -137,13 +139,15 @@ class Simulator:
         file_name = f"simulator_data_{datetime.now().strftime(time_template)}.csv"
         export_data = {
             "car_id": [],
-            "command": []
+            "command": [],
+            "route_completion": []
         }
         for data in self.history:
 
             # print(data)
             export_data["car_id"].append(data["car_id"])
             export_data["command"].append(data["command"])
+            export_data["route_completion"].append(data["route_completion"])
             for sensor_id, sensor_value in np.ndenumerate(data["sensors_data"]):
                 sensor_number, data_type = sensor_id
                 if data_type == 0:
@@ -163,6 +167,9 @@ class Simulator:
         df = pd.DataFrame(export_data)
         df.to_csv(f"data\\{file_name}", index=False)
         print("Saved")
+
+    def get_human_player(self):
+        return self.sim_map.cars["player"]
 
     def reset(self):
         target = Target(np.array([50.0, 17.0]), size=15)
