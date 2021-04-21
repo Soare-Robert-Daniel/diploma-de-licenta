@@ -1,71 +1,49 @@
 <script>
-	export let name;
-	import Konva from "konva";
-	import { onMount } from "svelte";
-
-	let stage;
-
-	onMount(() => {
-		stage = new Konva.Stage({
-			container: "konva-container", // id of container <div>
-			width: 500,
-			height: 500,
-		});
-
-		// add canvas element
-		var layer = new Konva.Layer();
-		stage.add(layer);
-
-		// create shape
-		var box = new Konva.Rect({
-			x: 50,
-			y: 50,
-			width: 100,
-			height: 50,
-			fill: "#00D2FF",
-			stroke: "black",
-			strokeWidth: 4,
-			draggable: true,
-		});
-		layer.add(box);
-
-		layer.draw();
-
-		// add cursor styling
-		box.on("mouseover", function () {
-			document.body.style.cursor = "pointer";
-		});
-		box.on("mouseout", function () {
-			document.body.style.cursor = "default";
-		});
-	});
+	import Dashboard from "./Dashboard.svelte";
+	import Container from "./Container.svelte";
 </script>
 
 <main>
-	<h1>The project {name}!!!</h1>
+	<h1>Învățarea automată pentru un agent într-un mediu 2D</h1>
 	<p>
-		Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-		how to build Svelte apps.
+		<a href="https://svelte.dev/tutorial">Documentație framework</a> |
+		<a href="https://konvajs.org/docs/index.html"> Librarie grafica</a>
+		|
+		<a
+			href="https://github.com/Soare-Robert-Daniel/diploma-de-licenta/blob/main/lucrare/lucrare-licenta-Nume-Prenume.pdf"
+		>
+			Lucrare
+		</a>
 	</p>
 
-	<div id="konva-container" />
+	<div class="main-container">
+		<Dashboard />
+		<Container />
+	</div>
 </main>
 
-<style>
+<style lang="scss">
+	// Telefoane
 	main {
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+
+		.main-container {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 
 	h1 {
 		color: #ff3e00;
 		text-transform: uppercase;
-		font-size: 4em;
+		font-size: 2rem;
 		font-weight: 100;
 	}
 
+	// Desktop | Tablete
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
