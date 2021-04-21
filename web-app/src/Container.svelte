@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import Vector from "./vector";
     import Agent from "./agent";
-import Target from "./target";
+    import Target from "./target";
     let stage;
     let anim;
     const mapSize = {
@@ -21,15 +21,16 @@ import Target from "./target";
         // add canvas element
         const agentsLayer = new Konva.Layer();
         const targetsLayer = new Konva.Layer();
+        const pathsLayer = new Konva.Layer();
         stage.add(agentsLayer);
         stage.add(targetsLayer);
-
+        stage.add(pathsLayer);
         /**
          * Agent Props
          */
         const agentDir = new Vector(0, 1);
         const agentController = new Agent(new Vector(50, 50), agentDir, 20);
-        const agent = new Konva.Circle({
+        const agentShape = new Konva.Circle({
             x: 50,
             y: 50,
             radius: 20,
@@ -37,10 +38,19 @@ import Target from "./target";
             stroke: "black",
             strokeWidth: 4,
         });
-        const speed = -1;
-        const dirX = 0;
-        const dirY = 1;
-        agentsLayer.add(agent);
+
+        const runnerPath = new Konva.Line({
+            points: [],
+            stroke: "green",
+            strokeWidth: 3,
+            lineJoin: "round",
+            dash: [30, 10],
+            lineCap: "round",
+            tension: 0.5,
+        });
+        pathsLayer.add(runnerPath);
+
+        agentsLayer.add(agentShape);
 
         agentsLayer.draw();
         console.count("onMount");
@@ -58,7 +68,7 @@ import Target from "./target";
             const { x, y } = stage.getPointerPosition();
             console.log(agentDir.angleWith(new Vector(x, y)));
             agentController.rotateTowardTarget(new Vector(x, y));
-            
+
             const target = new Konva.Circle({
                 x: x,
                 y: y,
@@ -69,35 +79,38 @@ import Target from "./target";
             });
 
             targetsLayer.add(target);
+
             targetsLayer.draw();
             targets.push(new Target(new Vector(x, y), target, 10));
         });
 
         anim = new Konva.Animation((frame) => {
-            // agent.move({ x: dirX * speed, y: dirY * speed });
-            // if (stage.getPointerPosition() && agentController.pos.x < 600) {
-            //     const { x, y } = stage.getPointerPosition();
-            //     console.log(x, y);
-            //     agentController.rotateTowardTarget(new Vector(x, y));
-            // }
-            if( targets.length > 0 ) {
-                if( agentController.taskCompleted ) {
-                    if( agentController.target !== undefined ) {
-                        agentController.target.shape.destroy()
-                        targetsLayer.draw()
+            if (targets.length > 0) {
+                if (agentController.taskCompleted) {
+                    if (agentController.target !== undefined) {
+                        agentController.target.shape.destroy();
+                        targetsLayer.draw();
                     }
-                    targets.shift()
-                    console.log(targets)
-                    agentController.setTarget(targets[0])
-                } else if( agentController.target === undefined ) {
-                    agentController.setTarget(targets[0])
+                    targets.shift();
+                    console.log(targets);
+                    agentController.setTarget(targets[0]);
+                } else if (agentController.target === undefined) {
+                    agentController.setTarget(targets[0]);
                 }
                 agentController.move();
-                agent.x(agentController.pos.x);
-                agent.y(agentController.pos.y);
+                agentShape.x(agentController.pos.x);
+                agentShape.y(agentController.pos.y);
+                if (agentController.target) {
+                    runnerPath.points(
+                        agentController
+                            .createRunner()
+                            .setTarget(agentController.target)
+                            .runToTarget()
+                            .createRunnerWalkedPath()
+                    );
+                    pathsLayer.draw();
+                }
             }
-            
-            
         }, agentsLayer);
 
         anim.start();

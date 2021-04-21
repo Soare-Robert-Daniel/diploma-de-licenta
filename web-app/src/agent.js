@@ -1,16 +1,17 @@
 import Target from './target'
 import Vector from './vector'
-
+import { cloneDeep, flatMap, sampleSize } from 'lodash'
 class Agent {
     /**
      * 
      * @param {Vector} pos 
      * @param {Vector} direction 
      * @param {number} size
+     * @param {boolean} isRunner
      */
-    constructor(pos, direction, size) {
-        this.pos = pos
-        this.dir = direction
+    constructor(pos, direction, size, isRunner = false) {
+        this.pos = cloneDeep(pos)
+        this.dir = cloneDeep(direction)
         this.max_turn_rate = 5
         this.min_turn_rate = 1
         this.turnRate = 5 * Math.PI / 180
@@ -18,6 +19,8 @@ class Agent {
         this.size = size
         this.target = undefined
         this.taskCompleted = false
+        this.memory = []
+        this.isRunner = isRunner
     }
 
     move() {
@@ -56,6 +59,7 @@ class Agent {
 
         this.target = target
         this.taskCompleted = false
+        return this
     }
 
     distanceToTarget() {
@@ -66,6 +70,46 @@ class Agent {
                 console.log("Completed")
                 this.taskCompleted = true
             }
+        }
+    }
+
+    runToTarget() {
+        console.log("RUN!")
+        this.memory = []
+        for (let iter = 0; iter < 600; iter++) {
+
+            this.memory.push({
+                pos: cloneDeep(this.pos),
+                dir: cloneDeep(this.dir)
+            })
+            this.move()
+
+            if (this.taskCompleted) {
+                console.log("Run Complet!")
+                break
+            }
+        }
+        if (!this.taskCompleted) {
+            console.log("Run failed!")
+        }
+        return this
+    }
+
+    createRunner() {
+        return new Agent(this.pos, this.dir, this.size, true)
+    }
+
+    createRunnerWalkedPath() {
+        if (this.memory.length > 0) {
+            const path = flatMap(this.memory, experience => {
+                // console.log([experience.pos.x, experience.pos.y])
+                return [experience.pos.x, experience.pos.y]
+            })
+            console.log("Path", path, this.memory)
+            return path
+        } else {
+            console.log("Empty Memory", this)
+            return []
         }
     }
 }
