@@ -45,7 +45,12 @@ class Vector {
         return Math.sqrt(this.distSqrtTo(other))
     }
 
+    round() {
+        // this.x = Math.round(this.x)
+        // this.y = Math.round(this.y)
 
+        return this
+    }
 
     clone() {
         return new Vector(this.x, this.y)

@@ -7,13 +7,8 @@
 	<h1>Învățarea automată pentru un agent într-un mediu 2D</h1>
 	<p>
 		<a href="https://svelte.dev/tutorial">Documentație framework</a> |
-		<a href="https://konvajs.org/docs/index.html"> Librarie grafica</a>
-		|
-		<a
-			href="https://github.com/Soare-Robert-Daniel/diploma-de-licenta/blob/main/lucrare/lucrare-licenta-Nume-Prenume.pdf"
-		>
-			Lucrare
-		</a>
+		<a href="https://konvajs.org/docs/index.html"> Librarie grafica</a> |
+		<a href="https://lodash.com/docs/4.17.15"> Lodash </a>
 	</p>
 
 	<div class="main-container">

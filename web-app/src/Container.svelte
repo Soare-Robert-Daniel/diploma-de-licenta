@@ -4,12 +4,24 @@
     import Vector from "./vector";
     import Agent from "./agent";
     import Target from "./target";
+
+    import DataPipeline from "./data-pipeline";
+
     let stage;
     let anim;
+    let dataPipeline = new DataPipeline();
+    let stats = dataPipeline.getStatus();
     const mapSize = {
         width: 600,
         height: 600,
     };
+
+    document.addEventListener("agent-switch-target", (e) => {
+        console.log(e);
+        // dataPipeline.addDataFromAgent(e.detail.data);
+        // stats = { ...dataPipeline.getStatus() };
+        // dataPipeline.trainModels();
+    });
 
     onMount(() => {
         stage = new Konva.Stage({
@@ -22,9 +34,7 @@
         const agentsLayer = new Konva.Layer();
         const targetsLayer = new Konva.Layer();
         const pathsLayer = new Konva.Layer();
-        stage.add(agentsLayer);
-        stage.add(targetsLayer);
-        stage.add(pathsLayer);
+
         /**
          * Agent Props
          */
@@ -48,12 +58,14 @@
             lineCap: "round",
             tension: 0.5,
         });
+
+        stage.add(agentsLayer);
+        stage.add(targetsLayer);
+        stage.add(pathsLayer);
+
         pathsLayer.add(runnerPath);
-
         agentsLayer.add(agentShape);
-
         agentsLayer.draw();
-        console.count("onMount");
 
         // add cursor styling
         stage.on("mouseover", function () {
@@ -64,10 +76,10 @@
         });
 
         stage.on("click", () => {
-            console.log(stage.getPointerPosition());
             const { x, y } = stage.getPointerPosition();
-            console.log(agentDir.angleWith(new Vector(x, y)));
-            agentController.rotateTowardTarget(new Vector(x, y));
+
+            // console.log(stage.getPointerPosition());
+            //console.log(agentDir.angleWith(new Vector(x, y)));
 
             const target = new Konva.Circle({
                 x: x,
@@ -94,13 +106,34 @@
                     targets.shift();
                     console.log(targets);
                     agentController.setTarget(targets[0]);
+
+                    // if (agentController.target === undefined) {
+                    //     dataPipeline.addDataFromAgent(
+                    //         agentController
+                    //             .createRunner()
+                    //             .setTarget(agentController.target)
+                    //             .runToTarget()
+                    //             .dumpMemory()
+                    //     );
+                    // }
                 } else if (agentController.target === undefined) {
                     agentController.setTarget(targets[0]);
+                    // if (agentController.target === undefined) {
+                    //     dataPipeline.addDataFromAgent(
+                    //         agentController
+                    //             .createRunner()
+                    //             .setTarget(agentController.target)
+                    //             .runToTarget()
+                    //             .dumpMemory()
+                    //     );
+                    // }
                 }
+
                 agentController.move();
                 agentShape.x(agentController.pos.x);
                 agentShape.y(agentController.pos.y);
-                if (agentController.target) {
+
+                if (agentController.target !== undefined) {
                     runnerPath.points(
                         agentController
                             .createRunner()
@@ -118,15 +151,32 @@
 </script>
 
 <div class="container">
+    <div class="stats">
+        <div class="data-pipeline">
+            <p>Date colectate: {`${stats.display}`}</p>
+        </div>
+    </div>
     <div id="konva-container" class="app" />
 </div>
 
 <style lang="scss">
     .container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 10px;
+
+        .stats {
+            padding: 10px;
+
+            .data-pipeline {
+                p {
+                    font-family: "Courier New", Courier, monospace;
+                }
+            }
+        }
+
         .app {
             box-shadow: 0px 0px 8px 4px rgba(106, 95, 255, 0.75);
             width: max-content;

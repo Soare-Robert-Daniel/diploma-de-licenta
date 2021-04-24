@@ -30,7 +30,7 @@ class Agent {
         }
         const displacement = this.dir.clone().mult(this.speed)
         // console.log(displacement)
-        this.pos.add(displacement)
+        this.pos.add(displacement).round()
         this.distanceToTarget()
     }
 
@@ -55,10 +55,20 @@ class Agent {
      * @param {Target} target 
      */
     setTarget(target) {
-        console.log("New Target", target)
+        //console.log("New Target", target)
 
         this.target = target
         this.taskCompleted = false
+
+        if (target && !this.isRunner) {
+            document.dispatchEvent(new CustomEvent('agent-switch-target', {
+                detail: {
+                    data: this.createRunner().setTarget(target).runToTarget().dumpMemory()
+                }
+
+            }))
+        }
+
         return this
     }
 
@@ -67,25 +77,31 @@ class Agent {
             const dist = this.pos.distTo(this.target.pos)
             // console.log(dist)
             if (dist - this.size - this.target.size <= 0) {
-                console.log("Completed")
+                //console.log("Completed")
                 this.taskCompleted = true
             }
         }
     }
 
     runToTarget() {
-        console.log("RUN!")
+        //console.log("RUN!")
+        if (!this.target) {
+            throw "Target was not set!"
+        }
         this.memory = []
         for (let iter = 0; iter < 600; iter++) {
 
             this.memory.push({
                 pos: cloneDeep(this.pos),
-                dir: cloneDeep(this.dir)
+                dir: cloneDeep(this.dir),
+                size: cloneDeep(this.size),
+                posTarget: cloneDeep(this.target.pos),
+                sizeTarget: cloneDeep(this.target.size)
             })
             this.move()
 
             if (this.taskCompleted) {
-                console.log("Run Complet!")
+                // console.log("Run Complet!")
                 break
             }
         }
@@ -105,12 +121,16 @@ class Agent {
                 // console.log([experience.pos.x, experience.pos.y])
                 return [experience.pos.x, experience.pos.y]
             })
-            console.log("Path", path, this.memory)
+            // console.log("Path", path, this.memory)
             return path
         } else {
             console.log("Empty Memory", this)
             return []
         }
+    }
+
+    dumpMemory() {
+        return this.memory
     }
 }
 
