@@ -52,18 +52,18 @@ class BoardUI {
                     })
                     this.mapLayer.add(cell)
                 } else if (cellInfo.cellType === 'player') {
-                    this.playerCell = new Konva.Circle({
-                        id: 'player',
-                        x: colIdx * this.cellWidth + this.cellWidth / 2,
-                        y: rowIdx * this.cellHeight + this.cellHeight / 2,
-                        radius: Math.min(this.cellHeight, this.cellWidth) * 0.5,
-                        fill: '#2B59C3',
+                    const cell = new Konva.Rect({
+                        id: `empty_${colIdx}x${rowIdx}`,
+                        x: colIdx * this.cellWidth,
+                        y: rowIdx * this.cellHeight,
+                        fill: '#aaa',
                         width: this.cellWidth,
                         height: this.cellHeight,
                         stroke: 'black',
                         strokeWidth: 1
                     })
-                    this.playerLayer.add(this.playerCell)
+                    this.mapLayer.add(cell)
+
                 } else if (cellInfo.cellType === 'exit') {
                     const cell = new Konva.Rect({
                         id: 'exit',
@@ -80,12 +80,25 @@ class BoardUI {
             })
         })
 
-        console.log(this.mapLayer)
+        this.playerCell = new Konva.Circle({
+            id: 'player',
+            x: this.board.playerPos.x * this.cellWidth + this.cellWidth / 2,
+            y: this.board.playerPos.y * this.cellHeight + this.cellHeight / 2,
+            radius: Math.min(this.cellHeight, this.cellWidth) * 0.5,
+            fill: '#2B59C3',
+            width: this.cellWidth,
+            height: this.cellHeight,
+            stroke: 'black',
+            strokeWidth: 1
+        })
+        this.playerLayer.add(this.playerCell)
+
+        // console.log(this.mapLayer)
         this.mapLayer.draw()
         this.playerLayer.draw()
 
         this.board.addListener('player', (playerPos) => {
-            console.log('redraw player', playerPos)
+            // console.log('redraw player', playerPos)
             this.playerCell.x(playerPos.x * this.cellWidth + this.cellWidth / 2)
             this.playerCell.y(playerPos.y * this.cellHeight + this.cellHeight / 2)
             this.playerLayer.draw()

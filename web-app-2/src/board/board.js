@@ -21,16 +21,10 @@ class Board {
     initialize() {
         this.board = Array(this.rows).fill().map(() => Array(this.cols).fill({
             cellType: 'empty',
-            value: 0,
+            value: -1,
             agentValue: undefined
         }))
-        this.board[0][0] = {
-            cellType: 'player',
-            value: 0,
-            agentValue: 0
-        }
-
-        this.board[this.rows - 1][this.cols - 1] = {
+        this.board[this.rows - 5][this.cols - 5] = {
             cellType: 'exit',
             value: 100,
             agentValue: 0
@@ -40,6 +34,19 @@ class Board {
             x: 0,
             y: 0
         }
+    }
+
+    getBoardState() {
+        const state = this.board.map(row => row.map(cell => {
+            return (cell.cellType === 'empty' && 1) || (cell.cellType === 'obstacle' && 2) || (cell.cellType === 'exit' && 3) || -1
+        }))
+        state[this.playerPos.y][this.playerPos.x] += 10
+
+        return state
+    }
+
+    getShape() {
+        return [this.rows, this.cols]
     }
 
     setPlayerPos(x, y) {
@@ -97,7 +104,8 @@ class Board {
             case 'RIGHT':
                 return this.setPlayerPos(this.playerPos.x + 1, this.playerPos.y)
             default:
-                console.error("Invalid Move!")
+                console.log(command)
+                console.error("Invalid Action Move!")
         }
     }
 

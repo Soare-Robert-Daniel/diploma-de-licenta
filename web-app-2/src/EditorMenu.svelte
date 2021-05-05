@@ -11,25 +11,11 @@
 
 <div class="menu">
     <div class="commands">
-        <Button
-            onClick={() =>
-                boardControlEvents.addEvent("move", { action: "UP" })}
-            >Sus</Button
+        <Button onClick={() => boardControlEvents.addEvent("train")}
+            >Train</Button
         >
-        <Button
-            onClick={() =>
-                boardControlEvents.addEvent("move", { action: "DOWN" })}
-            >Jos</Button
-        >
-        <Button
-            onClick={() =>
-                boardControlEvents.addEvent("move", { action: "LEFT" })}
-            >Stânga</Button
-        >
-        <Button
-            onClick={() =>
-                boardControlEvents.addEvent("move", { action: "RIGHT" })}
-            >Dreapta</Button
+        <Button onClick={() => boardControlEvents.addEvent("run")}
+            >Rulare</Button
         >
         <Button onClick={() => boardControlEvents.addEvent("reset", 2)}
             >Reset</Button

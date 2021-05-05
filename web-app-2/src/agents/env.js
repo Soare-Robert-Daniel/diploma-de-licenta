@@ -21,21 +21,28 @@ class Env {
         return this._getState()
     }
 
+    actionSample() {
+        return Math.floor(Math.random() * this.ACTIONS.length)
+    }
+
     _getState() {
-        const { x, y } = this.board.playerPos
-        return [x, y]
+        return this.board.getBoardState()
     }
 
     _getReward() {
-        return this.board.getPlayerCellValue()
+        return (this.invalidState && !this.board.isOnExit() && -100) || this.board.getPlayerCellValue()
     }
 
     _applyAction(action) {
+        if (this.ACTIONS[action] === undefined) {
+
+            console.warn(action)
+        }
         this.invalidState = !this.board.move(this.ACTIONS[action])
     }
 
     _isDone() {
-        return this.board.isOnExit() || (this.invalidState && -100)
+        return this.board.isOnExit() || this.invalidState
     }
 }
 
