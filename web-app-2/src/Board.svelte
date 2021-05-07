@@ -8,6 +8,7 @@
     import Agent from "./agents/agent";
     import Trainer from "./agents/trainer";
     import Memory from "./agents/memory";
+    import { maxBy } from "lodash";
     /**
      * @type {Konva.Stage}
      */
@@ -33,6 +34,7 @@
         { name: "dreapta", value: 0 },
         { name: "stanga", value: 0 },
     ];
+    let maxActionStat = {};
 
     $: console.log($boardControlEvents, $boardControlState);
 
@@ -84,6 +86,8 @@
                     info.value = pred[index].toFixed(2);
                     return info;
                 });
+                maxActionStat = maxBy(actionsStat, ({ value }) => value);
+                console.log(maxActionStat);
             } else if ($boardControlState.addObstacle) {
                 // console.log("Obs Pos", posX, posY);
                 board.setObstacle(posX, posY);
@@ -103,10 +107,16 @@
 
 <div class="container">
     <div class="stats">
-        <p>Train status: {trainStatus}</p>
+        <div class={`train-status ${trainStatus}`}>
+            <h3>Train status: {trainStatus}</h3>
+        </div>
         <div class="commands">
             {#each actionsStat as actionStat}
-                <div class="command">
+                <div
+                    class={`command ${
+                        actionStat.name === maxActionStat.name && "max"
+                    }`}
+                >
                     <p>{actionStat.name}: <span>{actionStat.value}</span></p>
                 </div>
             {/each}
@@ -127,16 +137,42 @@
             flex-direction: column;
             width: max-content;
 
+            .train-status {
+                border: 2px dashed #aaa;
+                padding: 5px;
+                margin: 10px;
+                border-radius: 10px;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                h3 {
+                    color: white;
+                    font-size: 16px;
+                }
+                &.idle {
+                    background-color: sandybrown;
+                }
+
+                &.completed {
+                    background-color: green;
+                }
+
+                &.progress {
+                    background-color: red;
+                }
+            }
+
             .commands {
                 margin: 10px;
-                padding: 10px;
+                padding: 15px;
                 border: 3px dashed #aaa;
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
                 width: max-content;
 
                 .command {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    padding: 5px;
                     p {
                         font-family: "Courier New", Courier, monospace;
                         color: black;
@@ -150,10 +186,14 @@
                             box-sizing: content-box;
                             width: 70px;
                             display: inline-block;
+                        }
+                    }
 
-                            .max {
-                                background-color: darkcyan;
-                            }
+                    &.max {
+                        background-color: darkcyan;
+                        border-radius: 10px;
+                        p {
+                            color: white;
                         }
                     }
                 }
