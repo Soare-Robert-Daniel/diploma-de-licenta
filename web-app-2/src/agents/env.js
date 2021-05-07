@@ -44,6 +44,10 @@ class Env {
     _isDone() {
         return this.board.isOnExit() || this.invalidState
     }
+
+    clone() {
+        return new Env(this.board.clone())
+    }
 }
 
 export default Env

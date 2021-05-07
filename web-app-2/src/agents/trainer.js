@@ -8,9 +8,10 @@ class Trainer {
      * @param {Env} env 
      * @param {Agent} agent 
      */
-    constructor(env, agent) {
+    constructor(env, agent, memory) {
         this.env = env
         this.agent = agent
+        this.memory
     }
 
     async train(episodes = 500) {
@@ -33,27 +34,27 @@ class Trainer {
 
                 const [nextState, reward, done] = this.env.step(action)
 
+                this.memory.add({ state, nextState, reward, done })
+
+                // const nextQ = (this.agent.predict(nextState).arraySync())[0]
+                // let newCurrentQ = (this.agent.predict(state).arraySync())[0]
 
 
-                const nextQ = (this.agent.predict(nextState).arraySync())[0]
-                let newCurrentQ = (this.agent.predict(state).arraySync())[0]
-
-
-                //console.log('---')
-                // console.log(newCurrentQ, nextQ.max().arraySync())
-                if (reward === 100) {
-                    console.count('PUNCT ATINS')
-                    console.log(state, nextState)
-                    console.table(newCurrentQ, state, nextState)
-                    console.table(this.env.board.playerPos)
-                }
-                newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
-                if (reward === 100) {
-                    console.table(newCurrentQ)
-                }
-                //console.log(newCurrentQ)
-                //console.log('---')
-                await this.agent.fit(state, tf.tensor2d([newCurrentQ]))
+                // //console.log('---')
+                // // console.log(newCurrentQ, nextQ.max().arraySync())
+                // if (reward === 100) {
+                //     console.count('PUNCT ATINS')
+                //     console.log(state, nextState)
+                //     console.table(newCurrentQ, state, nextState)
+                //     console.table(this.env.board.playerPos)
+                // }
+                // newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
+                // if (reward === 100) {
+                //     console.table(newCurrentQ)
+                // }
+                // //console.log(newCurrentQ)
+                // //console.log('---')
+                // await this.agent.fit(state, tf.tensor2d([newCurrentQ]))
 
 
                 if (!done) {

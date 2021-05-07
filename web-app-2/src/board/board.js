@@ -120,6 +120,11 @@ class Board {
             ({ listener }) => listener(payload)
         )
     }
+
+    clone() {
+        const clone = new Board(this.rows, this.cols)
+        clone.board = [...this.board]
+    }
 }
 
 export default Board
