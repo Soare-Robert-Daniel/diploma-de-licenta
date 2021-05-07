@@ -1,14 +1,13 @@
 class Board {
-    constructor(numRows, numCols) {
+
+    constructor(numRows, numCols, playerDefaultPos = { x: 0, y: 0 }) {
         this.rows = numRows
         this.cols = numCols
         this.board = []
 
         this.initialize()
-        this.playerPos = {
-            x: 0,
-            y: 0
-        }
+        this.playerDefaultPos = playerDefaultPos
+        this.playerPos = playerDefaultPos
 
         this.eventListeners = []
     }
@@ -16,6 +15,10 @@ class Board {
     reset() {
         this.initialize()
         this.dispatchEvent('reset')
+    }
+
+    playerReset() {
+        this.playerPos = { ...this.playerDefaultPos }
     }
 
     initialize() {
@@ -60,10 +63,6 @@ class Board {
         return false
     }
 
-    playerReset() {
-        this.setPlayerPos(0, 0)
-    }
-
     getPlayerCellValue() {
         return this.board[this.playerPos.y][this.playerPos.x].value
     }
@@ -81,7 +80,7 @@ class Board {
     }
 
     setObstacle(x, y) {
-        if ((0 <= x && x < this.cols && 0 <= y && y < this.rows) && (x !== this.cols - 1 && y !== this.rows) && (this.board[y][x].cellType !== 'player' && this.board[y][x].cellType !== 'exit' && this.board[y][x].cellType !== 'obstacle')) {
+        if (this.isLocationValid(x, y)) {
             this.board[y][x] = {
                 cellType: 'obstacle',
                 value: -100,
@@ -121,9 +120,17 @@ class Board {
         )
     }
 
+    isLocationValid(x, y) {
+        if ((0 <= x && x < this.cols && 0 <= y && y < this.rows) && (this.board[y][x].cellType !== 'player' && this.board[y][x].cellType !== 'exit' && this.board[y][x].cellType !== 'obstacle')) {
+            return true
+        }
+        return false
+    }
+
     clone() {
         const clone = new Board(this.rows, this.cols)
         clone.board = [...this.board]
+        return clone
     }
 }
 

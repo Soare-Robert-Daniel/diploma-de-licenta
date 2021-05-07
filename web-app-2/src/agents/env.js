@@ -11,6 +11,10 @@ class Env {
         this.board = board
     }
 
+    setAgentStartPosition(pos) {
+        this.board.playerDefaultPos = pos
+    }
+
     step(action) {
         this._applyAction(action)
         return [this._getState(), this._getReward(), this._isDone()]

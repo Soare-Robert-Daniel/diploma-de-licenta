@@ -12299,16 +12299,15 @@ var app = (function () {
     });
 
     class Board {
-        constructor(numRows, numCols) {
+
+        constructor(numRows, numCols, playerDefaultPos = { x: 0, y: 0 }) {
             this.rows = numRows;
             this.cols = numCols;
             this.board = [];
 
             this.initialize();
-            this.playerPos = {
-                x: 0,
-                y: 0
-            };
+            this.playerDefaultPos = playerDefaultPos;
+            this.playerPos = playerDefaultPos;
 
             this.eventListeners = [];
         }
@@ -12316,6 +12315,10 @@ var app = (function () {
         reset() {
             this.initialize();
             this.dispatchEvent('reset');
+        }
+
+        playerReset() {
+            this.playerPos = { ...this.playerDefaultPos };
         }
 
         initialize() {
@@ -12360,10 +12363,6 @@ var app = (function () {
             return false
         }
 
-        playerReset() {
-            this.setPlayerPos(0, 0);
-        }
-
         getPlayerCellValue() {
             return this.board[this.playerPos.y][this.playerPos.x].value
         }
@@ -12381,7 +12380,7 @@ var app = (function () {
         }
 
         setObstacle(x, y) {
-            if ((0 <= x && x < this.cols && 0 <= y && y < this.rows) && (x !== this.cols - 1 && y !== this.rows) && (this.board[y][x].cellType !== 'player' && this.board[y][x].cellType !== 'exit' && this.board[y][x].cellType !== 'obstacle')) {
+            if (this.isLocationValid(x, y)) {
                 this.board[y][x] = {
                     cellType: 'obstacle',
                     value: -100,
@@ -12421,9 +12420,17 @@ var app = (function () {
             );
         }
 
+        isLocationValid(x, y) {
+            if ((0 <= x && x < this.cols && 0 <= y && y < this.rows) && (this.board[y][x].cellType !== 'player' && this.board[y][x].cellType !== 'exit' && this.board[y][x].cellType !== 'obstacle')) {
+                return true
+            }
+            return false
+        }
+
         clone() {
             const clone = new Board(this.rows, this.cols);
             clone.board = [...this.board];
+            return clone
         }
     }
 
@@ -12746,6 +12753,10 @@ var app = (function () {
          */
         constructor(board) {
             this.board = board;
+        }
+
+        setAgentStartPosition(pos) {
+            this.board.playerDefaultPos = pos;
         }
 
         step(action) {
@@ -83206,6 +83217,7 @@ return a / b;`;
     }
 
     class Trainer {
+        totalEnvs = 5
         /**
          * 
          * @param {Env} env 
@@ -83216,69 +83228,119 @@ return a / b;`;
             this.env = env;
             this.agent = agent;
             this.memory = memory;
+
+            this.envs = [];
         }
 
-        async train(episodes = 3) {
+        async train(episodes = 50) {
+            this.createMultipleEnvs();
+            const discount = 0.985;
             // const lr = 0.1
             let epsilon = 1;
             const epsilon_min = 0.0;
             const epsilon_decay = (epsilon - epsilon_min) / episodes;
             const maxIterations = 75;
             console.time('Train');
+            console.log('Env', this.envs);
             for (let eps = 0; eps < episodes; eps++) {
+                console.time('Episode');
                 console.log('Episode', eps, epsilon);
-                let state = this.env.reset();
 
+                this.envs.forEach(env => {
+                    let state = env.reset();
 
-                for (let iter = 0; iter < maxIterations; iter++) {
-                    const action = Math.random() < epsilon ? this.env.actionSample() : this.agent.getAction(state);
+                    for (let iter = 0; iter < maxIterations; iter++) {
+                        const action = Math.random() < epsilon ? env.actionSample() : this.agent.getAction(state);
+                        const [nextState, reward, done] = env.step(action);
+                        this.memory.add({ state, nextState, reward, done, action });
 
-                    // console.log('Action', action)
+                        if (done) {
+                            break
+                        }
 
-                    const [nextState, reward, done] = this.env.step(action);
+                        state = nextState;
+                    }
+                });
 
-                    this.memory.add({ state, nextState, reward, done });
+                // this.memory.sample(100).forEach(async ({ nextState, reward, done, state, action }) => {
+                //     const nextQ = (this.agent.predict(nextState).arraySync())[0]
+                //     const newCurrentQ = (this.agent.predict(state).arraySync())[0]
 
-                    // const nextQ = (this.agent.predict(nextState).arraySync())[0]
-                    // let newCurrentQ = (this.agent.predict(state).arraySync())[0]
+                //     if (reward === 100) {
+                //         console.count('PUNCT ATINS')
+                //         // console.log(state, nextState)
+                //         // console.table(newCurrentQ, state, nextState)
+                //     }
+                //     newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
+                //     if (reward === 100) {
+                //         console.table(newCurrentQ)
+                //     }
+                //     //console.log(newCurrentQ)
+                //     //console.log('---')
+                //     await this.agent.fit(state, tf.tensor2d([newCurrentQ]))
+                // })
 
+                for (const exper of this.memory.sample(100)) {
+                    const { nextState, reward, done, state, action } = exper;
+                    const nextQ = (this.agent.predict(nextState).arraySync())[0];
+                    const newCurrentQ = (this.agent.predict(state).arraySync())[0];
 
-                    // //console.log('---')
-                    // // console.log(newCurrentQ, nextQ.max().arraySync())
-                    // if (reward === 100) {
-                    //     console.count('PUNCT ATINS')
-                    //     console.log(state, nextState)
-                    //     console.table(newCurrentQ, state, nextState)
-                    //     console.table(this.env.board.playerPos)
-                    // }
-                    // newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
+                    if (reward === 100) {
+                        console.count('PUNCT ATINS');
+                        // console.log(state, nextState)
+                        // console.table(newCurrentQ, state, nextState)
+                    }
+                    newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ);
                     // if (reward === 100) {
                     //     console.table(newCurrentQ)
                     // }
-                    // //console.log(newCurrentQ)
-                    // //console.log('---')
-                    // await this.agent.fit(state, tf.tensor2d([newCurrentQ]))
-
-
-                    if (!done) ; else {
-                        break
-                    }
-
-                    state = nextState;
+                    //console.log(newCurrentQ)
+                    //console.log('---')
+                    await this.agent.fit(state, tensor2d([newCurrentQ]));
                 }
+
 
                 if (epsilon > epsilon_min) {
                     epsilon -= epsilon_decay;
                     epsilon = Math.max(epsilon, 0);
-
                 }
+                console.timeEnd('Episode');
+                console.log('---');
 
-                console.log('All the memory:', this.memory);
-                console.log('Shuffle:', this.memory.sample(10));
+                // console.log('All the memory:', this.memory)
+                // console.log('Shuffle:', this.memory.sample(10))
 
             }
             console.timeEnd('Train');
             return 'completed'
+        }
+
+        createMultipleEnvs() {
+            this.envs = [];
+            const uniqPos = [];
+
+            for (let n = 0; n < this.totalEnvs; n++) {
+                let pair = [Math.floor(Math.random() * this.env.board.cols), Math.floor(Math.random() * this.env.board.rows)];
+                let isUniq = uniqPos.filter(p => p[0] !== pair[0] && p[1] !== pair[1]).length === 0;
+                while (!isUniq) {
+                    pair = [Math.floor(Math.random() * this.env.board.cols), Math.floor(Math.random() * this.env.board.rows)];
+                    isUniq = uniqPos.filter(([x, y]) => x !== pair[0] && y !== pair[1]).length === 0;
+                }
+                uniqPos.push(pair);
+            }
+
+            uniqPos.forEach(pos => {
+                const clone = this.env.clone();
+                console.log('clone', clone);
+                clone.setAgentStartPosition({
+                    x: pos[0],
+                    y: pos[1]
+                });
+                clone.reset();
+                this.envs.push(clone);
+            });
+
+            this.envs.push(this.env);
         }
     }
 
@@ -83314,9 +83376,9 @@ return a / b;`;
     			span = element("span");
     			t2 = text(t2_value);
     			t3 = space();
-    			attr_dev(span, "class", "svelte-1earfcg");
+    			attr_dev(span, "class", "svelte-139bwup");
     			add_location(span, file$2, 109, 42, 3643);
-    			attr_dev(p, "class", "svelte-1earfcg");
+    			attr_dev(p, "class", "svelte-139bwup");
     			add_location(p, file$2, 109, 20, 3621);
     			attr_dev(div, "class", "command");
     			add_location(div, file$2, 108, 16, 3579);
@@ -83384,15 +83446,15 @@ return a / b;`;
 
     			t3 = space();
     			div2 = element("div");
-    			attr_dev(p, "class", "svelte-1earfcg");
+    			attr_dev(p, "class", "svelte-139bwup");
     			add_location(p, file$2, 105, 8, 3451);
-    			attr_dev(div0, "class", "commands svelte-1earfcg");
+    			attr_dev(div0, "class", "commands svelte-139bwup");
     			add_location(div0, file$2, 106, 8, 3494);
-    			attr_dev(div1, "class", "stats svelte-1earfcg");
+    			attr_dev(div1, "class", "stats svelte-139bwup");
     			add_location(div1, file$2, 104, 4, 3423);
     			attr_dev(div2, "id", "container");
     			add_location(div2, file$2, 114, 4, 3752);
-    			attr_dev(div3, "class", "container svelte-1earfcg");
+    			attr_dev(div3, "class", "container svelte-139bwup");
     			add_location(div3, file$2, 103, 0, 3395);
     		},
     		l: function claim(nodes) {

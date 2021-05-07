@@ -150,6 +150,10 @@
                             box-sizing: content-box;
                             width: 70px;
                             display: inline-block;
+
+                            .max {
+                                background-color: darkcyan;
+                            }
                         }
                     }
                 }
