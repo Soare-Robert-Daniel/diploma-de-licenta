@@ -28213,7 +28213,7 @@ var app = (function () {
         const multiplier = div$1(floor$2(add$1(randomUniform($noiseShape, 0, 1, 'float32', seed), keepProb)), keepProb);
         return mul($x, multiplier);
     }
-    const dropout$1 = op({ dropout_ });
+    const dropout$2 = op({ dropout_ });
 
     /**
      * @license
@@ -39250,8 +39250,8 @@ var app = (function () {
      * @param seed random seed to ensure determinism. Optional.
      * @returns Result of the dropout operation.
      */
-    function dropout(x, level, noiseShape, seed) {
-        return tidy(() => dropout$1(x, level, noiseShape, seed));
+    function dropout$1(x, level, noiseShape, seed) {
+        return tidy(() => dropout$2(x, level, noiseShape, seed));
     }
     /**
      * Element-wise, segment-wise linear approximation of sigmoid.
@@ -50555,7 +50555,7 @@ var app = (function () {
     registerClass(StackedRNNCells);
     function generateDropoutMask(args) {
         const { ones, rate, training = false, count = 1 } = args;
-        const droppedInputs = () => dropout(ones(), rate);
+        const droppedInputs = () => dropout$1(ones(), rate);
         const createMask = () => inTrainPhase(droppedInputs, ones, training);
         // just in case count is provided with null or undefined
         if (!count || count <= 1) {
@@ -50928,7 +50928,7 @@ var app = (function () {
                 if (0 < this.rate && this.rate < 1) {
                     const training = kwargs['training'] == null ? false : kwargs['training'];
                     const noiseShape = this.getNoiseShape(input);
-                    const output = inTrainPhase(() => dropout(input, this.rate, noiseShape, this.seed), () => input, training);
+                    const output = inTrainPhase(() => dropout$1(input, this.rate, noiseShape, this.seed), () => input, training);
                     return output;
                 }
                 return inputs;
@@ -53792,6 +53792,19 @@ var app = (function () {
      */
     function dense(args) {
         return new Dense(args);
+    }
+    /**
+     * Applies
+     * [dropout](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf) to
+     * the input.
+     *
+     * Dropout consists in randomly setting a fraction `rate` of input units to 0 at
+     * each update during training time, which helps prevent overfitting.
+     *
+     * @doc {heading: 'Layers', subheading: 'Basic', namespace: 'layers'}
+     */
+    function dropout(args) {
+        return new Dropout(args);
     }
     /**
      * Flattens the input. Does not affect the batch size.
@@ -83113,11 +83126,13 @@ return a / b;`;
         buildModel() {
             const model = sequential();
 
-            // model.add(tf.layers.dense({ units: 10, inputShape: [10, 10], activation: 'relu' }))
-            model.add(flatten({ inputShape: [10, 10] }));
+            model.add(dense({ units: 10, inputShape: [10, 10], activation: 'relu' }));
+            model.add(flatten());
             //model.add(tf.layers.dense({ units: 8, activation: 'relu' }))
-            model.add(dense({ units: 32, activation: 'relu' }));
-            model.add(dense({ units: 16, activation: 'relu' }));
+            //model.add(tf.layers.dense({ units: 16, activation: 'relu' }))
+            //model.add(tf.layers.dropout({ rate: 0.2 }))
+            // model.add(tf.layers.dense({ units: 32, activation: 'relu' }))
+            model.add(dropout({ rate: 0.2 }));
             model.add(dense({ units: 4, activation: 'linear' }));
             model.compile({ loss: 'meanSquaredError', optimizer: 'adam', metrics: ['accuracy'] });
             model.summary();

@@ -11,11 +11,13 @@ class Agent {
     buildModel() {
         const model = tf.sequential()
 
-        // model.add(tf.layers.dense({ units: 10, inputShape: [10, 10], activation: 'relu' }))
-        model.add(tf.layers.flatten({ inputShape: [10, 10] }))
+        model.add(tf.layers.dense({ units: 10, inputShape: [10, 10], activation: 'relu' }))
+        model.add(tf.layers.flatten())
         //model.add(tf.layers.dense({ units: 8, activation: 'relu' }))
-        model.add(tf.layers.dense({ units: 32, activation: 'relu' }))
-        model.add(tf.layers.dense({ units: 16, activation: 'relu' }))
+        //model.add(tf.layers.dense({ units: 16, activation: 'relu' }))
+        //model.add(tf.layers.dropout({ rate: 0.2 }))
+        // model.add(tf.layers.dense({ units: 32, activation: 'relu' }))
+        model.add(tf.layers.dropout({ rate: 0.2 }))
         model.add(tf.layers.dense({ units: 4, activation: 'linear' }))
         model.compile({ loss: 'meanSquaredError', optimizer: 'adam', metrics: ['accuracy'] })
         model.summary()
