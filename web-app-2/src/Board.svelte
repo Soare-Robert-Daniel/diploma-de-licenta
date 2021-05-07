@@ -7,6 +7,7 @@
     import Env from "./agents/env";
     import Agent from "./agents/agent";
     import Trainer from "./agents/trainer";
+    import Memory from "./agents/memory";
     /**
      * @type {Konva.Stage}
      */
@@ -21,7 +22,9 @@
      */
     const env = new Env(board);
     const agent = new Agent();
-    const trainer = new Trainer(env, agent);
+    const memory = new Memory();
+    const trainer = new Trainer(env, agent, memory);
+
     let trainStatus = "idle";
 
     let actionsStat = [

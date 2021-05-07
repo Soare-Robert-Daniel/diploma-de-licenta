@@ -5,7 +5,7 @@ class Memory {
     }
 
     add(exper) {
-        if (this.experience.length + 1 > this.capacity) {
+        if (this.experiences.length + 1 > this.capacity) {
             this.experiences.shift()
         }
         this.experiences.push(exper)
@@ -40,3 +40,5 @@ class Memory {
         return array;
     }
 }
+
+export default Memory

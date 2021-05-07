@@ -12420,6 +12420,11 @@ var app = (function () {
                 ({ listener }) => listener(payload)
             );
         }
+
+        clone() {
+            const clone = new Board(this.rows, this.cols);
+            clone.board = [...this.board];
+        }
     }
 
     class BoardUI {
@@ -12775,6 +12780,10 @@ var app = (function () {
 
         _isDone() {
             return this.board.isOnExit() || this.invalidState
+        }
+
+        clone() {
+            return new Env(this.board.clone())
         }
     }
 
@@ -83153,19 +83162,63 @@ return a / b;`;
         }
     }
 
+    class Memory {
+        constructor(capacity) {
+            this.capacity = capacity || 5000;
+            this.experiences = [];
+        }
+
+        add(exper) {
+            if (this.experiences.length + 1 > this.capacity) {
+                this.experiences.shift();
+            }
+            this.experiences.push(exper);
+        }
+
+        sample(batch) {
+            const randomExperiences = Memory.shuffle([...this.experiences]);
+            return randomExperiences.slice(0, batch)
+        }
+
+        /**
+         * Shuffle the array using Fisher–Yates Shuffle
+         * @param {Array} array 
+         * @returns 
+         */
+        static shuffle(array) {
+            // https://bost.ocks.org/mike/shuffle/
+            let m = array.length, t, i;
+
+            // While there remain elements to shuffle…
+            while (m) {
+
+                // Pick a remaining element…
+                i = Math.floor(Math.random() * m--);
+
+                // And swap it with the current element.
+                t = array[m];
+                array[m] = array[i];
+                array[i] = t;
+            }
+
+            return array;
+        }
+    }
+
     class Trainer {
         /**
          * 
          * @param {Env} env 
          * @param {Agent} agent 
+         * @param {Memory} memory
          */
-        constructor(env, agent) {
+        constructor(env, agent, memory) {
             this.env = env;
             this.agent = agent;
+            this.memory = memory;
         }
 
-        async train(episodes = 500) {
-            const discount = 0.985;
+        async train(episodes = 3) {
             // const lr = 0.1
             let epsilon = 1;
             const epsilon_min = 0.0;
@@ -83184,27 +83237,27 @@ return a / b;`;
 
                     const [nextState, reward, done] = this.env.step(action);
 
+                    this.memory.add({ state, nextState, reward, done });
+
+                    // const nextQ = (this.agent.predict(nextState).arraySync())[0]
+                    // let newCurrentQ = (this.agent.predict(state).arraySync())[0]
 
 
-                    const nextQ = (this.agent.predict(nextState).arraySync())[0];
-                    let newCurrentQ = (this.agent.predict(state).arraySync())[0];
-
-
-                    //console.log('---')
-                    // console.log(newCurrentQ, nextQ.max().arraySync())
-                    if (reward === 100) {
-                        console.count('PUNCT ATINS');
-                        console.log(state, nextState);
-                        console.table(newCurrentQ, state, nextState);
-                        console.table(this.env.board.playerPos);
-                    }
-                    newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ);
-                    if (reward === 100) {
-                        console.table(newCurrentQ);
-                    }
-                    //console.log(newCurrentQ)
-                    //console.log('---')
-                    await this.agent.fit(state, tensor2d([newCurrentQ]));
+                    // //console.log('---')
+                    // // console.log(newCurrentQ, nextQ.max().arraySync())
+                    // if (reward === 100) {
+                    //     console.count('PUNCT ATINS')
+                    //     console.log(state, nextState)
+                    //     console.table(newCurrentQ, state, nextState)
+                    //     console.table(this.env.board.playerPos)
+                    // }
+                    // newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
+                    // if (reward === 100) {
+                    //     console.table(newCurrentQ)
+                    // }
+                    // //console.log(newCurrentQ)
+                    // //console.log('---')
+                    // await this.agent.fit(state, tf.tensor2d([newCurrentQ]))
 
 
                     if (!done) ; else {
@@ -83220,6 +83273,9 @@ return a / b;`;
 
                 }
 
+                console.log('All the memory:', this.memory);
+                console.log('Shuffle:', this.memory.sample(10));
+
             }
             console.timeEnd('Train');
             return 'completed'
@@ -83233,19 +83289,19 @@ return a / b;`;
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
-    // (105:12) {#each actionsStat as actionStat}
+    // (108:12) {#each actionsStat as actionStat}
     function create_each_block(ctx) {
     	let div;
     	let p;
-    	let t0_value = /*actionStat*/ ctx[11].name + "";
+    	let t0_value = /*actionStat*/ ctx[12].name + "";
     	let t0;
     	let t1;
     	let span;
-    	let t2_value = /*actionStat*/ ctx[11].value + "";
+    	let t2_value = /*actionStat*/ ctx[12].value + "";
     	let t2;
     	let t3;
 
@@ -83259,11 +83315,11 @@ return a / b;`;
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(span, "class", "svelte-1earfcg");
-    			add_location(span, file$2, 106, 42, 3559);
+    			add_location(span, file$2, 109, 42, 3643);
     			attr_dev(p, "class", "svelte-1earfcg");
-    			add_location(p, file$2, 106, 20, 3537);
+    			add_location(p, file$2, 109, 20, 3621);
     			attr_dev(div, "class", "command");
-    			add_location(div, file$2, 105, 16, 3495);
+    			add_location(div, file$2, 108, 16, 3579);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -83275,8 +83331,8 @@ return a / b;`;
     			append_dev(div, t3);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*actionsStat*/ 2 && t0_value !== (t0_value = /*actionStat*/ ctx[11].name + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*actionsStat*/ 2 && t2_value !== (t2_value = /*actionStat*/ ctx[11].value + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*actionsStat*/ 2 && t0_value !== (t0_value = /*actionStat*/ ctx[12].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*actionsStat*/ 2 && t2_value !== (t2_value = /*actionStat*/ ctx[12].value + "")) set_data_dev(t2, t2_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -83287,7 +83343,7 @@ return a / b;`;
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(105:12) {#each actionsStat as actionStat}",
+    		source: "(108:12) {#each actionsStat as actionStat}",
     		ctx
     	});
 
@@ -83329,15 +83385,15 @@ return a / b;`;
     			t3 = space();
     			div2 = element("div");
     			attr_dev(p, "class", "svelte-1earfcg");
-    			add_location(p, file$2, 102, 8, 3367);
+    			add_location(p, file$2, 105, 8, 3451);
     			attr_dev(div0, "class", "commands svelte-1earfcg");
-    			add_location(div0, file$2, 103, 8, 3410);
+    			add_location(div0, file$2, 106, 8, 3494);
     			attr_dev(div1, "class", "stats svelte-1earfcg");
-    			add_location(div1, file$2, 101, 4, 3339);
+    			add_location(div1, file$2, 104, 4, 3423);
     			attr_dev(div2, "id", "container");
-    			add_location(div2, file$2, 111, 4, 3668);
+    			add_location(div2, file$2, 114, 4, 3752);
     			attr_dev(div3, "class", "container svelte-1earfcg");
-    			add_location(div3, file$2, 100, 0, 3311);
+    			add_location(div3, file$2, 103, 0, 3395);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -83427,7 +83483,8 @@ return a / b;`;
     	const env = new Env(board);
 
     	const agent = new Agent();
-    	const trainer = new Trainer(env, agent);
+    	const memory = new Memory();
+    	const trainer = new Trainer(env, agent, memory);
     	let trainStatus = "idle";
 
     	let actionsStat = [
@@ -83517,11 +83574,13 @@ return a / b;`;
     		Env,
     		Agent,
     		Trainer,
+    		Memory,
     		stage,
     		board,
     		boardUI,
     		env,
     		agent,
+    		memory,
     		trainer,
     		trainStatus,
     		actionsStat,

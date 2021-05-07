@@ -1,5 +1,6 @@
 import Env from './env'
 import Agent from './agent'
+import Memory from './memory'
 import * as tf from '@tensorflow/tfjs';
 
 class Trainer {
@@ -7,14 +8,15 @@ class Trainer {
      * 
      * @param {Env} env 
      * @param {Agent} agent 
+     * @param {Memory} memory
      */
     constructor(env, agent, memory) {
         this.env = env
         this.agent = agent
-        this.memory
+        this.memory = memory
     }
 
-    async train(episodes = 500) {
+    async train(episodes = 3) {
         const discount = 0.985;
         // const lr = 0.1
         let epsilon = 1
@@ -71,6 +73,9 @@ class Trainer {
                 epsilon = Math.max(epsilon, 0)
 
             }
+
+            console.log('All the memory:', this.memory)
+            console.log('Shuffle:', this.memory.sample(10))
 
         }
         console.timeEnd('Train')
