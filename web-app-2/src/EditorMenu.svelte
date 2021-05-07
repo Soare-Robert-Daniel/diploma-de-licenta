@@ -1,5 +1,6 @@
 <script>
     import Button from "./components/Button.svelte";
+    import Checkbox from "./components/Checkbox.svelte";
     import { boardControlEvents, boardControlState } from "./store";
 
     let movePlayer = false;
@@ -20,15 +21,21 @@
         <Button onClick={() => boardControlEvents.addEvent("reset", 2)}
             >Reset</Button
         >
-        <div>
-            <label>
-                <input type="checkbox" bind:checked={movePlayer} />
-                Misca agentul
-            </label>
-            <label>
-                <input type="checkbox" bind:checked={addObstacle} />
-                Adauga Obstacol
-            </label>
+        <div class="options">
+            <Checkbox
+                isChecked={movePlayer}
+                onChange={(value) => {
+                    movePlayer = value;
+                }}
+                text={"Misca agentul"}
+            />
+            <Checkbox
+                isChecked={addObstacle}
+                onChange={(value) => {
+                    addObstacle = value;
+                }}
+                text={"Adauga Obstacol"}
+            />
         </div>
     </div>
 </div>
@@ -42,6 +49,10 @@
         .commands {
             padding: 15px;
             border: 1px dashed #aaa;
+
+            .options {
+                display: inline-flex;
+            }
         }
     }
 </style>
