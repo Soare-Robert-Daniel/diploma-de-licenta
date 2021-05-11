@@ -83227,7 +83227,7 @@ return a / b;`;
     }
 
     class Trainer {
-        totalEnvs = 5
+        totalEnvs = 2
         /**
          * 
          * @param {Env} env 
@@ -83242,7 +83242,7 @@ return a / b;`;
             this.envs = [];
         }
 
-        async train(episodes = 150) {
+        async train(episodes = 150, cb = () => { }) {
             this.createMultipleEnvs();
             const discount = 0.985;
             // const lr = 0.1
@@ -83254,9 +83254,11 @@ return a / b;`;
             console.log('Env', this.envs);
             for (let eps = 0; eps < episodes; eps++) {
                 console.time('Episode');
+                const t0 = performance.now();
                 console.log('Episode', eps, epsilon);
 
-                this.envs.forEach(env => {
+                const rewardsAnaly = {};
+                this.envs.forEach(({ id, env }) => {
                     let state = env.reset();
 
                     for (let iter = 0; iter < maxIterations; iter++) {
@@ -83264,6 +83266,8 @@ return a / b;`;
                         const [nextState, reward, done] = env.step(action);
                         this.memory.add({ state, nextState, reward, done, action });
 
+                        // Analytics
+                        rewardsAnaly[id] = rewardsAnaly[id] ? rewardsAnaly[id] + reward : reward;
                         if (done) {
                             break
                         }
@@ -83272,24 +83276,6 @@ return a / b;`;
                     }
                 });
 
-                // this.memory.sample(100).forEach(async ({ nextState, reward, done, state, action }) => {
-                //     const nextQ = (this.agent.predict(nextState).arraySync())[0]
-                //     const newCurrentQ = (this.agent.predict(state).arraySync())[0]
-
-                //     if (reward === 100) {
-                //         console.count('PUNCT ATINS')
-                //         // console.log(state, nextState)
-                //         // console.table(newCurrentQ, state, nextState)
-                //     }
-                //     newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
-                //     if (reward === 100) {
-                //         console.table(newCurrentQ)
-                //     }
-                //     //console.log(newCurrentQ)
-                //     //console.log('---')
-                //     await this.agent.fit(state, tf.tensor2d([newCurrentQ]))
-                // })
-
                 for (const exper of this.memory.sample(100)) {
                     const { nextState, reward, done, state, action } = exper;
                     const nextQ = (this.agent.predict(nextState).arraySync())[0];
@@ -83297,15 +83283,8 @@ return a / b;`;
 
                     if (reward === 100) {
                         console.count('PUNCT ATINS');
-                        // console.log(state, nextState)
-                        // console.table(newCurrentQ, state, nextState)
                     }
                     newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ);
-                    // if (reward === 100) {
-                    //     console.table(newCurrentQ)
-                    // }
-                    //console.log(newCurrentQ)
-                    //console.log('---')
                     await this.agent.fit(state, tensor2d([newCurrentQ]));
                 }
 
@@ -83314,12 +83293,14 @@ return a / b;`;
                     epsilon -= epsilon_decay;
                     epsilon = Math.max(epsilon, 0);
                 }
+                const t1 = performance.now();
                 console.timeEnd('Episode');
+                console.log(t1 - t0);
+                cb({
+                    episodeTime: t1 - t0,
+                    episodeRewards: rewardsAnaly
+                });
                 console.log('---');
-
-                // console.log('All the memory:', this.memory)
-                // console.log('Shuffle:', this.memory.sample(10))
-
             }
             console.timeEnd('Train');
             return 'completed'
@@ -83327,8 +83308,10 @@ return a / b;`;
 
         createMultipleEnvs() {
             this.envs = [];
+            let id = 1;
             const uniqPos = [];
 
+            this.envs.push({ id: id++, env: this.env });
             for (let n = 0; n < this.totalEnvs; n++) {
                 let pair = [Math.floor(Math.random() * this.env.board.cols), Math.floor(Math.random() * this.env.board.rows)];
                 let isUniq = uniqPos.filter(p => p[0] !== pair[0] && p[1] !== pair[1]).length === 0;
@@ -83347,10 +83330,9 @@ return a / b;`;
                     y: pos[1]
                 });
                 clone.reset();
-                this.envs.push(clone);
+                this.envs.push({ id: id++, env: clone });
             });
 
-            this.envs.push(this.env);
         }
 
         static run(env, agent) {
@@ -100577,19 +100559,19 @@ return a / b;`;
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[13] = list[i];
+    	child_ctx[14] = list[i];
     	return child_ctx;
     }
 
-    // (117:12) {#each actionsStat as actionStat}
+    // (123:12) {#each actionsStat as actionStat}
     function create_each_block(ctx) {
     	let div;
     	let p;
-    	let t0_value = /*actionStat*/ ctx[13].name + "";
+    	let t0_value = /*actionStat*/ ctx[14].name + "";
     	let t0;
     	let t1;
     	let span;
-    	let t2_value = /*actionStat*/ ctx[13].value + "";
+    	let t2_value = /*actionStat*/ ctx[14].value + "";
     	let t2;
     	let t3;
     	let div_class_value;
@@ -100604,11 +100586,11 @@ return a / b;`;
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(span, "class", "svelte-1qovyyk");
-    			add_location(span, file$3, 122, 42, 4186);
+    			add_location(span, file$3, 128, 42, 4388);
     			attr_dev(p, "class", "svelte-1qovyyk");
-    			add_location(p, file$3, 122, 20, 4164);
-    			attr_dev(div, "class", div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[13].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1qovyyk"));
-    			add_location(div, file$3, 117, 16, 3986);
+    			add_location(p, file$3, 128, 20, 4366);
+    			attr_dev(div, "class", div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[14].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1qovyyk"));
+    			add_location(div, file$3, 123, 16, 4188);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -100620,10 +100602,10 @@ return a / b;`;
     			append_dev(div, t3);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*actionsStat*/ 2 && t0_value !== (t0_value = /*actionStat*/ ctx[13].name + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*actionsStat*/ 2 && t2_value !== (t2_value = /*actionStat*/ ctx[13].value + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*actionsStat*/ 2 && t0_value !== (t0_value = /*actionStat*/ ctx[14].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*actionsStat*/ 2 && t2_value !== (t2_value = /*actionStat*/ ctx[14].value + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty & /*actionsStat, maxActionStat*/ 6 && div_class_value !== (div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[13].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1qovyyk"))) {
+    			if (dirty & /*actionsStat, maxActionStat*/ 6 && div_class_value !== (div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[14].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1qovyyk"))) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -100636,7 +100618,7 @@ return a / b;`;
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(117:12) {#each actionsStat as actionStat}",
+    		source: "(123:12) {#each actionsStat as actionStat}",
     		ctx
     	});
 
@@ -100681,17 +100663,17 @@ return a / b;`;
     			t3 = space();
     			div3 = element("div");
     			attr_dev(h3, "class", "svelte-1qovyyk");
-    			add_location(h3, file$3, 113, 12, 3841);
+    			add_location(h3, file$3, 119, 12, 4043);
     			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(`train-status ${/*trainStatus*/ ctx[0]}`) + " svelte-1qovyyk"));
-    			add_location(div0, file$3, 112, 8, 3785);
+    			add_location(div0, file$3, 118, 8, 3987);
     			attr_dev(div1, "class", "commands svelte-1qovyyk");
-    			add_location(div1, file$3, 115, 8, 3901);
+    			add_location(div1, file$3, 121, 8, 4103);
     			attr_dev(div2, "class", "stats svelte-1qovyyk");
-    			add_location(div2, file$3, 111, 4, 3757);
+    			add_location(div2, file$3, 117, 4, 3959);
     			attr_dev(div3, "id", "container");
-    			add_location(div3, file$3, 127, 4, 4295);
+    			add_location(div3, file$3, 133, 4, 4497);
     			attr_dev(div4, "class", "container svelte-1qovyyk");
-    			add_location(div4, file$3, 110, 0, 3729);
+    			add_location(div4, file$3, 116, 0, 3931);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -100767,9 +100749,9 @@ return a / b;`;
     	let $boardControlEvents;
     	let $boardControlState;
     	validate_store(boardControlEvents, "boardControlEvents");
-    	component_subscribe($$self, boardControlEvents, $$value => $$invalidate(3, $boardControlEvents = $$value));
+    	component_subscribe($$self, boardControlEvents, $$value => $$invalidate(4, $boardControlEvents = $$value));
     	validate_store(boardControlState, "boardControlState");
-    	component_subscribe($$self, boardControlState, $$value => $$invalidate(4, $boardControlState = $$value));
+    	component_subscribe($$self, boardControlState, $$value => $$invalidate(5, $boardControlState = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Board", slots, []);
     	let stage;
@@ -100798,6 +100780,7 @@ return a / b;`;
     	];
 
     	let maxActionStat = {};
+    	let trainAnalytisc = [];
 
     	const unsubscribeBoardControl = boardControlEvents.subscribe(events => {
     		events.forEach(event => {
@@ -100813,7 +100796,9 @@ return a / b;`;
     			} else if (event.eventName === "train") {
     				$$invalidate(0, trainStatus = "progress");
 
-    				trainer.train().then(status => {
+    				trainer.train(100, data => {
+    					$$invalidate(3, trainAnalytisc = [...trainAnalytisc, data]);
+    				}).then(status => {
     					$$invalidate(0, trainStatus = status);
     				});
 
@@ -100897,6 +100882,7 @@ return a / b;`;
     		trainStatus,
     		actionsStat,
     		maxActionStat,
+    		trainAnalytisc,
     		unsubscribeBoardControl,
     		$boardControlEvents,
     		$boardControlState
@@ -100908,6 +100894,7 @@ return a / b;`;
     		if ("trainStatus" in $$props) $$invalidate(0, trainStatus = $$props.trainStatus);
     		if ("actionsStat" in $$props) $$invalidate(1, actionsStat = $$props.actionsStat);
     		if ("maxActionStat" in $$props) $$invalidate(2, maxActionStat = $$props.maxActionStat);
+    		if ("trainAnalytisc" in $$props) $$invalidate(3, trainAnalytisc = $$props.trainAnalytisc);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -100915,8 +100902,8 @@ return a / b;`;
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*$boardControlEvents, $boardControlState*/ 24) {
-    			console.log($boardControlEvents, $boardControlState);
+    		if ($$self.$$.dirty & /*$boardControlEvents, $boardControlState, trainAnalytisc*/ 56) {
+    			console.log($boardControlEvents, $boardControlState, trainAnalytisc);
     		}
     	};
 
@@ -100924,6 +100911,7 @@ return a / b;`;
     		trainStatus,
     		actionsStat,
     		maxActionStat,
+    		trainAnalytisc,
     		$boardControlEvents,
     		$boardControlState
     	];

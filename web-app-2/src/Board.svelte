@@ -36,7 +36,9 @@
     ];
     let maxActionStat = {};
 
-    $: console.log($boardControlEvents, $boardControlState);
+    let trainAnalytisc = [];
+
+    $: console.log($boardControlEvents, $boardControlState, trainAnalytisc);
 
     const unsubscribeBoardControl = boardControlEvents.subscribe((events) => {
         events.forEach((event) => {
@@ -50,9 +52,13 @@
                 boardControlEvents.consumeEvent(event.id);
             } else if (event.eventName === "train") {
                 trainStatus = "progress";
-                trainer.train().then((status) => {
-                    trainStatus = status;
-                });
+                trainer
+                    .train(100, (data) => {
+                        trainAnalytisc = [...trainAnalytisc, data];
+                    })
+                    .then((status) => {
+                        trainStatus = status;
+                    });
                 boardControlEvents.consumeEvent(event.id);
             } else if (event.eventName === "run") {
                 Trainer.run(env, agent);
