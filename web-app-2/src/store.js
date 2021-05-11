@@ -25,3 +25,5 @@ export const boardControlState = writable({
     movePlayer: false,
     addObstacle: false
 })
+
+export const analyticsData = writable({ boardData: [] })

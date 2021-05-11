@@ -4,7 +4,11 @@
     import Board from "./board/board";
     import BoardUI from "./board/boardUI";
     import RewardEnvChart from "./components/RewardEnvChart.svelte";
-    import { boardControlEvents, boardControlState } from "./store";
+    import {
+        boardControlEvents,
+        boardControlState,
+        analyticsData,
+    } from "./store";
     import Env from "./agents/env";
     import Agent from "./agents/agent";
     import Trainer from "./agents/trainer";
@@ -37,9 +41,7 @@
     ];
     let maxActionStat = {};
 
-    let trainAnalytisc = [];
-
-    $: console.log($boardControlEvents, $boardControlState, trainAnalytisc);
+    $: console.log($boardControlEvents, $boardControlState, $analyticsData);
 
     const unsubscribeBoardControl = boardControlEvents.subscribe((events) => {
         events.forEach((event) => {
@@ -55,7 +57,10 @@
                 trainStatus = "progress";
                 trainer
                     .train(100, (data) => {
-                        trainAnalytisc = [...trainAnalytisc, data];
+                        analyticsData.update((s) => {
+                            s.boardData.push(data);
+                            return { ...s };
+                        });
                     })
                     .then((status) => {
                         trainStatus = status;
