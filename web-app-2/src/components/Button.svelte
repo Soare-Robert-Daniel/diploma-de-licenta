@@ -3,7 +3,18 @@
     export let variant = "default";
 </script>
 
-<button class={`button ${variant}`} on:click={onClick}>
+<button
+    class={`button ${
+        variant === "info"
+            ? "info"
+            : variant === "warning"
+            ? "warning"
+            : variant === "failure"
+            ? "failure"
+            : ""
+    }`}
+    on:click={onClick}
+>
     <span>
         <slot />
     </span>
@@ -49,6 +60,18 @@
                     right: 0;
                 }
             }
+        }
+
+        &.info {
+            background-color: darkcyan;
+        }
+
+        &.warning {
+            background-color: orange;
+        }
+
+        &.failure {
+            background-color: red;
         }
     }
 </style>

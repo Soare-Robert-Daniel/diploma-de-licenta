@@ -12,15 +12,21 @@
 
 <div class="menu">
     <div class="commands">
-        <Button onClick={() => boardControlEvents.addEvent("train")}
-            >Train</Button
-        >
-        <Button onClick={() => boardControlEvents.addEvent("run")}
-            >Rulare</Button
-        >
-        <Button onClick={() => boardControlEvents.addEvent("reset", 2)}
-            >Reset</Button
-        >
+        <div class="options">
+            <Button onClick={() => boardControlEvents.addEvent("train")}
+                >Train</Button
+            >
+            <Button
+                variant="info"
+                onClick={() => boardControlEvents.addEvent("run")}
+                >Rulare</Button
+            >
+            <Button
+                variant="warning"
+                onClick={() => boardControlEvents.addEvent("reset", 2)}
+                >Reset</Button
+            >
+        </div>
         <div class="options">
             <Checkbox
                 isChecked={movePlayer}
@@ -45,10 +51,14 @@
         width: 100%;
         padding: 10px;
         margin: 3px;
+        justify-content: center;
 
         .commands {
             padding: 15px;
             border: 1px dashed #aaa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             .options {
                 display: inline-flex;

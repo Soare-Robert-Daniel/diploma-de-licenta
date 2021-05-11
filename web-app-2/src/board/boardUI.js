@@ -18,10 +18,10 @@ class BoardUI {
         this.agentValuesLayer = new Konva.Layer()
 
         this.stage.add(this.mapLayer)
-        this.stage.add(this.valueLayer)
         this.stage.add(this.playerLayer)
-        this.stage.add(this.pathLayer)
-        this.stage.add(this.agentValuesLayer)
+        // this.stage.add(this.valueLayer)
+        // this.stage.add(this.pathLayer)
+        // this.stage.add(this.agentValuesLayer)
 
         this.cellWidth = Math.round(this.stage.width() / this.board.cols)
         this.cellHeight = Math.round(this.stage.height() / this.board.rows)

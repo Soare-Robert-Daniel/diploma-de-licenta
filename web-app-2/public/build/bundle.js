@@ -468,9 +468,15 @@ var app = (function () {
     			button = element("button");
     			span = element("span");
     			if (default_slot) default_slot.c();
-    			attr_dev(span, "class", "svelte-ch42r6");
-    			add_location(span, file$5, 6, 4, 177);
-    			attr_dev(button, "class", button_class_value = "" + (null_to_empty(`button ${/*variant*/ ctx[1]}`) + " svelte-ch42r6"));
+    			attr_dev(span, "class", "svelte-1a5pv3n");
+    			add_location(span, file$5, 17, 4, 369);
+
+    			attr_dev(button, "class", button_class_value = "" + (null_to_empty(`button ${/*variant*/ ctx[1] === "info"
+			? "info"
+			: /*variant*/ ctx[1] === "warning"
+				? "warning"
+				: /*variant*/ ctx[1] === "failure" ? "failure" : ""}`) + " svelte-1a5pv3n"));
+
     			add_location(button, file$5, 5, 0, 117);
     		},
     		l: function claim(nodes) {
@@ -510,7 +516,11 @@ var app = (function () {
     				}
     			}
 
-    			if (!current || dirty & /*variant*/ 2 && button_class_value !== (button_class_value = "" + (null_to_empty(`button ${/*variant*/ ctx[1]}`) + " svelte-ch42r6"))) {
+    			if (!current || dirty & /*variant*/ 2 && button_class_value !== (button_class_value = "" + (null_to_empty(`button ${/*variant*/ ctx[1] === "info"
+			? "info"
+			: /*variant*/ ctx[1] === "warning"
+				? "warning"
+				: /*variant*/ ctx[1] === "failure" ? "failure" : ""}`) + " svelte-1a5pv3n"))) {
     				attr_dev(button, "class", button_class_value);
     			}
     		},
@@ -12451,10 +12461,10 @@ var app = (function () {
             this.agentValuesLayer = new lib.Layer();
 
             this.stage.add(this.mapLayer);
-            this.stage.add(this.valueLayer);
             this.stage.add(this.playerLayer);
-            this.stage.add(this.pathLayer);
-            this.stage.add(this.agentValuesLayer);
+            // this.stage.add(this.valueLayer)
+            // this.stage.add(this.pathLayer)
+            // this.stage.add(this.agentValuesLayer)
 
             this.cellWidth = Math.round(this.stage.width() / this.board.cols);
             this.cellHeight = Math.round(this.stage.height() / this.board.rows);
@@ -83232,7 +83242,7 @@ return a / b;`;
             this.envs = [];
         }
 
-        async train(episodes = 50) {
+        async train(episodes = 150) {
             this.createMultipleEnvs();
             const discount = 0.985;
             // const lr = 0.1
@@ -83341,6 +83351,23 @@ return a / b;`;
             });
 
             this.envs.push(this.env);
+        }
+
+        static run(env, agent) {
+            console.log(env, agent);
+            const maxIterations = 75;
+            let state = env.reset();
+
+            for (let iter = 0; iter < maxIterations; iter++) {
+                const action = agent.getAction(state);
+                const [nextState, reward, done] = env.step(action);
+
+                if (done) {
+                    break
+                }
+
+                state = nextState;
+            }
         }
     }
 
@@ -100554,7 +100581,7 @@ return a / b;`;
     	return child_ctx;
     }
 
-    // (114:12) {#each actionsStat as actionStat}
+    // (117:12) {#each actionsStat as actionStat}
     function create_each_block(ctx) {
     	let div;
     	let p;
@@ -100576,12 +100603,12 @@ return a / b;`;
     			span = element("span");
     			t2 = text(t2_value);
     			t3 = space();
-    			attr_dev(span, "class", "svelte-1pv32nx");
-    			add_location(span, file$3, 119, 42, 4034);
-    			attr_dev(p, "class", "svelte-1pv32nx");
-    			add_location(p, file$3, 119, 20, 4012);
-    			attr_dev(div, "class", div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[13].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1pv32nx"));
-    			add_location(div, file$3, 114, 16, 3834);
+    			attr_dev(span, "class", "svelte-1qovyyk");
+    			add_location(span, file$3, 122, 42, 4186);
+    			attr_dev(p, "class", "svelte-1qovyyk");
+    			add_location(p, file$3, 122, 20, 4164);
+    			attr_dev(div, "class", div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[13].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1qovyyk"));
+    			add_location(div, file$3, 117, 16, 3986);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -100596,7 +100623,7 @@ return a / b;`;
     			if (dirty & /*actionsStat*/ 2 && t0_value !== (t0_value = /*actionStat*/ ctx[13].name + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*actionsStat*/ 2 && t2_value !== (t2_value = /*actionStat*/ ctx[13].value + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty & /*actionsStat, maxActionStat*/ 6 && div_class_value !== (div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[13].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1pv32nx"))) {
+    			if (dirty & /*actionsStat, maxActionStat*/ 6 && div_class_value !== (div_class_value = "" + (null_to_empty(`command ${/*actionStat*/ ctx[13].name === /*maxActionStat*/ ctx[2].name && "max"}`) + " svelte-1qovyyk"))) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -100609,7 +100636,7 @@ return a / b;`;
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(114:12) {#each actionsStat as actionStat}",
+    		source: "(117:12) {#each actionsStat as actionStat}",
     		ctx
     	});
 
@@ -100653,18 +100680,18 @@ return a / b;`;
 
     			t3 = space();
     			div3 = element("div");
-    			attr_dev(h3, "class", "svelte-1pv32nx");
-    			add_location(h3, file$3, 110, 12, 3689);
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(`train-status ${/*trainStatus*/ ctx[0]}`) + " svelte-1pv32nx"));
-    			add_location(div0, file$3, 109, 8, 3633);
-    			attr_dev(div1, "class", "commands svelte-1pv32nx");
-    			add_location(div1, file$3, 112, 8, 3749);
-    			attr_dev(div2, "class", "stats svelte-1pv32nx");
-    			add_location(div2, file$3, 108, 4, 3605);
+    			attr_dev(h3, "class", "svelte-1qovyyk");
+    			add_location(h3, file$3, 113, 12, 3841);
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(`train-status ${/*trainStatus*/ ctx[0]}`) + " svelte-1qovyyk"));
+    			add_location(div0, file$3, 112, 8, 3785);
+    			attr_dev(div1, "class", "commands svelte-1qovyyk");
+    			add_location(div1, file$3, 115, 8, 3901);
+    			attr_dev(div2, "class", "stats svelte-1qovyyk");
+    			add_location(div2, file$3, 111, 4, 3757);
     			attr_dev(div3, "id", "container");
-    			add_location(div3, file$3, 124, 4, 4143);
-    			attr_dev(div4, "class", "container svelte-1pv32nx");
-    			add_location(div4, file$3, 107, 0, 3577);
+    			add_location(div3, file$3, 127, 4, 4295);
+    			attr_dev(div4, "class", "container svelte-1qovyyk");
+    			add_location(div4, file$3, 110, 0, 3729);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -100689,7 +100716,7 @@ return a / b;`;
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*trainStatus*/ 1) set_data_dev(t1, /*trainStatus*/ ctx[0]);
 
-    			if (dirty & /*trainStatus*/ 1 && div0_class_value !== (div0_class_value = "" + (null_to_empty(`train-status ${/*trainStatus*/ ctx[0]}`) + " svelte-1pv32nx"))) {
+    			if (dirty & /*trainStatus*/ 1 && div0_class_value !== (div0_class_value = "" + (null_to_empty(`train-status ${/*trainStatus*/ ctx[0]}`) + " svelte-1qovyyk"))) {
     				attr_dev(div0, "class", div0_class_value);
     			}
 
@@ -100790,6 +100817,9 @@ return a / b;`;
     					$$invalidate(0, trainStatus = status);
     				});
 
+    				boardControlEvents.consumeEvent(event.id);
+    			} else if (event.eventName === "run") {
+    				Trainer.run(env, agent);
     				boardControlEvents.consumeEvent(event.id);
     			}
     		});
@@ -101086,7 +101116,7 @@ return a / b;`;
     /* src/EditorMenu.svelte generated by Svelte v3.37.0 */
     const file$1 = "src/EditorMenu.svelte";
 
-    // (15:8) <Button onClick={() => boardControlEvents.addEvent("train")}             >
+    // (16:12) <Button onClick={() => boardControlEvents.addEvent("train")}                 >
     function create_default_slot_2(ctx) {
     	let t;
 
@@ -101106,14 +101136,14 @@ return a / b;`;
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(15:8) <Button onClick={() => boardControlEvents.addEvent(\\\"train\\\")}             >",
+    		source: "(16:12) <Button onClick={() => boardControlEvents.addEvent(\\\"train\\\")}                 >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (18:8) <Button onClick={() => boardControlEvents.addEvent("run")}             >
+    // (19:12) <Button                 variant="info"                 onClick={() => boardControlEvents.addEvent("run")}                 >
     function create_default_slot_1(ctx) {
     	let t;
 
@@ -101133,14 +101163,14 @@ return a / b;`;
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(18:8) <Button onClick={() => boardControlEvents.addEvent(\\\"run\\\")}             >",
+    		source: "(19:12) <Button                 variant=\\\"info\\\"                 onClick={() => boardControlEvents.addEvent(\\\"run\\\")}                 >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (21:8) <Button onClick={() => boardControlEvents.addEvent("reset", 2)}             >
+    // (24:12) <Button                 variant="warning"                 onClick={() => boardControlEvents.addEvent("reset", 2)}                 >
     function create_default_slot(ctx) {
     	let t;
 
@@ -101160,7 +101190,7 @@ return a / b;`;
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(21:8) <Button onClick={() => boardControlEvents.addEvent(\\\"reset\\\", 2)}             >",
+    		source: "(24:12) <Button                 variant=\\\"warning\\\"                 onClick={() => boardControlEvents.addEvent(\\\"reset\\\", 2)}                 >",
     		ctx
     	});
 
@@ -101168,15 +101198,16 @@ return a / b;`;
     }
 
     function create_fragment$1(ctx) {
+    	let div3;
     	let div2;
-    	let div1;
+    	let div0;
     	let button0;
     	let t0;
     	let button1;
     	let t1;
     	let button2;
     	let t2;
-    	let div0;
+    	let div1;
     	let checkbox0;
     	let t3;
     	let checkbox1;
@@ -101193,6 +101224,7 @@ return a / b;`;
 
     	button1 = new Button({
     			props: {
+    				variant: "info",
     				onClick: /*func_1*/ ctx[3],
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
@@ -101202,6 +101234,7 @@ return a / b;`;
 
     	button2 = new Button({
     			props: {
+    				variant: "warning",
     				onClick: /*func_2*/ ctx[4],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
@@ -101229,41 +101262,45 @@ return a / b;`;
 
     	const block = {
     		c: function create() {
+    			div3 = element("div");
     			div2 = element("div");
-    			div1 = element("div");
+    			div0 = element("div");
     			create_component(button0.$$.fragment);
     			t0 = space();
     			create_component(button1.$$.fragment);
     			t1 = space();
     			create_component(button2.$$.fragment);
     			t2 = space();
-    			div0 = element("div");
+    			div1 = element("div");
     			create_component(checkbox0.$$.fragment);
     			t3 = space();
     			create_component(checkbox1.$$.fragment);
-    			attr_dev(div0, "class", "options svelte-1m8ffwh");
-    			add_location(div0, file$1, 23, 8, 736);
-    			attr_dev(div1, "class", "commands svelte-1m8ffwh");
-    			add_location(div1, file$1, 13, 4, 385);
-    			attr_dev(div2, "class", "menu svelte-1m8ffwh");
-    			add_location(div2, file$1, 12, 0, 362);
+    			attr_dev(div0, "class", "options svelte-ght8lv");
+    			add_location(div0, file$1, 14, 8, 416);
+    			attr_dev(div1, "class", "options svelte-ght8lv");
+    			add_location(div1, file$1, 29, 8, 914);
+    			attr_dev(div2, "class", "commands svelte-ght8lv");
+    			add_location(div2, file$1, 13, 4, 385);
+    			attr_dev(div3, "class", "menu svelte-ght8lv");
+    			add_location(div3, file$1, 12, 0, 362);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div2);
+    			append_dev(div2, div0);
+    			mount_component(button0, div0, null);
+    			append_dev(div0, t0);
+    			mount_component(button1, div0, null);
+    			append_dev(div0, t1);
+    			mount_component(button2, div0, null);
+    			append_dev(div2, t2);
     			append_dev(div2, div1);
-    			mount_component(button0, div1, null);
-    			append_dev(div1, t0);
-    			mount_component(button1, div1, null);
-    			append_dev(div1, t1);
-    			mount_component(button2, div1, null);
-    			append_dev(div1, t2);
-    			append_dev(div1, div0);
-    			mount_component(checkbox0, div0, null);
-    			append_dev(div0, t3);
-    			mount_component(checkbox1, div0, null);
+    			mount_component(checkbox0, div1, null);
+    			append_dev(div1, t3);
+    			mount_component(checkbox1, div1, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -101315,7 +101352,7 @@ return a / b;`;
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div3);
     			destroy_component(button0);
     			destroy_component(button1);
     			destroy_component(button2);

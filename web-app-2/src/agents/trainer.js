@@ -19,7 +19,7 @@ class Trainer {
         this.envs = []
     }
 
-    async train(episodes = 50) {
+    async train(episodes = 150) {
         this.createMultipleEnvs()
         const discount = 0.985;
         // const lr = 0.1
@@ -128,6 +128,23 @@ class Trainer {
         })
 
         this.envs.push(this.env)
+    }
+
+    static run(env, agent) {
+        console.log(env, agent)
+        const maxIterations = 75
+        let state = env.reset()
+
+        for (let iter = 0; iter < maxIterations; iter++) {
+            const action = agent.getAction(state)
+            const [nextState, reward, done] = env.step(action)
+
+            if (done) {
+                break
+            }
+
+            state = nextState
+        }
     }
 }
 

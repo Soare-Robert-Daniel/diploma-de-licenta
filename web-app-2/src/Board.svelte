@@ -54,6 +54,9 @@
                     trainStatus = status;
                 });
                 boardControlEvents.consumeEvent(event.id);
+            } else if (event.eventName === "run") {
+                Trainer.run(env, agent);
+                boardControlEvents.consumeEvent(event.id);
             }
         });
     });
@@ -138,7 +141,6 @@
             width: max-content;
 
             .train-status {
-                border: 2px dashed #aaa;
                 padding: 5px;
                 margin: 10px;
                 border-radius: 10px;
@@ -167,6 +169,7 @@
                 display: flex;
                 flex-direction: column;
                 width: max-content;
+                transition: all 0.5s;
 
                 .command {
                     width: 100%;
