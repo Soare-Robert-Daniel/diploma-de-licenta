@@ -9,6 +9,13 @@ import url from '@rollup/plugin-url';
 
 const production = !process.env.ROLLUP_WATCH;
 
+
+const Global = `var process = {
+	env: {
+	  NODE_ENV: "${production ? 'production' : 'development'}"
+	}
+  };`
+
 function serve() {
 	let server;
 
@@ -36,7 +43,8 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: 'public/build/bundle.js',
+		banner: Global
 	},
 	plugins: [
 		svelte({

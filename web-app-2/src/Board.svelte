@@ -3,6 +3,7 @@
     import Konva from "konva";
     import Board from "./board/board";
     import BoardUI from "./board/boardUI";
+    import RewardEnvChart from "./components/RewardEnvChart.svelte";
     import { boardControlEvents, boardControlState } from "./store";
     import Env from "./agents/env";
     import Agent from "./agents/agent";
@@ -114,95 +115,105 @@
     onDestroy(unsubscribeBoardControl);
 </script>
 
-<div class="container">
-    <div class="stats">
-        <div class={`train-status ${trainStatus}`}>
-            <h3>Train status: {trainStatus}</h3>
+<div class="board">
+    <div class="container">
+        <div class="stats">
+            <div class={`train-status ${trainStatus}`}>
+                <h3>Train status: {trainStatus}</h3>
+            </div>
+            <div class="commands">
+                {#each actionsStat as actionStat}
+                    <div
+                        class={`command ${
+                            actionStat.name === maxActionStat.name && "max"
+                        }`}
+                    >
+                        <p>
+                            {actionStat.name}: <span>{actionStat.value}</span>
+                        </p>
+                    </div>
+                {/each}
+            </div>
         </div>
-        <div class="commands">
-            {#each actionsStat as actionStat}
-                <div
-                    class={`command ${
-                        actionStat.name === maxActionStat.name && "max"
-                    }`}
-                >
-                    <p>{actionStat.name}: <span>{actionStat.value}</span></p>
-                </div>
-            {/each}
-        </div>
+        <div id="container" />
     </div>
-    <div id="container" />
+
+    <RewardEnvChart />
 </div>
 
 <style lang="scss">
-    .container {
-        max-width: 100%;
-        border: 1px solid #aaa;
+    .board {
         display: flex;
-        flex-direction: row;
-
-        .stats {
+        flex-direction: column;
+        .container {
+            max-width: 100%;
+            border: 1px solid #aaa;
             display: flex;
-            flex-direction: column;
-            width: max-content;
+            flex-direction: row;
 
-            .train-status {
-                padding: 5px;
-                margin: 10px;
-                border-radius: 10px;
-                font-family: Georgia, "Times New Roman", Times, serif;
-                h3 {
-                    color: white;
-                    font-size: 16px;
-                }
-                &.idle {
-                    background-color: sandybrown;
-                }
-
-                &.completed {
-                    background-color: green;
-                }
-
-                &.progress {
-                    background-color: red;
-                }
-            }
-
-            .commands {
-                margin: 10px;
-                padding: 15px;
-                border: 3px dashed #aaa;
+            .stats {
                 display: flex;
                 flex-direction: column;
                 width: max-content;
-                transition: all 0.5s;
 
-                .command {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
+                .train-status {
                     padding: 5px;
-                    p {
-                        font-family: "Courier New", Courier, monospace;
-                        color: black;
-                        font-weight: 600;
-                        margin: 3px 0px;
-                        span {
-                            padding: 5px;
-                            color: white;
-                            background-color: cornflowerblue;
-                            border-radius: 10px;
-                            box-sizing: content-box;
-                            width: 70px;
-                            display: inline-block;
-                        }
+                    margin: 10px;
+                    border-radius: 10px;
+                    font-family: Georgia, "Times New Roman", Times, serif;
+                    h3 {
+                        color: white;
+                        font-size: 16px;
+                    }
+                    &.idle {
+                        background-color: sandybrown;
                     }
 
-                    &.max {
-                        background-color: darkcyan;
-                        border-radius: 10px;
+                    &.completed {
+                        background-color: green;
+                    }
+
+                    &.progress {
+                        background-color: red;
+                    }
+                }
+
+                .commands {
+                    margin: 10px;
+                    padding: 15px;
+                    border: 3px dashed #aaa;
+                    display: flex;
+                    flex-direction: column;
+                    width: max-content;
+                    transition: all 0.5s;
+
+                    .command {
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-end;
+                        padding: 5px;
                         p {
-                            color: white;
+                            font-family: "Courier New", Courier, monospace;
+                            color: black;
+                            font-weight: 600;
+                            margin: 3px 0px;
+                            span {
+                                padding: 5px;
+                                color: white;
+                                background-color: cornflowerblue;
+                                border-radius: 10px;
+                                box-sizing: content-box;
+                                width: 70px;
+                                display: inline-block;
+                            }
+                        }
+
+                        &.max {
+                            background-color: darkcyan;
+                            border-radius: 10px;
+                            p {
+                                color: white;
+                            }
                         }
                     }
                 }
