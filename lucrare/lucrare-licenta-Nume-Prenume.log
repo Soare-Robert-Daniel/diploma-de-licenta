@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  17 APR 2021 16:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  19 MAY 2021 19:45
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -207,20 +207,20 @@ File: l3backend-pdftex.def 2021-01-09 L3 backend support: PDF output (pdfTeX)
 (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux))
 \openout1 = `lucrare-licenta-Nume-Prenume.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
 
 ("C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -252,7 +252,7 @@ Package epstopdf Info: Source file: <sigla-Poli.eps>
 (epstopdf)                    size: 13828 bytes
 (epstopdf)             Command: <epstopdf --outfile=sigla-Poli-eps-converted-to
 .pdf sigla-Poli.eps>
-(epstopdf)             \includegraphics on input line 101.
+(epstopdf)             \includegraphics on input line 127.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -261,12 +261,12 @@ n: found PDF version <1.7>, but at most version <1.5> allowed
 <sigla-Poli-eps-converted-to.pdf, id=8, 103.38625pt x 115.43124pt>
 File: sigla-Poli-eps-converted-to.pdf Graphic file (type pdf)
 <use sigla-Poli-eps-converted-to.pdf>
-Package pdftex.def Info: sigla-Poli-eps-converted-to.pdf  used on input line 10
-1.
+Package pdftex.def Info: sigla-Poli-eps-converted-to.pdf  used on input line 12
+7.
 (pdftex.def)             Requested size: 64.01608pt x 71.47504pt.
 
 Package wrapfig Warning: Collision between wrapping environments on input line 
-116.
+142.
 
 Package epstopdf Info: Source file: <sigla-Poli-FSA.eps>
 (epstopdf)                    date: 2021-03-20 14:52:02
@@ -276,7 +276,7 @@ Package epstopdf Info: Source file: <sigla-Poli-FSA.eps>
 (epstopdf)                    size: 12139 bytes
 (epstopdf)             Command: <epstopdf --outfile=sigla-Poli-FSA-eps-converte
 d-to.pdf sigla-Poli-FSA.eps>
-(epstopdf)             \includegraphics on input line 119.
+(epstopdf)             \includegraphics on input line 145.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -286,7 +286,7 @@ usion: found PDF version <1.7>, but at most version <1.5> allowed
 File: sigla-Poli-FSA-eps-converted-to.pdf Graphic file (type pdf)
 <use sigla-Poli-FSA-eps-converted-to.pdf>
 Package pdftex.def Info: sigla-Poli-FSA-eps-converted-to.pdf  used on input lin
-e 119.
+e 145.
 (pdftex.def)             Requested size: 64.01608pt x 65.86699pt.
 [2 <./sigla-Poli-eps-converted-to.pdf> <./sigla-Poli-FSA-eps-converted-to.pdf>]
 (lucrare-licenta-Nume-Prenume.toc
@@ -342,7 +342,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [9]
-Overfull \hbox (1.0095pt too wide) in paragraph at lines 136--137
+Overfull \hbox (1.0095pt too wide) in paragraph at lines 137--138
 \OT1/cmr/m/n/10.95 folosite si pro-duse de catre al-go-ritmi al-go-rit-mii ^
 nva[]are. Aceasta ges-tionare a informa[]iilor,
  []
@@ -367,7 +367,7 @@ Capitolul 2.
 [13
 
 ]
-Overfull \hbox (4.46246pt too wide) in paragraph at lines 216--217
+Overfull \hbox (4.46246pt too wide) in paragraph at lines 217--218
 []\OT1/cmr/m/it/10.95 Fara func[]ia de ac-ti-vare, per-cep-tronul ac[]ioneaz
 a pre-cum o func[]ie liniara.
  []
@@ -387,11 +387,11 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[16
+[16]
+Capitolul 3.
+[17
 
 ]
-Capitolul 3.
-[17]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -400,19 +400,31 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 
 ]
 Capitolul 4.
-[19]
+("C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty"
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) [19]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[20
+[20]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
 
-]) [21] (capbib.tex
+[21]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [22
+
+]) [23] (capbib.tex
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[24
 
 
 
@@ -422,19 +434,19 @@ Overfull \hbox (302.80562pt too wide) in paragraph at lines 22--22
 /20210211STO97614/big-data-definitie-avantaje-provocari-infografice[] 
  []
 
-) (lucrare-licenta-Nume-Prenume.ind [23] [24
+) (lucrare-licenta-Nume-Prenume.ind [25] [26
 
 
 ])
 (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux)) ) 
 Here is how much of TeX's memory you used:
- 4520 strings out of 479618
- 60523 string characters out of 2874899
- 356023 words of memory out of 3000000
- 21628 multiletter control sequences out of 15000+200000
- 412030 words of font info for 60 fonts, out of 3000000 for 9000
+ 4920 strings out of 479618
+ 64188 string characters out of 2874899
+ 772898 words of memory out of 3000000
+ 22022 multiletter control sequences out of 15000+200000
+ 412496 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,14n,74p,942b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,14n,74p,942b,1751s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Robert\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/ty
@@ -443,14 +455,16 @@ msfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fi
 les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsl10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program
- Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (24 pages, 221945 bytes).
+nts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsl10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program F
+iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmtt9.pfb>
+Output written on lucrare-licenta-Nume-Prenume.pdf (26 pages, 264438 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
+ 159 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

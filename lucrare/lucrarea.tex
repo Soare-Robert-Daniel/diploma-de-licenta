@@ -18,8 +18,9 @@ Fiecare eveniment din ziua de ast@azi are o influen@t@a mai mic@a sau mai mare a
 
 Tot acest mare volum de informa@tii @si metodele de manipulare, stocare @intr@a @in a@sa numita categorie {\sl Big Data}. Analiz@a acestui volum imens de date devine o sarcin@a foarte dificil@a @si laborioas@a @in cazul metodelor conven@tionale de analiz@a a datelor folosind statistic@a clasic@a. @In esen@t@a, @inv@a@tarea automat@a se foloseste at@at de teoria clasic@a c\^  at @si de noile descoperiri @in calculul numeric pentru a crea modele matematice dinamice care pot acumula cuno@tin@te @si ac@tiona @in baza lor folosind toate datele pe care le prime@ste ca set de @inv@a@tare.
 
+\^ In aceast\u a lucrare se va analiza cum algoritmii de @inv@a@tare automat@a  pot fi folosi@ti @in crearea unui agent autonom care s@a @indeplineasc@a sarcinii @intr-un spa@tiu 2-dimensional. Problema const@a @in rezolvarea unui traseu de tip matrice @in care agentul trebuie s@a ajung@a la destina@tie f@ar@a a produce un accident.
 
-\^ In aceast\u a lucrare se va analiza cum algoritmii de @inv@a@tare automat@a  pot fi folosi@ti @in crearea unui agent autonom care s@a @indeplineasc@a sarcinii @intr-un spa@tiu 2-dimensional. Problema va consta @in crearea unui mediu 2-dimensional @in care un agent trebuie s@a ghideze o ma@sin@a astfel @inc\^ at aceast@a s@a parcurg@a cu succes un traseu.
+
 \hspace{0.2cm}
 
 \^ In primul capitol este descris termenul de @inv@a@tare automat@a, care sunt subdomeniile sale, cum este folosit @in @industire. @In al doilea capitol este o mic@a introducere pentru re@telele neuronale artificiale.
@@ -188,7 +189,7 @@ $$
 	y = \varphi \left( \sum_{k=1}^{n} w_k * x_k + b \right)
 $$
 
-,unde $x$ este vectorul de intrare, $y$ vectorul de ie@sire, $w$ ponderea sinaptic@a, $b$ deplasarea @si $\varphi$ este func@tia de activare.
+,unde $x$ este vectorul de intrare ({\sl input vector}), $y$ vectorul de ie@sire ({\sl output vector}), $w$ ponderea sinaptic@a ({\sl weight}), $b$ deplasarea ({\sl bias}) @si $\varphi$ este func@tia de activare sau transfer ({\sl activation function}).
 
 Vectorul de intrare este format din numerele reale, aceste numere put\^ and reprezenta: imagini, frecven@te, etichete codificate, valori provenite din senzori, etc. Ponderile sinaptice au rolul de a cre@ste sau descreste puterea semnalul reprezentat de valorile vectorului de intrare. Func@tia de activare preia semnalul ponderat @si ofer@a o valoarea spefic@a @in baza acestuia. Deplasarea ajut@a la deplasarea semnalului ponderat pentru o mai bun@a aproximare necesar@a pentru @indeplirea anumitor condi@tii ale func@tiei de activare.
 
@@ -218,7 +219,7 @@ Pentru $x = [1, 1]$, avem $u = 1 + 1 - 0.5 = 1.5$ cu $\varphi (u) = \varphi ( 2 
 
 Un singur perceptron ofer@a doar o singur@a valoare de ie@sire. Dac@a dorim s@a avem mai multe valori de ie@siri trebuie s@a mai adaug@am perceptroni. Gruparea de neuroni artificiali se nume@ste {\sl strat}.
 
-Structura unui strat arat@a astfel @in form@a matriceal@a:
+Structura unui strat format din perceptroni arat@a astfel @in form@a matriceal@a:
 
 $$
 	\begin{bmatrix}
@@ -265,7 +266,32 @@ $$
 	\end{bmatrix}
 $$
 
-Rezultatele acestui strat pot fi transmise c@atre un alt strat care poate avea o alt@a func@tie de activare, astfel putem crea modele matematice mai complexe. Aceast@a @in@siruire de straturi se nume@ste {\sl re@tea}.
+Rezultatele acestui strat pot fi transmise c@atre un alt strat care poate avea o alt@a func@tie de activare, astfel putem crea modele matematice mai complexe. Aceast@a @in@siruire de straturi se nume@ste {\sl re@tea}. Straturile intermediare sunt deseori referite ca {\sl straturi ascunse}. Iar o re@tea cu foarte multe straturi asunse poart@a denumirea de {\sl profund@a (deep)}.
+
+Re@tele pot fi structurate @si sub forma unui graf. Fiecare neuron find repezentat de un nod, iar muchiile grafului sunt conexiunile dintre neuroni. Dac@a graful suport nu con@tine cicluri, spunem c@a este uni-directional - o denumire uzual@a peste acest tip de re@tea este {\sl feed-forward (FF)} (denumire pe care o vom folosii @si @in restul acestei lucr@ari). De asemenea, neuroni pot fi interconecta@ti (graful suport con@tine cicluri), fapt care poate oferii re@telei mai mult@a putere de modelare. Acest tip de re@tea este denumit @in general {\sl recurrent neural network (RNN)}
+
+Re@telele neuronale artificiale pot fi considerate ca find "aproximatori universali"\cite{hornik-nn}: 
+\begin{quotation}
+	Re@telele feed-forward multistrat sunt,@in condi@tii generale ale func@tiei de activare ascuns@a, aproximatori universali dac@a dispun de un num@ar suficient de unit@a@ti asunse.
+\end{quotation}
+
+De-a lungul anilor, au fost create foarte multe tipuri de re@tele neuronale artificiale pentru a servii la rezolvarea de probleme din domenii dificile.
+
+Exemple de tipuri de re@tele:
+
+\begin{itemize}
+	\item Feed Forward (FF)
+	\item Deep Feed Forward (DFF)
+	\item Radial Basis Network (RBF)
+	\item Recurrent Neural Network (RNN)
+	\item Long/Short Term Memory (LSTM)
+	\item Markov Chain (MC)
+	\item Deep Convolutional Network (DCN)
+	\item Deconvolutional Network (DN)
+	\item Support Vector Machine (SVM)
+	\item Deep Belief Network (DBN)
+\end{itemize}
+
 
 %\begin{figure}
 %	\centering
@@ -302,32 +328,52 @@ $$
 \end{array}
 $$
 
+Func@tiile de activare pot aproape orice func@tie liniar@a sau neliniar@a, dar unele  (precum cele enumerate anterior) ofer@a mai multe beneficii dec@at altele @in contextul antren@arii unei re@tele.
 
+Crearea unei re@tele neuronale artificiale presupune alegerea tipurilor de straturi din care s@a fie compus@a @impreun@a cu func@tile lor de activare. La @inceput, ponderile sinaptice sunt de cele mai multe ori alese aleatoriu. Cea ce face ca aproximarea oferit@a de re@tea s@a nu una foarte bun@a.
 
-\section{Tipuri de re@tele}
+Acest lucru duce la problema de optimizare a re@telei (g@asirea unor valori potrivite pentru ponderile sinaptice) astfel \^inc\^ at rezultatul aproxim@arii s@a fie unul satisf@ac\^ ator. Acest proces este referit uzual ca {\sl antrenare (training)}. Antrenarea este unul dintre cele mai dificile capitole al acestui domeniu, alegerea unui algoritm potrivit poate beneficii extraordinarea @in privin@ta g@asii unor valori optimale pentru ponderile sinaptice.
 
-De-a lungul anilor, au fost create foarte multe tipuri de re@tele neuronale artificiale pentru a servii la rezolvarea de probleme din domenii dificile.
+Re@telele neuronale artificiale folosite @in industrie (aplica@tii de recunoa@stere a obiectelor @in imagini; programe pentru traduceri, recunoa@steri de voce ) au o complexitate extrordinar@a at@at din punct de vedere al arhitecturii, care poate const@a dintr-un mix de diferite tipuri de re@tele, c\^ at @si al nivelului imens de date (de ordinul milioanelor de terabi@ti). Antrenarea acestora poate dura c\^ ateva zile sau c\^ ateva luni, @in cazuri rare fiind vorba de ani. A@sdar, un algoritm de optimizare eficient are un rol crucial @in acest proces.
 
-Exemple de tipuri de re@tele:
+\section{Tensorflow}
+Tensorflow este o platform@a dedicat@a dezvolt@arii modelelor de @inv@a@tare automat@a. Acest@a a fost creat@a ini@tial de c@atre Google pentru a accelara dezvoltarea domeniului prin oferirea de programe ajut@atoare pentru crearea rapid@a a protipurilor. Datorit@a calit@atii superioare a programelor de prototipare @si a usurin@tei de utilizare, acesta a devenit o platform@a popular@a at\^ at @in mediul academic c\^ at @si industrial.
 
+Datorit@a popularit@a@tii, platforma a beneficiat de multe contribu@tii importante din partea marilor companii din domeniul IT @si cel al semiconductoarelor, precum: PayPal, AMD, nVIDIA, Blomberg, Intel, IBM, Qualcomm, Uber, Arm, Twitter. De asemenea, platforma beneficieaza de medii interactive de @inv@a@tare, ideale pentru studen@ti sau profesioni@sti care doresc s@a dezvolte mici prototipuri de modele de @inv@a@tare automat@a.
+
+Exemple de programe care fac parte din platforma Tensorflow:
 \begin{itemize}
-	\item Feed Forward (FD)
-	\item Deep Feed Forward (DFF)
-	\item Radial Basis Network (RBF)
-	\item Recurrent Neural Network (RNN)
-	\item Long/Short Term Memory (LSTM)
-	\item Markov Chain (MC)
-	\item Deep Convolutional Network (DCN)
-	\item Deconvolutional Network (DN)
-	\item Support Vector Machine (SVM)
-	\item Deep Belief Network (DBN)
+	\item Tensorflow Hub - biblioteca care g@azduie@ste modele predefinite create de comunitate, precum: modele pentru clasificare imaginilor, analiza limbajului natural, generatoare de imagini
+	\item Model Optimization - programe dedicate optimiz@arii de modele
+	\item TensorFlow Graphics - biblioteca care dispune de unelte pentru procesarea imaginilor
+	\item TensorFlow Agents - biblioteca pentru dezolvatare agen@tilor @in cazul @Inv@a@tarii prin recompens@a
 \end{itemize}
+
+@In aceasta lucrare vom folosii aceste unelte pentru dezvoltarea unui model pentru agentul care va parcurge labirintul.
 
 %%CAPITOLUL 3
 %%
 %%
 \chapter{Metode de @inv@a@tare}
 \index{capitol!C3}
+
+\section{Lan@t @si proces Markov}
+
+La baza modelului de @inv@atare pe care il vom folosii @in atrenarea agentului stau princiipile fundamentale ale lan@tului Markov @si a procesului Markov.
+Propietatea Markov afirm@a c@a viitorul depinde numai de prezent si nu de trecut. Un lan@t Markov este un model probabilistic care depinde numai de starea curenta pentru a prezice o stare viitoare. A@sadar, un lan@t Markov respect@a propietatea Markov.
+Trecerea de la o stare la alta se nume@ste tranzi@tie, iar probabilitatea ei poart@a denumirea de probabilitate de tranzi@tie.
+
+De cele mai multe ori, lan@tul Markov este reprezentat sub form@a de graf orientat al c@arui muchii reprezint@a probabilit@a@tile de tranzi@tie dintre varfuri. Suma probailit@a@tilor de tranzi@tie ale unui varf c@atre celelalte varfuri este mereu 1.
+
+In cazul agentului nostru, dac@a ne-am imagina traseul ca find un lan@t Markov, atunci pozi@tiile din trase ar fi varfurile grafului, iar misc@arile agentului ar reprezenta muchiile. Putem asocia fiecarei mi@scare o probabilitate, iar parcurgerea grafului reprezint@a un posibil drum c@atre obiectiv.
+
+A@sadar, dac@a ne-am dorii ca agentul s@a foloseasc@a aceasta idee pentru stabilirea unui drum pentru rezolvarea obiectivului trebuie s@a stabilim o strategie de parcurgere a grafului.
+O strategie simpl@a ar fi una de tip {\sl Greddy}, @si anume agentul alege mereu ac@tiunea/muchia cu probabilitatea cea mai mare. Pentru ca aceasta strategie s@a aib@a succes trebuie ca valorile probabilit@atilor act@iunilor s@a conduc@a c@atre obiectiv @in urma parcugerii grafului.
+
+
+
+
+\section{Ecua@tia Bellman}
 
 \section{Q-Learning}
 
@@ -338,11 +384,11 @@ Exemple de tipuri de re@tele:
 \index{capitol!C3}
 \section{Structur@a}
 
-Aplica@tia const@a @in antrenarea unor agen@tii care s@a parcurg@a un traseu de curse definit @intr-un mediu 2-dimensional.
+Aplica@tia const@a @in antrenarea unor agen@tii care s@a parcurg@a un traseu de tip labirint definit @intr-un mediu 2-dimensional.
 
-Traseul este compus din mai multe sectoare, iar un sector este o por@tiune de drum delimitat@a de dou@a cotituri consecutive.
+Labirintul este compus din mai multe celule, unele dintre find reprezentate de obstacole.
 
-Fiecare agent poate controla o singur@a sau mai multe ma@sini care s@a participe la completarea traseului. Fiecare ma@sin@a dispune de un numar fix de senzori care ofera agentului detalii despre distan@t@a p\^ n@a la un obiect, tipul obiectului @si sectorul din care face parte.
+Agentul are sarcina s@a ajung@a la ie@sire @si s@a evite obstacolele @intr-un num@ar minim de pa@si. 
 
 Aplica@tia este compus@a din 3 par@ti principale:
 
@@ -353,14 +399,106 @@ Aplica@tia este compus@a din 3 par@ti principale:
 \end{itemize}
 
 
-
 \section{Simulator}
+
+Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint prin clasa Board.
+
+\begin{lstlisting}[language=Java]
+class Env {
+    ACTIONS = ['UP', 'DOWN', 'RIGHT', 'LEFT']
+    invalidState = false
+    /**
+     * 
+     * @param {Board} board 
+     */
+    constructor(board) {
+        this.board = board
+    }
+
+    //
+    setAgentStartPosition(pos) {
+        this.board.playerDefaultPos = pos
+    }
+
+    // 
+    step(action) {
+        this.invalidState = !this.board.move(this.ACTIONS[action])
+        return  this.board.getBoardState(), this._getReward(), this._isDone()]
+    }
+
+    //
+    reset() {
+        this.board.playerReset()
+        return this.board.getBoardState()
+    }
+
+    //
+    actionSample() {
+        return Math.floor(Math.random() * this.ACTIONS.length)
+    }
+
+    //
+    _getReward() {
+        return (this.invalidState && !this.board.isOnExit() && -100) || this.board.getPlayerCellValue()
+    }
+
+    //
+    _isDone() {
+        return this.board.isOnExit() || this.invalidState
+    }
+
+    //
+    clone() {
+        return new Env(this.board.clone())
+    }
+}
+\end{lstlisting}
 
 \section{Interfa@t@a}
 
-\section{Model de @inv@a@tare}
-
 \section{Agent}
+
+\begin{lstlisting}[language=Java]
+class Agent {
+    constructor(model) {
+        /**
+         * @type {tf.Sequential}
+         */
+        this.model = model || this.buildModel()
+    }
+
+    buildModel() {
+        const model = tf.sequential()
+
+        model.add(tf.layers.dense({ units: 10, inputShape: [10, 10], activation: 'relu' }))
+        model.add(tf.layers.flatten())
+        //model.add(tf.layers.dense({ units: 8, activation: 'relu' }))
+        //model.add(tf.layers.dense({ units: 16, activation: 'relu' }))
+        //model.add(tf.layers.dropout({ rate: 0.2 }))
+        // model.add(tf.layers.dense({ units: 32, activation: 'relu' }))
+        model.add(tf.layers.dropout({ rate: 0.2 }))
+        model.add(tf.layers.dense({ units: 4, activation: 'linear' }))
+        model.compile({ loss: 'meanSquaredError', optimizer: 'adam', metrics: ['accuracy'] })
+        model.summary()
+        return model
+    }
+
+    async fit(input, output) {
+        await this.model.fit(tf.tensor3d([input]), output, { epochs: 5 })
+    }
+
+    predict(input) {
+        return this.model.predict(tf.tensor3d([input]))
+    }
+
+    getAction(input) {
+        const result = this.predict(input)
+        return tf.argMax(result, 1).arraySync()[0]
+    }
+}
+\end{lstlisting}
+
+\section{Model de @inv@a@tare}
 
 %% capitolul de concluzii
 %%
