@@ -1,0 +1,34 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --no-clear"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-url": "^6.0.0",
+    "@types/lodash": "^4.14.168",
+    "@types/uuid": "^8.3.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "sass": "^1.32.10",
+    "svelte": "^3.0.0",
+    "svelte-preprocess": "^4.7.0"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.6.0",
+    "@tensorflow/tfjs-backend-wasm": "^3.6.0",
+    "echarts": "^5.1.1",
+    "konva": "^7.2.5",
+    "lodash": "^4.17.21",
+    "sirv-cli": "^1.0.0",
+    "uuid": "^8.3.2"
+  }
+}
