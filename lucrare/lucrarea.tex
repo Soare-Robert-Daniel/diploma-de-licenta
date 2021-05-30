@@ -20,12 +20,18 @@ Tot acest mare volum de informa@tii @si metodele de manipulare, stocare @intr@a 
 
 \^ In aceast\u a lucrare se va analiza cum algoritmii de @inv@a@tare automat@a  pot fi folosi@ti @in crearea unui agent autonom care s@a @indeplineasc@a sarcinii @intr-un spa@tiu 2-dimensional. Problema const@a @in rezolvarea unui traseu de tip matrice @in care agentul trebuie s@a ajung@a la destina@tie f@ar@a a produce un accident.
 
+Analiza se va face cu ajutorul unei aplica@tii web interactive @in care vom simula mediul nostru 2-dimensional reprezentat de un labirint @si care ne va permite analiza datelor furnizate de c@atre agent @in timpul sesiuni de antrenament pentru determinarea eficien@tei @si fiabilit@a@tii algoritmilor.
+
 
 \hspace{0.2cm}
 
-\^ In primul capitol este descris termenul de @inv@a@tare automat@a, care sunt subdomeniile sale, cum este folosit @in @industire. @In al doilea capitol este o mic@a introducere pentru re@telele neuronale artificiale.
+@In primul capitol este descris termenul de @inv@a@tare automat@a, care sunt subdomeniile sale, cum este folosit @in @industire. 
 
-\^ In al treilea capitol vor fi prezenta@ti c@a@tiva algoritmi de @inv@a@tare, iar al patrulea descrierea aplica@tiei.
+@In al doilea capitol este o mic@a introducere pentru re@telele neuronale artificiale.
+
+@In al treilea capitol vor fi prezenta@ti c@a@tiva algoritmi de @inv@a@tare, iar al patrulea descrierea aplica@tiei.
+
+@In al patrulea capitol se va descrie structura aplica@tiei web, a componentelor sale @si modul cum acestea interac@tioneaz@a.
 
 \newpage
 
@@ -370,6 +376,20 @@ In cazul agentului nostru, dac@a ne-am imagina traseul ca find un lan@t Markov, 
 A@sadar, dac@a ne-am dorii ca agentul s@a foloseasc@a aceasta idee pentru stabilirea unui drum pentru rezolvarea obiectivului trebuie s@a stabilim o strategie de parcurgere a grafului.
 O strategie simpl@a ar fi una de tip {\sl Greddy}, @si anume agentul alege mereu ac@tiunea/muchia cu probabilitatea cea mai mare. Pentru ca aceasta strategie s@a aib@a succes trebuie ca valorile probabilit@atilor act@iunilor s@a conduc@a c@atre obiectiv @in urma parcugerii grafului.
 
+Peste lan@tul Markov putem contrui un model matematic pentru modelarea procesului de decizie al agentului. Acest model con@tine urm@atoarele elemente:
+
+\begin{itemize}
+	\item Mul@timea st@arilor (S)
+	\item Mul@timea ac@tiunilor (A)
+	\item Probabilitatea de tranzi@tie dintr-o stare @in alta pentru o ac@tiune ($P_{s s^{\prime}}^a$)
+	\item Probabilitatea de a primi o recompens@a @in urma tranzi@tiei ($R_{s s^{\prime}}^a$)
+	\item Factor de atenuare, pondere care exprim@a importan@ta recompenselor imediate @si viitoare ($\gamma$)
+\end{itemize}
+
+Pentru a controla comportamentul agentului @in mediul de lucru, vom folosii un sistem de recompense pentru fiecare decizie luat@a. Dac@a dorim ca agentul sa evite anumite situa@tii precum luare de ac@tiuni care conduc la coliziuni cu anumite obiecte, vom asocia acestor decizii recompense negative. \^In contrast, dac@a dorim ca agentul s@a fac@a anumite ac@tiuni care duc la \^indeplinirea obiectivelor, aceste decizii vor fi asociate cu recompense pozitive.
+
+A@sadar, dorim ca pe parcursul simul@arii agentul s@a acumuleze c\^ at mai multe recompense pozitive @si s@a le evite pe cele negative. Acestu lucrul @il vom numi optimizare, iar procesul de antrenament implic@a modificarea re@telei neurale astfel @inc@at ac@tiunile rezultate din datele de intrare s@a maximizeze recompensele cumulate.
+
 
 
 
@@ -384,24 +404,90 @@ O strategie simpl@a ar fi una de tip {\sl Greddy}, @si anume agentul alege mereu
 \index{capitol!C3}
 \section{Structur@a}
 
-Aplica@tia const@a @in antrenarea unor agen@tii care s@a parcurg@a un traseu de tip labirint definit @intr-un mediu 2-dimensional.
 
-Labirintul este compus din mai multe celule, unele dintre find reprezentate de obstacole.
 
-Agentul are sarcina s@a ajung@a la ie@sire @si s@a evite obstacolele @intr-un num@ar minim de pa@si. 
+Pentru contruirea aplica@tiei vom folosii urm@atoare technologii:
+
+\begin{itemize}
+	\item Svelte - program pentru construirea aplica@tilor web care va reprezenta interfa@ta interactiv@a dedicat@a utilizatorului \cite{Svelte}
+	\item Tensorflow.js - bibliotec@a dedicat@a pentru contruirea @si antrenarea re@telelor neuronale pentru aplica@tii web \cite{TensorflowJs}
+	\item Echarts - bibliotec@a pentru contruirea de graficelor dedicate vizualizarii de date \cite{Echarts}
+	\item Konva - bibliotec@a grafic@a pentru generarea imaginilor \cite{Konva}
+\end{itemize} 
+
+Labirintul este de forma unei matrici, fiecare celul@a @indepline@ste un anumit rol: drum, obstacol, ie@sire, etc. Clasa principala dedicat@a definirii structurii de reprezentare a labirintului este denumit@a \textbf{Board}. 
+
+Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, un obstacol cifra 2, iar pentru ie@sire cifra 3. Pentru pozi@tile agentului, la codificarea celulei de matrice se va adauga prefixul 1. Exemple de definiri prin codificare se pot observa @in tabelul~\ref{tab:codific-lab}.
+
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				11 & 1 & 2 \\
+				\hline
+				1 & 2 & 2 \\
+				\hline
+				1 & 1 & 3 \\
+				\hline
+			\end{tabular} & 
+			\begin{tabular}{|c|c|c|}
+				\hline
+				1 & 1 & 2 \\
+				\hline
+				11 & 2 & 2 \\
+				\hline
+				1 & 1 & 3 \\
+				\hline
+			\end{tabular} &
+			\begin{tabular}{|c|c|c|}
+				\hline
+				1 & 1 & 2 \\
+				\hline
+				1 & 2 & 2 \\
+				\hline
+				11 & 1 & 3 \\
+				\hline
+			\end{tabular} &
+			\begin{tabular}{|c|c|c|}
+				\hline
+				1 & 1 & 2 \\
+				\hline
+				1 & 2 & 2 \\
+				\hline
+				1 & 11 & 3 \\
+				\hline
+			\end{tabular} &
+			\begin{tabular}{|c|c|c|}
+				\hline
+				1 & 1 & 2 \\
+				\hline
+				1 & 2 & 2 \\
+				\hline
+				1 & 1 & 13 \\
+				\hline
+			\end{tabular} \\
+		\end{tabular}
+	\end{center}
+	\caption{Exemple de codific@ari ale structurii labirintului}
+	\label{tab:codific-lab}
+\end{table}
+
+
 
 Aplica@tia este compus@a din 3 par@ti principale:
 
 \begin{itemize}
 	\item Simulator - proceseaz@a comenzile agen@tilor @si ofer@a date despre mediul simulat
-	\item Interfa@ta grafic@a - permite vizualizarea mediul simulat @si interac@tiunea cu agen@tii
-	\item Modele de @inv@a@tare - programe folosite pentru antrenarea agen@tilor prin diferite tehnici folosind datele furnizate de simulator  
+	\item Interfa@ta interactiv@a - permite vizualizarea mediul simulat @si interac@tiunea cu agen@tii
+	\item Modele de @inv@a@tare - programe folosite pentru antrenarea agen@tilor prin diferite tehnici folosind datele furnizate de c\^ atre simulator  
 \end{itemize}
 
 
 \section{Simulator}
 
-Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint prin clasa Board.
+Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint prin clasa \textbf{Board}.
 
 \begin{lstlisting}[language=Java]
 class Env {

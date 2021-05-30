@@ -112,7 +112,7 @@ class GameSimulator(pyglet.window.Window):
 
 
 if __name__ == '__main__':
-    simulator = Simulator(mode="pyglet", cars_number=1, allow_human=False)
+    simulator = Simulator(mode="pyglet", cars_number=1, allow_human=True)
     window = GameSimulator(size=(600, 600), _simulator=simulator)
     keys = pyglet.window.key.KeyStateHandler()
     window.push_handlers(keys)
