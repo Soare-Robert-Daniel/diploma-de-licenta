@@ -15,11 +15,12 @@
 \contentsline {section}{\numberline {3.2}Ecua\c {t}ia Bellman}{18}{}%
 \contentsline {section}{\numberline {3.3}Q-Learning}{18}{}%
 \contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{19}{}%
-\contentsline {section}{\numberline {4.1}Structur\u {a}}{19}{}%
-\contentsline {section}{\numberline {4.2}Simulator}{20}{}%
-\contentsline {section}{\numberline {4.3}Interfa\c {t}\u {a}}{21}{}%
-\contentsline {section}{\numberline {4.4}Agent}{21}{}%
-\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{22}{}%
+\contentsline {section}{\numberline {4.1}Introducere}{19}{}%
+\contentsline {section}{\numberline {4.2}Structur\u {a}}{20}{}%
+\contentsline {section}{\numberline {4.3}Simulator}{20}{}%
+\contentsline {section}{\numberline {4.4}Interfa\c {t}\u {a}}{21}{}%
+\contentsline {section}{\numberline {4.5}Agent}{21}{}%
+\contentsline {section}{\numberline {4.6}Model de \^{\i }nv\u {a}\c {t}are}{22}{}%
 \contentsline {chapter}{Concluzii finale}{22}{}%
 \contentsline {chapter}{Bibliografie}{24}{}%
 \contentsline {chapter}{Index}{25}{}%

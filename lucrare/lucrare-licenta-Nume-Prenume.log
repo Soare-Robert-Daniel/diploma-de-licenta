@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  30 MAY 2021 17:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  4 JUN 2021 17:24
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -398,6 +398,12 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 
 [18]
 Capitolul 4.
+
+Overfull \hbox (7.46794pt too wide) in paragraph at lines 428--429
+\OT1/cmr/m/n/10.95 in-tro-duc-ere a datelor, tabele pen-tru prezentarea informa
+[]iilor, con-tainere pen-tru pozi[]ionare.
+ []
+
 [19
 
 ] ("C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty"
@@ -442,11 +448,11 @@ Overfull \hbox (302.80562pt too wide) in paragraph at lines 22--22
 Here is how much of TeX's memory you used:
  4926 strings out of 479618
  64257 string characters out of 2874899
- 836160 words of memory out of 3000000
+ 807773 words of memory out of 3000000
  22028 multiletter control sequences out of 15000+200000
  412496 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,14n,74p,942b,1812s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,14n,74p,942b,1820s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Robert\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/ty
@@ -463,7 +469,7 @@ iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmtt9.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (26 pages, 276759 bytes).
+Output written on lucrare-licenta-Nume-Prenume.pdf (26 pages, 278388 bytes).
 PDF statistics:
  163 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

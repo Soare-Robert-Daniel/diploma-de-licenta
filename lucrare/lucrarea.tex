@@ -402,9 +402,19 @@ A@sadar, dorim ca pe parcursul simul@arii agentul s@a acumuleze c\^ at mai multe
 %%
 \chapter{Aplica@tie}
 \index{capitol!C3}
-\section{Structur@a}
 
+\section{Introducere}
 
+Pentru aplica@tia @in care vom implementa algoritmit de @inv@a@tare ne dorim s@a avem disponibile urm@atoarele funct@ionalit@a@ti:
+
+\begin{itemize}
+	\item Vizualizare grafic@a pentru mediul simulat - Afi@sarea libirintului sub forma unei poze
+	\item Grafice pentru analizelor datelor op@tiune din timpul sesiunilor de antrenament
+	\item Elemente interactive care s@a ne permit@a modificare de parametri interni @in algoritmi
+	\item Tabele care s@a afiseze informa@tii/date care urmeaz@a s@a fie procesate @si rezultatele acestora
+\end{itemize}
+
+Av\^ and @in vedere cerin@tele men@tionate anterior, platforma care ne poate permite @in o dezvoltare rapid@a asupra unei interfe@tei interactive foarte bogate este cea a aplicat@ilor destinate web-ului.
 
 Pentru contruirea aplica@tiei vom folosii urm@atoare technologii:
 
@@ -414,6 +424,16 @@ Pentru contruirea aplica@tiei vom folosii urm@atoare technologii:
 	\item Echarts - bibliotec@a pentru contruirea de graficelor dedicate vizualizarii de date \cite{Echarts}
 	\item Konva - bibliotec@a grafic@a pentru generarea imaginilor \cite{Konva}
 \end{itemize} 
+
+Elementele de baz@a vor fi construite folosind Svelte, acestea find: butoane, c@ampuri de introducere a datelor, tabele pentru prezentarea informa@tiilor, containere pentru pozi@tionare. Construirea labirintului se va face prin intermediul lui Konva, care ne permite @si modificare rapid@a a imaginii @in func@tie de starea intern@a a simulatorului. Datele provenite din sesiunile de antrenament for fi afi@sate imediat dup@a fiecare sesiune cu ajutorul graficelor generate de Echarts.
+
+Algoritmi de @inv@a@tare for fi construite folosind func@tile oferite de c@atre Tensorflow, aceastea oferind urm@atoarele capabilit@ati: crearea de straturi cu diverse func@tionalit@a@ti, func@tii de activare, algoritimi de optimizare, metode utilitare de salvare @si de creare a unor modele secven@tiale formate din mai multe straturi de neuroni.
+
+\section{Structur@a}
+
+
+
+
 
 Labirintul este de forma unei matrici, fiecare celul@a @indepline@ste un anumit rol: drum, obstacol, ie@sire, etc. Clasa principala dedicat@a definirii structurii de reprezentare a labirintului este denumit@a \textbf{Board}. 
 
@@ -474,8 +494,6 @@ Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, 
 	\label{tab:codific-lab}
 \end{table}
 
-
-
 Aplica@tia este compus@a din 3 par@ti principale:
 
 \begin{itemize}
@@ -487,9 +505,9 @@ Aplica@tia este compus@a din 3 par@ti principale:
 
 \section{Simulator}
 
-Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint prin clasa \textbf{Board}.
+Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint. Acesta este cel define@ste recompensele pentru ac@tiuni @si furnizeaz@a c\^ atre agent st@arile sale @in mediul simulat. Simulatorul este definit de clasa \textbf{Simulator}.
 
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}[language=Java, caption=Definirea clasei Simulator]
 class Env {
     ACTIONS = ['UP', 'DOWN', 'RIGHT', 'LEFT']
     invalidState = false
