@@ -8,19 +8,19 @@
 \contentsline {chapter}{\numberline {2}Re\c {t}ele neuronale artificiale}{13}{}%
 \contentsline {section}{\numberline {2.1}Introducere}{13}{}%
 \contentsline {section}{\numberline {2.2}Structur\u {a}}{13}{}%
-\contentsline {section}{\numberline {2.3}Func\c {t}ii de activare \c {s}i metode de optimizare}{15}{}%
+\contentsline {section}{\numberline {2.3}Func\c {t}ii de activare \c {s}i metode de optimizare}{16}{}%
 \contentsline {section}{\numberline {2.4}Tensorflow}{16}{}%
-\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{17}{}%
-\contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{17}{}%
-\contentsline {section}{\numberline {3.2}Ecua\c {t}ia Bellman}{18}{}%
-\contentsline {section}{\numberline {3.3}Q-Learning}{18}{}%
-\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{19}{}%
-\contentsline {section}{\numberline {4.1}Introducere}{19}{}%
-\contentsline {section}{\numberline {4.2}Structur\u {a}}{20}{}%
-\contentsline {section}{\numberline {4.3}Simulator}{20}{}%
-\contentsline {section}{\numberline {4.4}Interfa\c {t}\u {a}}{21}{}%
-\contentsline {section}{\numberline {4.5}Agent}{21}{}%
-\contentsline {section}{\numberline {4.6}Model de \^{\i }nv\u {a}\c {t}are}{22}{}%
-\contentsline {chapter}{Concluzii finale}{22}{}%
-\contentsline {chapter}{Bibliografie}{24}{}%
-\contentsline {chapter}{Index}{25}{}%
+\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{19}{}%
+\contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{19}{}%
+\contentsline {section}{\numberline {3.2}Ecua\c {t}ia Bellman}{20}{}%
+\contentsline {section}{\numberline {3.3}Q-Learning}{20}{}%
+\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{21}{}%
+\contentsline {section}{\numberline {4.1}Introducere}{21}{}%
+\contentsline {section}{\numberline {4.2}Structur\u {a}}{22}{}%
+\contentsline {section}{\numberline {4.3}Simulator}{23}{}%
+\contentsline {section}{\numberline {4.4}Interfa\c {t}\u {a}}{25}{}%
+\contentsline {section}{\numberline {4.5}Agent}{25}{}%
+\contentsline {section}{\numberline {4.6}Model de \^{\i }nv\u {a}\c {t}are}{26}{}%
+\contentsline {chapter}{Concluzii finale}{26}{}%
+\contentsline {chapter}{Bibliografie}{28}{}%
+\contentsline {chapter}{Index}{29}{}%

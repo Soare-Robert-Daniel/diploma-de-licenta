@@ -39,7 +39,7 @@ Analiza se va face cu ajutorul unei aplica@tii web interactive @in care vom simu
 %%
 %%
 \chapter{ @Inv@a@tare automat@a }
-\index{capitol!C1}
+\index{@Inv@a@tare automat@a}
 
 \section{Istoric}
 \index{sectiune!S1.1}
@@ -179,6 +179,7 @@ Exemple de servicii:
 \chapter{Re@tele neuronale artificiale}
 
 \index{capitol!C2}
+\index{@Inv@a@tare automat@a}
 
 \section{Introducere}
 
@@ -217,7 +218,7 @@ $$
 \end{exemplu}
 
 {\bf Verificare}. Pentru $x = [1, 0]$, avem $u = 1 + 0 - 0.5 = 0.5$ @si $y = \varphi(u) = \varphi(0.5) = 1$ (acela@si rezultat @si pentru $x = [0, 1]$ - datorit@a propieta@tii de comutativitate a adun@arii).
-Pentru $x = [1, 1]$, avem $u = 1 + 1 - 0.5 = 1.5$ cu $\varphi (u) = \varphi ( 2 ) = 1$. Ultimul caz pentru $x = [0, 0]$, vom avea $u = $
+Pentru $x = [1, 1]$, avem $u = 1 + 1 - 0.5 = 1.5$ cu $\varphi (u) = \varphi ( 2 ) = 1$. Ultimul caz pentru $x = [0, 0]$, vom avea $u = 0 + 0 - 0.5 = -0.5$ cu $\varphi (-0.5) = 0$.
 
 \begin{observatia}
 	F@ar@a func@tia de activare, perceptronul ac@tioneaz@a precum o func@tie liniar@a. Prin utilizarea unei func@tii de activare potrivite, puteam aborda mai u@sor problemele neliniare, precum cele pentru clasificarea datelor @in diverse categorii.
@@ -299,12 +300,12 @@ Exemple de tipuri de re@tele:
 \end{itemize}
 
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.4]{nn_schema_1}
-%	\caption{Structura unei re@tele neuronale}
-%	\label{nn:schema}
-%\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{nn_schema_1}
+	\caption{Structura unei re@tele neuronale}
+	\label{nn:schema}
+\end{figure}
 
 
 
@@ -365,6 +366,9 @@ Exemple de programe care fac parte din platforma Tensorflow:
 
 \section{Lan@t @si proces Markov}
 
+\index{lan@t Markov}
+\index{process Markov}
+
 La baza modelului de @inv@atare pe care il vom folosii @in atrenarea agentului stau princiipile fundamentale ale lan@tului Markov @si a procesului Markov.
 Propietatea Markov afirm@a c@a viitorul depinde numai de prezent si nu de trecut. Un lan@t Markov este un model probabilistic care depinde numai de starea curenta pentru a prezice o stare viitoare. A@sadar, un lan@t Markov respect@a propietatea Markov.
 Trecerea de la o stare la alta se nume@ste tranzi@tie, iar probabilitatea ei poart@a denumirea de probabilitate de tranzi@tie.
@@ -386,14 +390,15 @@ Peste lan@tul Markov putem contrui un model matematic pentru modelarea procesulu
 	\item Factor de atenuare, pondere care exprim@a importan@ta recompenselor imediate @si viitoare ($\gamma$)
 \end{itemize}
 
-Pentru a controla comportamentul agentului @in mediul de lucru, vom folosii un sistem de recompense pentru fiecare decizie luat@a. Dac@a dorim ca agentul sa evite anumite situa@tii precum luare de ac@tiuni care conduc la coliziuni cu anumite obiecte, vom asocia acestor decizii recompense negative. \^In contrast, dac@a dorim ca agentul s@a fac@a anumite ac@tiuni care duc la \^indeplinirea obiectivelor, aceste decizii vor fi asociate cu recompense pozitive.
+Pentru a controla comportamentul agentului @in mediul de lucru, vom folosii un sistem de recompense pentru fiecare decizie luat@a. Dac@a dorim ca agentul sa evite anumite situa@tii precum luare de ac@tiuni care conduc la coliziuni cu anumite obiecte, vom asocia acestor decizii recompense negative. \^In contrast, dac@a dorim ca agentul s@a fac@a anumite ac@tiuni care duc la \^indeplinirea obiectivelor, acestor decizii li se vor asocia recompense pozitive.
 
-A@sadar, dorim ca pe parcursul simul@arii agentul s@a acumuleze c\^ at mai multe recompense pozitive @si s@a le evite pe cele negative. Acestu lucrul @il vom numi optimizare, iar procesul de antrenament implic@a modificarea re@telei neurale astfel @inc@at ac@tiunile rezultate din datele de intrare s@a maximizeze recompensele cumulate.
-
+A@sadar, dorim ca pe parcursul simul@arii agentul s@a acumuleze c\^ at mai multe recompense pozitive @si s@a sle evite pe c\^ at mai mult posibil pe cele negative. Acestu lucrul @il vom numi optimizare, iar procesul de antrenament implic@a modificarea re@telei neurale astfel @inc\^ cat ac@tiunile rezultate din datele de intrare s@a maximizeze recompensele acumulate.
 
 
 
 \section{Ecua@tia Bellman}
+
+
 
 \section{Q-Learning}
 
@@ -427,7 +432,7 @@ Pentru contruirea aplica@tiei vom folosii urm@atoare technologii:
 
 Elementele de baz@a vor fi construite folosind Svelte, acestea find: butoane, c@ampuri de introducere a datelor, tabele pentru prezentarea informa@tiilor, containere pentru pozi@tionare. Construirea labirintului se va face prin intermediul lui Konva, care ne permite @si modificare rapid@a a imaginii @in func@tie de starea intern@a a simulatorului. Datele provenite din sesiunile de antrenament for fi afi@sate imediat dup@a fiecare sesiune cu ajutorul graficelor generate de Echarts.
 
-Algoritmi de @inv@a@tare for fi construite folosind func@tile oferite de c@atre Tensorflow, aceastea oferind urm@atoarele capabilit@ati: crearea de straturi cu diverse func@tionalit@a@ti, func@tii de activare, algoritimi de optimizare, metode utilitare de salvare @si de creare a unor modele secven@tiale formate din mai multe straturi de neuroni.
+Algoritmii de @inv@a@tare vor fi construi@ti folosind func@tile oferite de c@atre Tensorflow, aceastea oferind urm@atoarele capabilit@ati: crearea de straturi cu diverse func@tionalit@a@ti, func@tii de activare, algoritimi de optimizare, metode utilitare de salvare @si de creare a unor modele secven@tiale formate din mai multe straturi de neuroni.
 
 \section{Structur@a}
 
@@ -435,9 +440,9 @@ Algoritmi de @inv@a@tare for fi construite folosind func@tile oferite de c@atre 
 
 
 
-Labirintul este de forma unei matrici, fiecare celul@a @indepline@ste un anumit rol: drum, obstacol, ie@sire, etc. Clasa principala dedicat@a definirii structurii de reprezentare a labirintului este denumit@a \textbf{Board}. 
+Labirintul este de forma unei matrici, fiecare celul@a @indepline@ste un anumit rol: drum, obstacol, ie@sire, etc. Clasa principala dedicat@a definirii structurii de reprezentare a la\-bi\-rin\-tului este denumit@a \textbf{Board}. Aceast@a clas@a define@ste mediul simulat @si intereac@tiunile disponibile pentru agent.
 
-Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, un obstacol cifra 2, iar pentru ie@sire cifra 3. Pentru pozi@tile agentului, la codificarea celulei de matrice se va adauga prefixul 1. Exemple de definiri prin codificare se pot observa @in tabelul~\ref{tab:codific-lab}.
+Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, un obstacol cifra 2, iar pentru ie@sire cifra 3. Pentru pozi@tile agentului, la codificarea celulei de matrice se va adauga prefixul 1. Exemple de definiri al mediului simulat prin codificare se pot observa @in tabelul~\ref{tab:codific-lab}.
 
 
 \begin{table}[h]
@@ -494,18 +499,42 @@ Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, 
 	\label{tab:codific-lab}
 \end{table}
 
-Aplica@tia este compus@a din 3 par@ti principale:
+Sunt disponibile patru ac@tiuni pe care agentul poate s@a le ia: sus, jos, st\^ anga @si dreapta. Ca o ac@tiune s@a fie valid@a, aceasta trebuie s@a @indeplineasc@a urm@atoarea condi@tie: ac@tiunea nu trebuie s@a fac@a agentul s@a ias@a din labirint atunci c\^ and se afl@a la margine. Dac@a se @int\^ ampl@a aces lucru, clasa {\bf Board} va pastra pozi@tia agentului @si va transmitele faptul c@a mutare este invalid@a celorlalte componente astfel @inc\^ at acestea s@a poat@a stabili o recompens@a astfel @inc\^ at ca pe viitor agentul s@a evite astfel de situa@tii.
 
-\begin{itemize}
-	\item Simulator - proceseaz@a comenzile agen@tilor @si ofer@a date despre mediul simulat
-	\item Interfa@ta interactiv@a - permite vizualizarea mediul simulat @si interac@tiunea cu agen@tii
-	\item Modele de @inv@a@tare - programe folosite pentru antrenarea agen@tilor prin diferite tehnici folosind datele furnizate de c\^ atre simulator  
-\end{itemize}
+Reprezentarea libirintului sub form@a de imagine este dat@a de clasa \textbf{BoardUI}. Aceasta are rolul s@a creeze reprezentarea vizual@a a labirintului folosind datele furnizate de c\^ atre clasa \textbf{Board}. Aceast@a reprezentare poate fi observat@a @in figura \ref{fig:labirint-imagine}. Agentul este prezentat sub forma unui cerc albastru, spa@tiul liber sub forma unui p@atrat gri, iar obiectivul cu un p@atrat violet.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{app-labirint-imagine}
+	\caption{Reprezentarea vizual@a a labirintului @in starea ini@tial@a}
+	\label{fig:labirint-imagine}
+\end{figure}
+
+Clas@a \textbf{BoardUI} este legat@a de clasa \textbf{Board} printr-un sistem reactiv de notificare, astfel @inc\^ at orice schimbare care duce la modificarea st@arii labirintului (exemplu: miscarea agentului ) se propaga imediat c\^ atre aceasta, astfel imaginea este modificat@a imediat cu noile date (figura \ref{fig:labirint-imagine-cu-mutare}).
+
+Toate aceste imaginii sunt generate folosind biblioteca Konva care ne permite at\^ at generarea imaginii pentru afi@sare @in pagina web c\^ at @si optiune de interac@tiune cu browserul care ne permit s@a transmitem evenimentele date de mouse (exemplu: click) c\^ atre clasa \textbf{Board}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{app-labirint-imagine-cu-mutare}
+	\caption{Reprezentarea vizual@a a labirintului dup@a o serie de ac@tiuni ale agentului}
+	\label{fig:labirint-imagine-cu-mutare}
+\end{figure}
 
 
 \section{Simulator}
 
-Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint. Acesta este cel define@ste recompensele pentru ac@tiuni @si furnizeaz@a c\^ atre agent st@arile sale @in mediul simulat. Simulatorul este definit de clasa \textbf{Simulator}.
+Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint. Acesta are rolul s@a furnizeze informa@tii c\^ atre agent, precum: codificarea curent@a a labirintului sau reprezentarea sa sub form@a de imagine; dac@a simularea este terminat@a; recompensa pentru fiecare ac@tiune luat@a.
+
+Clasa \textbf{Simulator} este cea care define@ste structura modului de ac@tionare a simulatorului. Acesta define@ste trei func@tii principale, iar principiul lor de func@tionare este inspirat dup@a standardul definit de c\^ atre OpenAi Gym \cite{open-ai-gym-env-format}. A@sadar avem urm@atoarele func@tii:
+
+\begin{itemize}
+	\item reset - acest@a func@tie aduce mediul simulat la starea ini@tial@a (figura \ref{fig:labirint-imagine}) @si ruturnez@a aceast@a stare sub forma dorit@a (codificare sau imagine).
+	\item step(ac@tiune) - aceasta transmite ac@tiunea luat@a de agent c\^ atre clasa \textbf{Board}, dup@a ac@tiunea este procesat@a, clasa \textbf{Board} transmite inapoi valoare recompensei al acelei ac@tiuni dac@a este valid@a, altfel doar anun@ta invaliditatea. Dupa preluarea rezultatului, se decide care este recompensa @si dac@a simularea s-a incheiat @in urma aceste ac@tiuni. Valorile noi starii, a recompensei @si a semnalului de terminare sunt returnate la finalul evalu@arii.
+	\item actionSample - aceas@ta func@tie returneaz@a o ac@tiune aleatorie disponibil@a @in mediul simulat
+\end{itemize}
+
+
 
 \begin{lstlisting}[language=Java, caption=Definirea clasei Simulator]
 class Env {

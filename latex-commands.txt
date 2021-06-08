@@ -1,0 +1,1 @@
+makeindex lucrare-licenta-Nume-Prenume.idx
