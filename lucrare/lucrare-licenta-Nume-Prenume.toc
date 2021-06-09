@@ -18,9 +18,9 @@
 \contentsline {section}{\numberline {4.1}Introducere}{21}{}%
 \contentsline {section}{\numberline {4.2}Structur\u {a}}{22}{}%
 \contentsline {section}{\numberline {4.3}Simulator}{23}{}%
-\contentsline {section}{\numberline {4.4}Interfa\c {t}\u {a}}{25}{}%
-\contentsline {section}{\numberline {4.5}Agent}{25}{}%
-\contentsline {section}{\numberline {4.6}Model de \^{\i }nv\u {a}\c {t}are}{26}{}%
-\contentsline {chapter}{Concluzii finale}{26}{}%
-\contentsline {chapter}{Bibliografie}{28}{}%
-\contentsline {chapter}{Index}{29}{}%
+\contentsline {section}{\numberline {4.4}Agent}{25}{}%
+\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{27}{}%
+\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{27}{}%
+\contentsline {chapter}{Concluzii finale}{27}{}%
+\contentsline {chapter}{Bibliografie}{30}{}%
+\contentsline {chapter}{Index}{31}{}%

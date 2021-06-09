@@ -587,9 +587,54 @@ class Env {
 }
 \end{lstlisting}
 
-\section{Interfa@t@a}
 
 \section{Agent}
+
+Clasa \textbf{Agent} define@ste structura intern@a a re@telei neuronale. Pentru construirea re@teleor neuronale folosim biblioteca Tensorflow care ne ofer@a o multitudine de func@tii pentru definirea straturilor, a func@tilor de activare @si diverse metode de manipulare a datelor. Func@tiile din Tensorflow lucreaz@a @in principal cu valori reprezentate prin tensori defini@ti de clasa \texttt{Tensor} a bibliotecii. Monitorizarea num@arului de tensori crea@ti de-a lungul se\-si\-u\-ni\-lor de antrenament ale agentului are o desebit@a importan@t@a @in detectarea problemelor legate de consumul de resurse al calculatorului.
+
+Func@tiile principale ale clasei sunt:
+\begin{itemize}
+	\item predict (date de intrare) - aceasta ne ofer@a rezultatul din urma proces@arii datelor de intrare oferite ca parametru
+	\item fit(date de intrare, date de ie@sire) - aplic@a algoritmul de optimizare astfel @inc\^ at rezultatul datelor de intrare s@a fie cat mai aproape de rezultatul dorit definit @in datele de ie@sire date ca parametru
+\end{itemize}
+
+Pentru crearea re@telei neuronale vom folosii func@tia \texttt{sequential} care cere ca paremetri o list@a de str@aturi definite de pachetul \texttt{layers}. Cel mai important strat este cel de tip \texttt{dense}, care reprezint@a structura de baza al unui strat definit @in capitlul 2. Acesta este compus din ponderi sinaptice @si op@tional o func@tie de activare. Un exemplu de definire al unei simple re@tele neuronale cu un singur strat @si un singur neuron, f@ar@a func@tie de activare @si deplasare (bias), care accept@a un vector de valori de lungime 3 arat@a astfel:
+
+\begin{lstlisting}[language=Java, caption={Exemplu de creare a unei rețele neuronale simple}]
+import * as tf from '@tensorflow/tfjs';
+
+const rn = tf.sequential();
+rn.add( tf.layers.dense({ units: 1, inputShape: [3], useBias: false }) );
+\end{lstlisting}
+
+Func@tia de activare nu a fost specificat@a, iar deplasarea  (bias) a fost dezactivat@a, prin urmarea la evaluare vectorului se va afi@sa produsul scalar dintre vectorul cu datele de intrare @si vectorul ponderilor sinaptice. Formula arat@a astfel: $$rezultat = <(w_1, w_2, w_3),(x_1, x_2, x_3)> = w_1 * x_1 + w_2 * x_2 + w_3 * x_3  $$
+
+Pentru evaluarea vectorului vom folosii func@tia \texttt{predict} definit@a de \texttt{sequential}. Este important s@a re@tinem faptul c@a \texttt{predict} trebuie s@a primeasc@a un vector de date de intrare, iar rezultatul s@au este un vector de date de i@sire. A@sadar, vectorul nostru de 3 elemente trebuie pus @intr-un alt vector, care @in final art@a precum o matrice care va fi transformat @intr-un tensor 2-dimensional prin folosirea func@tiei \texttt{tensor2d}. Biblioteca Tensorflow lucrea @in principal cu tensori a@sa c@a este foarte important s@a transmitem date @in formatul corect. Dac@a am fi avut o matrice ca date de intrare, atunci ar fi trebuit s@a cre@am un tensor 3-dimensional.
+Ini@tiniera valorilor ponderilor sinaptice este aleatoare, @si pentru vizualizarea lor punem ini@tia @in datele de intrare o valoarea cu 1 @si restul cu 0.
+
+\begin{lstlisting}[language=Java, caption={Exemplu de evaluare a unei simple re@tele neuronale}]
+// Afișează valoarea primei ponderi sinaptice
+rn.predict(tf.tensor2d([[1, 0, 0]])).print(); // [[1.1913936],]
+// Afișează valoarea pentru a doua pondere sinaptică
+rn.predict(tf.tensor2d([[0, 1, 0]])).print(); // [[0.665537],]
+// Afișează valoarea pentru a treia pondere sinaptică
+rn.predict(tf.tensor2d([[0, 0, 1]])).print(); // [[-0.9657576],]
+// Afișează suma celor trei ponderi sinaptice 
+rn.predict(tf.tensor2d([[1, 1, 1]])).print(); // [[0.891173],]
+\end{lstlisting}
+
+Se poate observa c@a pe linia 8 se va afi@sa suma valoriloe de pe liniile 2, 4, 6. Vom adauga o func@tie de activare @si anume \textit{relu} (Rectified Linear Unit), descris @in capitolul 2. Acesta func@tie de activare transforma valorile negative @in valoarea 0, astfel av@and un rol de filtrare a valorilor negative. Exemplu:
+
+\begin{lstlisting}[language=Java, caption={Exemplu de evaluare a unei simple rețele neuronale cu funcție de activare}]
+const rn = tf.sequential();
+rn.add( tf.layers.dense({ units: 1, inputShape: [3], activation: "relu", useBias: false }) );
+rn.predict(tf.tensor2d([[1, 0, 0]])).print(); // [[0.1161228],] 
+rn.predict(tf.tensor2d([[0, 1, 0]])).print(); // [[0],]
+rn.predict(tf.tensor2d([[0, 0, 1]])).print(); // [[0.3614732],]
+rn.predict(tf.tensor2d([[1, 1, 1]])).print(); // [[0],]
+\end{lstlisting}
+
+Se observ@a faptul a doua pondere sinaptic@a are o valoarea negativ@a fa@t@a de celelalte dou@a, iar din linia 6, reiese faptul c@a aceasta este mult mai mare decat suma celorlalte dou@a, cea ce duce ca rezultatul final s@a fie 0. Interpretarea valorilor ob@tinute este un factor important @in in@telegerea re@telei neuronale. Din exempul anterior, a doua pondere sinaptic@a are o influen@ta mult mai mare asupra rezultatului dec\^ at restul. Dac@a dorim ca aceasta s@a aiba o influen@ta mult mai mica, trebuie s@a folosim procedeul de antrenare a re@telei care ne va calibra valorile acestor ponderi sinaptice, astel @inc\^ at s@a ob@tinem o valoare finala mult aproape de cea ce dorim.
 
 \begin{lstlisting}[language=Java]
 class Agent {
@@ -636,6 +681,8 @@ class Agent {
 %% capitolul de concluzii
 %%
 %%
+
+\section{Interfa@t@a Utilizator}
 
 \addcontentsline{toc}{chapter}{Concluzii finale}
 

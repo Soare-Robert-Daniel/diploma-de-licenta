@@ -12,6 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage[utf8]{inputenc}
 
 \graphicspath{ {./imagini/} }
 
@@ -76,7 +77,12 @@
     tabsize=2
 }
 
-\lstset{style=mystyle}
+\lstset{
+	style=mystyle,
+	inputencoding=utf8,
+    extendedchars=true,
+    literate={ă}{{\u a}}1 {â}{{\^ a}}1 {î}{{\^ i}}1 {ș}{{\c s}}1 {Î}{{\^ I}}1 {ț}{{\c t}}1,
+}
 
 \begin{document}
 
