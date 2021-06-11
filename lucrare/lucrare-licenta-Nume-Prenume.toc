@@ -21,6 +21,6 @@
 \contentsline {section}{\numberline {4.4}Agent}{25}{}%
 \contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{28}{}%
 \contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{33}{}%
-\contentsline {chapter}{Concluzii finale}{33}{}%
+\contentsline {chapter}{Concluzii finale}{34}{}%
 \contentsline {chapter}{Bibliografie}{36}{}%
 \contentsline {chapter}{Index}{37}{}%

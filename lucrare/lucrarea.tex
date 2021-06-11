@@ -919,10 +919,27 @@ Av\^ and implementarea tuturor claselor necesare, o sesiune de antrenament poate
  trainer.train()
 \end{lstlisting}
 
-Av\c and programul complet, vom folosii datele analitice furnizate pentru crearea unei interfe@te interactive pentru utilizator. Aceste poate vedea durata antrenamentului, performan@ta dob\^ andit@a pe de-a lungul sesiunilor, etc.
+Av\^ and programul complet, vom folosii datele analitice furnizate pentru crearea unei interfe@te interactive pentru utilizator. Aceste poate vedea durata antrenamentului, performan@ta dob\^ andit@a de-a lungul sesiunilor, etc.
 
 \section{Interfa@t@a Utilizator}
 
+Toata aplic@tia este conceput@a ca un site web, iar marele avantaj al acestui lucru este c@a putem dezvolta o interfa@t@a interactiv@a complex@a destinat@a utilizatorului, @in care poate interac@tiona foarte u@sor cu modele de @inv@a@tare @si vizualiza datele rezultatele folosind grafice care sunt actualizate @intr-un timp extrem de scurt.
+
+Dup@a ini@tierea aplica@tiei, va aparea o imagine cu reprezentarea grafic@a a labirintului prin clasa \texttt{BoardUI} @si un tabel care prezint@a codificarea sa dat de clasa \texttt{Board}. Pentru ini@tierea agentului trebuie s@a apas@am pe butonul \textsl{Ini@tializeaz@a un now agent}.
+
+Odat@a ap@a
+sat butonul, observ@am ca am avem disponibile urm@atoarele butoane:
+\begin{itemize}
+	\item Atrenare - buton care ini@tializeaz@a sesiunea de antrenament
+	\item Rulare - buton care ini@tiaz@a o sesiune de test pentru observarea progresului
+	\item Reset - buton care aduce labirintul la starea ini@tial@a
+\end{itemize}
+
+Pe lang@a aceste butoane, avem @si op@tiuni care ne permite s@a modific@am pozi@tia agentului cu ajutorlul mouse-lui sau s@a ad@aug@am un obstacol in labirint. @In dreapta labirintului sunt prezente etichete care ne arat@a dac@a agentul se afl@a @intr-o sesiune de antrenament, informa@tii legate de valoare ac@tiunilor din pozi@tia curent@a a agentului @in labirin @si un camp de date care ne permite s@a introducem num@arul de episoade al sesiunii de antrenament.
+
+Dac@a ap@as@am pe butonul \textsl{Rulare}, observam un comportament aleatoriu din partea agentului, deoarece re@teauna neuronal@a nu este atrenat@a, iar valorile ponderilor sinaptice au fost ini@tiate aleatoriu.
+
+Odat@a ap@asat pe botonul \textsl{Antrenare}, observ@am c@a avem noi elemente vizuale. Acestea sunt cele care vor con@tine date despre performan@ta agentului @si al sesiunii de antrenament.  
 \addcontentsline{toc}{chapter}{Concluzii finale}
 
 \markboth{\bf Concluzii finale}{\bf Concluzii finale}
