@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  9 JUN 2021 19:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  11 JUN 2021 18:10
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -516,14 +516,53 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[28
-
-]) [29] (capbib.tex
+[28]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[30
+[29]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[30]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[31]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[32]
+Overfull \hbox (22.60533pt too wide) in paragraph at lines 922--923
+\OT1/cmr/m/n/10.95 interfe[]e in-ter-ac-tive pen-tru uti-liza-tor. Aceste poate
+ vedea du-rata antre-na-men-tu-lui, performan[]a
+ []
+
+
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[33]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[34
+
+]) [35] (capbib.tex
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[36
 
 
 
@@ -533,16 +572,16 @@ Overfull \hbox (302.80562pt too wide) in paragraph at lines 24--24
 /20210211STO97614/big-data-definitie-avantaje-provocari-infografice[] 
  []
 
-) (lucrare-licenta-Nume-Prenume.ind [31] [32
+) (lucrare-licenta-Nume-Prenume.ind [37] [38
 
 
 ])
 (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux)) ) 
 Here is how much of TeX's memory you used:
- 5484 strings out of 479618
- 74213 string characters out of 2874899
- 821014 words of memory out of 3000000
- 22548 multiletter control sequences out of 15000+200000
+ 5569 strings out of 479618
+ 75213 string characters out of 2874899
+ 1102988 words of memory out of 3000000
+ 22633 multiletter control sequences out of 15000+200000
  412496 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,14n,78p,942b,1826s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -562,9 +601,9 @@ iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmtt9.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (32 pages, 331111 bytes).
+Output written on lucrare-licenta-Nume-Prenume.pdf (38 pages, 357339 bytes).
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
+ 210 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -526,7 +526,7 @@ Toate aceste imaginii sunt generate folosind biblioteca Konva care ne permite at
 
 Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint. Acesta are rolul s@a furnizeze informa@tii c\^ atre agent, precum: codificarea curent@a a labirintului sau reprezentarea sa sub form@a de imagine; dac@a simularea este terminat@a; recompensa pentru fiecare ac@tiune luat@a.
 
-Clasa \textbf{Simulator} este cea care define@ste structura modului de ac@tionare a simulatorului. Acesta define@ste trei func@tii principale, iar principiul lor de func@tionare este inspirat dup@a standardul definit de c\^ atre OpenAi Gym \cite{open-ai-gym-env-format}. A@sadar avem urm@atoarele func@tii:
+Clasa \textbf{Env} este cea care define@ste structura modului de ac@tionare a simulatorului. Acesta define@ste trei func@tii principale, iar principiul lor de func@tionare este inspirat dup@a standardul definit de c\^ atre OpenAi Gym \cite{open-ai-gym-env-format}. A@sadar avem urm@atoarele func@tii:
 
 \begin{itemize}
 	\item reset - acest@a func@tie aduce mediul simulat la starea ini@tial@a (figura \ref{fig:labirint-imagine}) @si ruturnez@a aceast@a stare sub forma dorit@a (codificare sau imagine).
@@ -536,7 +536,7 @@ Clasa \textbf{Simulator} este cea care define@ste structura modului de ac@tionar
 
 
 
-\begin{lstlisting}[language=Java, caption=Definirea clasei Simulator]
+\begin{lstlisting}[language=Java, caption=Definirea clasei Env]
 class Env {
     ACTIONS = ['UP', 'DOWN', 'RIGHT', 'LEFT']
     invalidState = false
@@ -609,8 +609,8 @@ rn.add( tf.layers.dense({ units: 1, inputShape: [3], useBias: false }) );
 
 Func@tia de activare nu a fost specificat@a, iar deplasarea  (bias) a fost dezactivat@a, prin urmarea la evaluare vectorului se va afi@sa produsul scalar dintre vectorul cu datele de intrare @si vectorul ponderilor sinaptice. Formula arat@a astfel: $$rezultat = <(w_1, w_2, w_3),(x_1, x_2, x_3)> = w_1 * x_1 + w_2 * x_2 + w_3 * x_3  $$
 
-Pentru evaluarea vectorului vom folosii func@tia \texttt{predict} definit@a de \texttt{sequential}. Este important s@a re@tinem faptul c@a \texttt{predict} trebuie s@a primeasc@a un vector de date de intrare, iar rezultatul s@au este un vector de date de i@sire. A@sadar, vectorul nostru de 3 elemente trebuie pus @intr-un alt vector, care @in final art@a precum o matrice care va fi transformat @intr-un tensor 2-dimensional prin folosirea func@tiei \texttt{tensor2d}. Biblioteca Tensorflow lucrea @in principal cu tensori a@sa c@a este foarte important s@a transmitem date @in formatul corect. Dac@a am fi avut o matrice ca date de intrare, atunci ar fi trebuit s@a cre@am un tensor 3-dimensional.
-Ini@tiniera valorilor ponderilor sinaptice este aleatoare, @si pentru vizualizarea lor punem ini@tia @in datele de intrare o valoarea cu 1 @si restul cu 0.
+Pentru evaluarea vectorului vom folosii func@tia \texttt{predict} definit@a de \texttt{sequential}. Este important s@a re@tinem faptul c@a \texttt{predict} trebuie s@a primeasc@a un vector de date de intrare, iar rezultatul s@au este un vector de date de i@sire. A@sadar, vectorul nostru de 3 elemente trebuie pus @intr-un alt vector, care @in final arat@a precum o matrice care va fi transformat @intr-un tensor 2-dimensional prin folosirea func@tiei \texttt{tensor2d}. Biblioteca Tensorflow lucreaz@a @in principal cu tensori, a@sa c@a este foarte important s@a transmitem datele @in formatul corect. Dac@a am fi avut o matrice ca date de intrare, atunci ar fi trebuit s@a cre@am un tensor 3-dimensional.
+Ini@tieniera valorilor ponderilor sinaptice este aleatoare, @si pentru vizualizarea lor punem @in datele de intrare o valoarea cu 1 @si restul cu 0.
 
 \begin{lstlisting}[language=Java, caption={Exemplu de evaluare a unei simple re@tele neuronale}]
 // Afișează valoarea primei ponderi sinaptice
@@ -623,7 +623,7 @@ rn.predict(tf.tensor2d([[0, 0, 1]])).print(); // [[-0.9657576],]
 rn.predict(tf.tensor2d([[1, 1, 1]])).print(); // [[0.891173],]
 \end{lstlisting}
 
-Se poate observa c@a pe linia 8 se va afi@sa suma valoriloe de pe liniile 2, 4, 6. Vom adauga o func@tie de activare @si anume \textit{relu} (Rectified Linear Unit), descris @in capitolul 2. Acesta func@tie de activare transforma valorile negative @in valoarea 0, astfel av@and un rol de filtrare a valorilor negative. Exemplu:
+Se poate observa c@a pe linia 8 se va afi@sa suma valorilor de pe liniile 2, 4, 6. Vom adauga o func@tie de activare @si anume \textit{relu} (Rectified Linear Unit), descris@a @in capitolul 2. Acesta func@tie de activare transforma valorile negative @in valoarea 0, astfel av\^ and un rol de filtrare a valorilor negative. Exemplu:
 
 \begin{lstlisting}[language=Java, caption={Exemplu de evaluare a unei simple rețele neuronale cu funcție de activare}]
 const rn = tf.sequential();
@@ -634,53 +634,292 @@ rn.predict(tf.tensor2d([[0, 0, 1]])).print(); // [[0.3614732],]
 rn.predict(tf.tensor2d([[1, 1, 1]])).print(); // [[0],]
 \end{lstlisting}
 
-Se observ@a faptul a doua pondere sinaptic@a are o valoarea negativ@a fa@t@a de celelalte dou@a, iar din linia 6, reiese faptul c@a aceasta este mult mai mare decat suma celorlalte dou@a, cea ce duce ca rezultatul final s@a fie 0. Interpretarea valorilor ob@tinute este un factor important @in in@telegerea re@telei neuronale. Din exempul anterior, a doua pondere sinaptic@a are o influen@ta mult mai mare asupra rezultatului dec\^ at restul. Dac@a dorim ca aceasta s@a aiba o influen@ta mult mai mica, trebuie s@a folosim procedeul de antrenare a re@telei care ne va calibra valorile acestor ponderi sinaptice, astel @inc\^ at s@a ob@tinem o valoare finala mult aproape de cea ce dorim.
+Se observ@a faptul a doua pondere sinaptic@a are o valoarea negativ@a fa@t@a de celelalte dou@a, iar din linia 6, reiese faptul c@a aceasta este mult mai mare decat suma celorlalte dou@a, cea ce duce ca rezultatul final s@a fie 0. Interpretarea valorilor ob@tinute este un factor important @in in@telegerea re@telei neuronale. Din exempul anterior, a doua pondere sinaptic@a are o influen@ta mult mai mare asupra rezultatului dec\^ at restul. Dac@a dorim ca aceasta s@a aiba o influen@ta mult mai mica, trebuie s@a folosim procedeul de antrenare a re@telei care ne va calibra valorile acestor ponderi sinaptice, astel @inc\^ at s@a ob@tinem o valoare finala mult mai aproape de cea ce dorim.
 
-\begin{lstlisting}[language=Java]
+Pentru antrenarea re@telei neuronale vom folosii func@tia \texttt{fit} din \texttt{sequential}. De asemenea, trebuie s@a alegem @si o un optimizator care va fi \texttt{adam}, iar pentru calculul erori vom folosii metoda celor mai mici p@atrate (mean square error). Vom folosii modelul anterior pentru exemplificare @si vom antrena re@teaua astfel @incat prima pondere sinaptic@a s@a fie cat mai aproape de 0 ca valoare.
+
+\begin{lstlisting}[language=Java, caption={Exemplu de antrenare a unei simple rețele neuronale cu funcție de activare}]
+const rn = tf.sequential();
+rn.add( tf.layers.dense({ units: 1, inputShape: [3], activation: "liniar", useBias: false }) );
+rn.predict(tf.tensor2d([[1, 0, 0]])).print(); // [[0.1678354],] 
+// Adaug optimizatorul și funcția pentru calculul erorii
+rn.compile({ loss: "meanSquaredError", optimizer: "adam" });
+// Creez o funcție de antrenare care va încercă să modifice prima pondere 
+// sinaptică în decursul a 500 de episoade/iterații
+(async () => {
+	for (let i = 0; i < 500; ++i) {
+		await rn.fit(tf.tensor2d([[1, 0, 0]]), tf.tensor2d([[0]]));
+	}
+	// Afișez rezultatul antrenamentului
+	rn.predict(tf.tensor2d([[1, 0, 0]])).print(); // [[0.0001513],]
+})();
+\end{lstlisting}
+
+Av\^ and exemple anterioare ca exemplificare a func@tilor din biblioteca \texttt{Tensorflow}, punem construi strucura @si modul de func@tionare a clasei \texttt{Agent}.
+
+\begin{lstlisting}[language=Java, caption={Structura clasei Agent}]
+import * as tf from '@tensorflow/tfjs';
+
 class Agent {
     constructor(model) {
         /**
+         * Inițiez rețeaua neuronală
          * @type {tf.Sequential}
          */
         this.model = model || this.buildModel()
     }
 
+    // Funcție care construiește rețeaua neuronală
     buildModel() {
-        const model = tf.sequential()
-
-        model.add(tf.layers.dense({ units: 10, inputShape: [10, 10], activation: 'relu' }))
+        const model = tf.sequential() // Creare rețea
+        // Adaug primul strat care va primii pixelii pixeli imaginii labirintului
+        model.add(tf.layers.dense({ units: 25, inputShape: [25, 25], activation: 'relu' }))
+        // Adaug un strat intermediar care îmi înlocuiește unele  
+        // de date de intrare pentru următorul strat cu valoarea 0
+        model.add(tf.layers.dropout({ rate: 0.4 }))
+        // Un strat ascuns care va suma pe fiecare linie rezultatele anterioare
+        model.add(tf.layers.dense({ units: 1, activation: 'relu' }))
+        // Un strat intermediar care îmi va reduce dimensiunea, astfel din matrice toate
+        // toate datele de intrare devin un singur vector
         model.add(tf.layers.flatten())
-        //model.add(tf.layers.dense({ units: 8, activation: 'relu' }))
-        //model.add(tf.layers.dense({ units: 16, activation: 'relu' }))
-        //model.add(tf.layers.dropout({ rate: 0.2 }))
-        // model.add(tf.layers.dense({ units: 32, activation: 'relu' }))
         model.add(tf.layers.dropout({ rate: 0.2 }))
+        // Stratul final care ne oferii rezultatul sub forma unui vector de 4 elemente
+        // ele reprezentând valoarea acțiunilor pentru stare dată
         model.add(tf.layers.dense({ units: 4, activation: 'linear' }))
+        // Adaug optimizatorul și funcția de calcul a erorii
         model.compile({ loss: 'meanSquaredError', optimizer: 'adam', metrics: ['accuracy'] })
-        model.summary()
         return model
     }
 
+    // Funcție de antrenare
     async fit(input, output) {
-        await this.model.fit(tf.tensor3d([input]), output, { epochs: 5 })
+        await this.model.fit(input, output, { epochs: 1 })
     }
-
+    
+    // Funcție care evaluează datele de intrare
     predict(input) {
-        return this.model.predict(tf.tensor3d([input]))
+        return this.model.predict(input.expandDims(0))
     }
-
+    
+    // Funcție care evalueză datele de intrare și returnează
+    // poziția pentru cel mai mare element din datele de ieșire procesate
     getAction(input) {
-        const result = this.predict(input)
-        return tf.argMax(result, 1).arraySync()[0]
+        return tf.tidy(() => {
+            const result = this.predict(input)
+            return tf.argMax(result, 1).arraySync()[0]
+        })
     }
 }
+
+export default Agent
 \end{lstlisting}
 
 \section{Model de @inv@a@tare}
 
-%% capitolul de concluzii
-%%
-%%
+Pentru implementarea modelul de @inv@a@tare vom folosii algoritmul Q-Learning descris @in capitolul 3. Vom avea nevoie de 3 clase principale: \texttt{Agent}, \texttt{Env} @si \texttt{Memory}.
+
+Clasa \texttt{Memory} va fi cea care va pastra rezultatele experien@telor pe care agentul le va produce de-a lungul sesiunii de antrenament. Memoria va consta dintr-o lista de lungime data @in care se vor adauga experien@tele, daca se va dep@a@sii capacitatea, atunci experien@tele vechi for fi @sterse. Structura clasei \texttt{Memory} arat@a astfel:
+
+\begin{lstlisting}[language=Java, caption={Structura clasei Memory}]
+class Memory {
+    constructor(capacity, cleanFun) {
+        // Setare capacitate maximă
+        this.capacity = capacity || 5000
+        // Inițiere listă
+        this.experiences = []
+        // Setare funcție de curățare a memoriei fizice pentru valorile care vor fi distruse
+        this.cleanFun = cleanFun
+    }
+
+    // Funcție care adaugă o experiență în listă
+    add(exper) {
+        // Verific dacă am depășit capacitatea
+        if (this.experiences.length + 1 > this.capacity) {
+            // Scot elementul vechi din listă
+            const exper = this.experiences.shift()
+            // Curăț elementul din memoria fizică
+            this.cleanFun?.(exper)
+        }
+        // Adaug nouă experiență
+        this.experiences.push(exper)
+    }
+
+    // Preiau o serie fixă de experiențe amestecate aleatoriu din lista
+    sample(batch) {
+        // Amestec toate experiențele
+        const randomExperiences = Memory.shuffle([...this.experiences])
+        // Preiau primele experiențe ca serie
+        return randomExperiences.slice(0, batch)
+    }
+
+    // Golosesc toată lista de experiențe
+    clean() {
+        // Aplic funcție de curățare a memorie fizice
+        // că să nu am posibile reziduri
+        this.experiences.forEach(exper => {
+            this.cleanFun?.(exper)
+        })
+        this.experiences = []
+    }
+
+    // Amestec o copie a unui vector dat folosind algoritmul Fisher-Yates
+    static shuffle(array) {
+        // Inițiere variabile
+        let m = array.length, t, i;
+        // Cât timp mai sunt elemente de amestecat
+        while (m) {
+            // Iau o poziție aleatorie
+            i = Math.floor(Math.random() * m--);
+            // Fac schimb de poziții cu elementul din poziția m
+            t = array[m];
+            array[m] = array[i];
+            array[i] = t;
+        }
+        return array;
+    }
+}
+
+export default Memory
+\end{lstlisting}
+
+Toate aceste piese vor fi folosite @in clasa \texttt{Trainer}, pentru crearea programului final de implementare al modelului de @inv@a@tare. Aceast@a clasa aplica algoritmul de Q-Learning (descris @in capitolul 3) pentru antrenarea re@telei neuronale al agentului descris@a de clasa \texttt{Agent}.
+
+\begin{lstlisting}[language=Java, caption={Structura clasei Trainer}]
+class Trainer {
+    totalEnvs = 2
+    /**
+     * Inițiere componente
+     * @param {Env} env 
+     * @param {Agent} agent 
+     * @param {Memory} memory
+     */
+    constructor(env, agent, memory) {
+        // Setare memorie
+        this.env = env
+        // Setare agent
+        this.agent = agent
+        // Setare memorie
+        this.memory = memory
+        // Inițiere listă de simulatoare
+        this.envs = [{ id: 1, env: this.env }]
+    }
+
+    async train(episodes = 150, cb = () => { }) {
+        const discount = 0.985; // Factor de atenuare
+        // const lr = 0.1
+        let epsilon = 1 // Probailitatea unei acțiuni aleatoare
+        const epsilon_min = 0.0 // Probailitatea minimă a unei acțiuni aleatoare
+        const epsilon_decay = (epsilon - epsilon_min) / episodes // Rata de scădere a probabilității
+        const maxIterations = 75 // Numărul de iterații maxime
+
+        // Simulări episod
+        for (let eps = 1; eps <= episodes; eps++) {
+        
+            const t0 = performance.now() // Timpul de incepere
+            const rewardsAnaly = {} // Obiecte cu date de tip analitic
+            // Rulare simulării unui episod în fiecare simulator înregistrat în listă
+            await Promise.all(this.envs.map(async ({ id, env }) => {
+                // Re-inițiere simulator și prealuarea stării de început
+                let state = await env.reset()
+
+                // Rulare simulare
+                for (let iter = 0; iter < maxIterations; iter++) {
+                    // Alegerea acțiunii
+                    const action = Math.random() < epsilon ? env.actionSample() : this.agent.getAction(state)
+                    // Procesarea acțunii și colectarea rezultatului
+                    const [nextState, reward, done] = await env.step(action)
+                    // Salvare în memorie
+                    this.memory.add({ state, nextState, reward, done, action })
+
+                    // Sumarea recompenselor adunate pe parcursul episodului
+                    rewardsAnaly[id] = rewardsAnaly[id] ? rewardsAnaly[id] + reward : reward
+                    // Oprire simulare în cazul semnalului de stop
+                    if (done) {
+                        break
+                    }
+                    // Prealuare stării viitoare
+                    state = nextState
+                }
+            }))
+
+            const tData = performance.now() // Timpul de începere a procesării de date
+
+            // Alegerea a 100 de experiențe aleatoare și procesarea lor
+            const trainData = this.memory.sample(100).filter(exper => !exper.state.isDisposed && !exper.nextState.isDisposed).reduce((acc, exper) => {
+                return tf.tidy(() => {
+                    // Preiau datele din experiență
+                    const { nextState, reward, done, state, action } = exper
+                    // Calculez valoare Q pentru viitoare stare
+                    const nextQ = (this.agent.predict(nextState).arraySync())[0]
+                    // Calculez valoarea Q curentă
+                    const newCurrentQ = (this.agent.predict(state).arraySync())[0]
+                    // Aplic ecuația Bellman
+                    newCurrentQ[action] = done ? reward : reward + discount * Math.max(...nextQ)
+                    // Salvez rezultatele
+                    acc.states.push(state);acc.newQValues.push(newCurrentQ)
+                    return acc
+                })
+
+            }, { states: [], newQValues: [] })
+
+            const tTrain = performance.now() // Timpul de începere al antrenării rețelei neuronale
+            await this.agent.fit(tf.stack(trainData.states), tf.tensor2d(trainData.newQValues))
+            const tEnd = performance.now() // Timpul de sfărsit de episod
+
+            // Reduc probilitatea în funcție de rata sa 
+            if (epsilon > epsilon_min) {
+                epsilon -= epsilon_decay
+                epsilon = Math.max(epsilon, 0)
+            }
+
+            // Trimit datele analitice către interfața de utilizator 
+            cb({
+                episode: eps, // Numărul episodului
+                episodeTime: tEnd - t0, // Durata episodului
+                dataPreparation: tTrain - tData, // Durata procesării de date
+                fitDuration: tEnd - tTrain, // Durata de antrenament a    rețelei
+                episodeRewards: rewardsAnaly, // Recompensele acumulate
+                numTensors: tf.memory().numTensors, // Numărul de tensori
+                numBytes: tf.memory().numBytes // Spațiul de memorie ocupat
+            })
+
+            // La fiecare 50 de episoade curăț toată memoria
+            if (eps % 50 === 0 && eps > 1) {
+                console.log('CLEAN ALL MEMORY', eps)
+                this.memory.clean()
+            }
+        }
+        // Semnalez că antrenamentul s-a încheiat
+        return 'completed'
+    }
+}
+export default Trainer
+\end{lstlisting}
+
+Av\^ and implementarea tuturor claselor necesare, o sesiune de antrenament poate fi ini@tiat@a astfel:
+
+\begin{lstlisting}[language=Java, caption={Inițierea unei sesiuni complete de antrenament}]
+ // Inițiere labirint
+ const board = new Board(10, 10);
+ // Inițieri reprezentare vizuală a labirintului
+ const boardUI = new BoardUI(board, new Konva.Stage({
+	container: "container",
+	width: 600,
+	height: 600,
+ }));
+ // Inițiere simulator
+ const env = new ImageEnv(board, boardUI);
+ // Inițiere agent
+ const agent = new ImageAgent();
+ // Inițiere memorie
+ const memory = new Memory(100, cleanMemoryExperience);
+ // Inițiere mediu de antrenare
+ const trainer = new ImageTrainer(env, agent, memory);
+ // Inițiere sesiune de antrenament
+ trainer.train()
+\end{lstlisting}
+
+Av\c and programul complet, vom folosii datele analitice furnizate pentru crearea unei interfe@te interactive pentru utilizator. Aceste poate vedea durata antrenamentului, performan@ta dob\^ andit@a pe de-a lungul sesiunilor, etc.
 
 \section{Interfa@t@a Utilizator}
 
@@ -688,6 +927,9 @@ class Agent {
 
 \markboth{\bf Concluzii finale}{\bf Concluzii finale}
 
+%% capitolul de concluzii
+%%
+%%
 \chapter*{Concluzii finale}
 
 \markboth{\bf Concluzii finale}{\bf Concluzii finale}
