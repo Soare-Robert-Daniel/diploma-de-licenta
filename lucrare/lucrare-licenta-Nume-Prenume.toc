@@ -13,13 +13,13 @@
 \contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{19}{}%
 \contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{19}{}%
 \contentsline {section}{\numberline {3.2}Q-Learning}{21}{}%
-\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{23}{}%
-\contentsline {section}{\numberline {4.1}Introducere}{23}{}%
-\contentsline {section}{\numberline {4.2}Structur\u {a}}{24}{}%
-\contentsline {section}{\numberline {4.3}Simulator}{25}{}%
-\contentsline {section}{\numberline {4.4}Agent}{27}{}%
-\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{30}{}%
-\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{35}{}%
-\contentsline {chapter}{Concluzii finale}{36}{}%
-\contentsline {chapter}{Bibliografie}{38}{}%
-\contentsline {chapter}{Index}{39}{}%
+\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{25}{}%
+\contentsline {section}{\numberline {4.1}Introducere}{25}{}%
+\contentsline {section}{\numberline {4.2}Structur\u {a}}{26}{}%
+\contentsline {section}{\numberline {4.3}Simulator}{27}{}%
+\contentsline {section}{\numberline {4.4}Agent}{29}{}%
+\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{32}{}%
+\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{37}{}%
+\contentsline {chapter}{Concluzii finale}{38}{}%
+\contentsline {chapter}{Bibliografie}{40}{}%
+\contentsline {chapter}{Index}{41}{}%

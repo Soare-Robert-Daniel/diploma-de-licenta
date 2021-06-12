@@ -452,7 +452,7 @@ Prin scurta analiz@a a tabelului, observ@am c@a agentul decide c@a pre@tul de un
 
 \section{Q-Learning}
 
-Noi dorim ca agentul s@a ia cele mai bune decizii pentru @indeplinirea sarcinilor, deci am vrea s@a g@asim o strategie optim@a $\pi^*$ @si func@tia valoare optim@a $V^{*}$ care ne ofer@a cel mai mare c\^ a@stig dintre toate celelalte:  $$V^{*}(s) = max_{\pi} V^{\pi}(s)$$
+Noi dorim ca agentul s@a ia cele mai bune decizii pentru @indeplinirea sarcinilor, deci am vrea s@a g@asim o strategie optim@a $\pi^*$ @si func@tia valoare optim@a $V^{*}$ care ne ofer@a cel mai mare c\^ a@stig dintre toate celelalte. Vom folosii principiul de optimalitatea al lui Richard E. Bellman \cite{bellman-theory}, care afirm@a c@a: ``Strategia optim@a are propietatea c@a indiferent de starea sau decizia ini@tial@a, deciziile care r@am\^ an@a trebuie s@a formeze o strategie optim@a @in ceea ce prive@ste starea rezultat@a din prima decizie``.  $$V^{*}(s) = max_{\pi} V^{\pi}(s)$$
 
 Pe l@ang@a func@tia valoare $V$, vom avea @si func@tia $Q$ care indic@a c\^ at de bun@a este o ac@tiune pentru o stare av\^and strategia $\pi$. Aceasta este de forma:
 
@@ -492,11 +492,56 @@ Lu\^and exemplul din tabelul \ref{tab:pret-magazin}, putem exemplifica valorile 
 
 Din tabelul \ref{tab:pret-magazin-q} se poate eviden@tia mai detaliat alegerea pre@tului de 1 leu, aceasta av\^and cea mai mare valoare. De asemenea, se pot observa valori negative la ridicarea pre@tului, odat@a cobor\^ at pre@tul, agentul are @sanse mici s@a-l creasc@a. Daca agentul ar fi pornit cu pre@tul din ziua a 4-a, presupun\^ and c@a ar fi cel de 8 lei, @in ziua a 5-a l-ar fi cobor\^ at p\^ an@a la un leu dac@a strategia noastr@a este s@a alegem valoarea Q cea mai mare atunci c\^and decidem ce ac@tiune vom lua. De men@tionat faptul c@a ac@tiunea de cobor\^ are a pre@tului sub un leu are o valoarea extrem de mic@a, asta datorit@a condi@tiei impuse la @inceput. Agentul este complet descurajat s@a ia acea ac@tiune. Aceast@a tactic@a de descurajare o vom folosii @si @in aplica@tie pentru rezolvarea labirintului. Ac@tiunile care fac agentul s@a intre @in obstacole vor avea asociate recompense negative.
 
-Pentru estimarea acestor Q valori vom folosii @inv@a@tarea bazat@a pe diferen@te temporale. Pentru func@tia valoarea $V$ aceasta arat@a astfel:
+Pentru estimarea acestor Q valori vom folosii @inv@a@tarea bazat@a pe diferen@te temporale. Pentru func@tia valoare $V$, aceasta arat@a astfel:
 
-$$V^{\pi}(s_t) = V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) = V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right) ,$$
+% $$V^{\pi}(s_t) = V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) = V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right) ,$$
 
-\noindent unde $s_t$ @si $r_t$ sunt starea @si respectiv recompensa la pasul $t$, $\alpha$ este o constant@a numit@a @in general rata de @inv@a@tare (learning rate). $R_t = r_{t+1} + \gamma V^{\pi}(s_{t+1}) $ reprezint@a noua informa@tie
+$$
+\begin{array}{rcl}
+	V^{\pi}(s_t) & = & V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) \\
+	 & = & V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right)
+\end{array}
+$$
+
+\noindent unde $s_t$ @si $r_t$ sunt starea @si respectiv recompensa la pasul $t$, $\alpha$ este o constant@a numit@a @in general rata de @inv@a@tare (learning rate) @si preiau valori din intervalul 0 @si 1, similar cu factorul de atenuare. $R_t = r_{t+1} + \gamma V^{\pi}(s_{t+1}) $ reprezint@a noua informa@tie, format@a din recompensa imediat@a primit@a la efectuarea ac@tiunii @si c\^ astigul a@steptat pentru urm@toare stare. Diferen@ta dintre aceasta @si valoarea veche reprezint@a valoarea @inv@a@tat@a, iar @inmul@tirea cu constanta $\alpha$ ne arat@a c\^ at prealu@am din aceasta noua valuare.
+
+@In mod similar, aplic@am @si pentru valoarea Q:
+
+$$
+\begin{array}{rcl}
+	Q^{\pi}(s_t, a_t) & = & Q^{\pi}(s_t, a_t) + \alpha * \left( R_t - Q^{\pi}(s_t, a_t) \right) \\
+	 & = & Q^{\pi}(s_t, a_t) + \alpha * \left( r_{t+1} + \gamma Q^{\pi}(s_{t+1}, a_t)  - Q^{\pi}(s_t, a_t) \right)
+\end{array}
+$$
+
+ De asemenea, definim @si strategia $\varepsilon$-greedy pe care vom folosii @in aplic@tia din aceast@a lucrare, care are urm@atoarele caracteristici:
+
+\begin{itemize}
+	\item Ac@tiune din care rezult@a cel mai mare c\^ a@stig estimat este selectat@a.
+	\item Av\^ and probabilitatea $\varepsilon$, se alege o ac@tiune @in mod aleatoriu, neglij\^and estimarile pentru recompense.
+	\item Pentru echlibrul dintre fazele de explorare @si exploatare a mediului, $\varepsilon$ va @incepe la inceputul simul@arii cu o valoare mare, iar pe parcus, o mic@sor@am p\^ an@a la un minim stabilit.
+\end{itemize}
+
+Algoritmul Q-Learning este format din urm@atori pa@sii:
+
+\begin{enumerate}
+	\item Se ini@tializeaz@a $Q(s, a)$ @in mod aleatoriu
+	\item Ini@tiere episod
+	\begin{enumerate}[1.]
+		\item Ini@tializare stare $s$
+		\item Repet@a
+		\begin{enumerate}[1.]
+			\item Alegem ac@tiunea $a$ folosind strategia aleas@a (presupunem ca este $\varepsilon$-greedy)
+			\item Execut@am ac@tiunea $a$ @si primim recompensa $r$ @si urm@atoarea stare $s^{\prime}$
+			\item Actualiz@am valoarea Q a st@arii curente @in func@tie de noile informa@tii: $$Q^{\pi}(s, a) \leftarrow Q^{\pi}(s, a) + \alpha \left[ r(s,a) + \gamma max_{a^{\prime}} Q^{\pi}(s^{\prime}, a^{\prime}) - Q^{\pi}(s, a) \right] $$
+			\item Trecem la urm@atoarea stare: $s = s^{\prime}$
+		\end{enumerate}
+		\item Repet@am pa@sii pan@a cand se ajunge la o stare terminal@a
+	\end{enumerate}	
+	\item Repet@am pa@sii at\^at timp c\^ at nu am ajuns la episodul final	
+\end{enumerate}
+
+Pentru pasul 2.2.3, $max_{a^{\prime}} Q^{\pi}(s^{\prime}, a^{\prime})$ este recompensa maxim@a ce poate fi ob@tinut@a @in starea $s^{\prime}$ care urmeaz@a st@arii actuale $s$ (recompensa dac@a se ia cea mai bun@a ac@tiune apoi).
 
 %%CAPITOLUL 4
 %%
