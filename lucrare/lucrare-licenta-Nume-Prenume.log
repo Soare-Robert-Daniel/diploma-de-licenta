@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  12 JUN 2021 11:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  12 JUN 2021 17:36
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -460,46 +460,47 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [20]
-Capitolul 4.
 
-Overfull \hbox (7.46794pt too wide) in paragraph at lines 443--444
-\OT1/cmr/m/n/10.95 in-tro-duc-ere a datelor, tabele pen-tru prezentarea informa
-[]iilor, con-tainere pen-tru pozi[]ionare.
+LaTeX Warning: Command \c invalid in math mode on input line 429.
+
+
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
  []
 
-[21
-
-]
-<./imagini//app-labirint-imagine.png, id=91, 722.7pt x 722.7pt>
-File: ./imagini//app-labirint-imagine.png Graphic file (type png)
-<use ./imagini//app-labirint-imagine.png>
-Package pdftex.def Info: ./imagini//app-labirint-imagine.png  used on input lin
-e 518.
-(pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./imagini//app-labirint-imagine-cu-mutare.png, id=92, 722.7pt x 722.7pt>
-File: ./imagini//app-labirint-imagine-cu-mutare.png Graphic file (type png)
-<use ./imagini//app-labirint-imagine-cu-mutare.png>
-Package pdftex.def Info: ./imagini//app-labirint-imagine-cu-mutare.png  used on
- input line 529.
-(pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
-
+[21]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [22]
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
+Capitolul 4.
+
+Overfull \hbox (7.46794pt too wide) in paragraph at lines 529--530
+\OT1/cmr/m/n/10.95 in-tro-duc-ere a datelor, tabele pen-tru prezentarea informa
+[]iilor, con-tainere pen-tru pozi[]ionare.
  []
 
-[23 <./imagini//app-labirint-imagine.png> <./imagini//app-labirint-imagine-cu-m
-utare.png>] ("C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty"
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
+[23
+
+]
+<./imagini//app-labirint-imagine.png, id=97, 722.7pt x 722.7pt>
+File: ./imagini//app-labirint-imagine.png Graphic file (type png)
+<use ./imagini//app-labirint-imagine.png>
+Package pdftex.def Info: ./imagini//app-labirint-imagine.png  used on input lin
+e 602.
+(pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./imagini//app-labirint-imagine-cu-mutare.png, id=98, 722.7pt x 722.7pt>
+File: ./imagini//app-labirint-imagine-cu-mutare.png Graphic file (type png)
+<use ./imagini//app-labirint-imagine-cu-mutare.png>
+Package pdftex.def Info: ./imagini//app-labirint-imagine-cu-mutare.png  used on
+ input line 613.
+(pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
+
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -509,7 +510,10 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[25]
+[25 <./imagini//app-labirint-imagine.png> <./imagini//app-labirint-imagine-cu-m
+utare.png>] ("C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty"
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -535,9 +539,6 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [30]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -548,10 +549,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [32]
-Overfull \hbox (22.60533pt too wide) in paragraph at lines 932--933
-\OT1/cmr/m/n/10.95 interfe[]e in-ter-ac-tive pen-tru uti-liza-tor. Aceste poate
- vedea du-rata antre-na-men-tu-lui, performan[]a
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
@@ -563,14 +561,30 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[34]) [35
+[34]
+Overfull \hbox (22.60533pt too wide) in paragraph at lines 1016--1017
+\OT1/cmr/m/n/10.95 interfe[]e in-ter-ac-tive pen-tru uti-liza-tor. Aceste poate
+ vedea du-rata antre-na-men-tu-lui, performan[]a
+ []
+
+
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[35]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[36]) [37
 
 ] (capbib.tex
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[36
+[38
 
 
 
@@ -580,19 +594,19 @@ Overfull \hbox (302.80562pt too wide) in paragraph at lines 26--26
 /20210211STO97614/big-data-definitie-avantaje-provocari-infografice[] 
  []
 
-) (lucrare-licenta-Nume-Prenume.ind [37] [38
+) (lucrare-licenta-Nume-Prenume.ind [39] [40
 
 
 ])
 (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux)) ) 
 Here is how much of TeX's memory you used:
- 5569 strings out of 479618
- 75221 string characters out of 2874899
- 1102992 words of memory out of 3000000
- 22633 multiletter control sequences out of 15000+200000
+ 5571 strings out of 479618
+ 75259 string characters out of 2874899
+ 1103014 words of memory out of 3000000
+ 22635 multiletter control sequences out of 15000+200000
  412496 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,14n,78p,942b,1826s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 72i,14n,78p,1010b,1826s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Robert\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/ty
@@ -608,9 +622,9 @@ ic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
 iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/
 public/amsfonts/cm/cmtt9.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (38 pages, 354603 bytes).
+Output written on lucrare-licenta-Nume-Prenume.pdf (40 pages, 366393 bytes).
 PDF statistics:
- 206 PDF objects out of 1000 (max. 8388607)
+ 212 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

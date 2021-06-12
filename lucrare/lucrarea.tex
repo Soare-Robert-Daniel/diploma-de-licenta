@@ -394,23 +394,109 @@ Peste lan@tul Markov putem contrui un model matematic pentru modelarea procesulu
 	\item Factor de atenuare, pondere care exprim@a importan@ta recompenselor imediate @si viitoare ($\gamma$)
 \end{itemize}
 
-Recompensele acumulate la fiecare pas pot sunt exprimate de formula: 
+Recompensele acumulate la fiecare pas de timp sunt exprimate de formula: 
 
 $$ R_t = r_{t+1} + r_{t+2} + ... \,,$$ 
 
 \noindent unde $r_{t+1}$ este recompensa primit@a prin efectuarea unei ac@tiuni la pasul $t_1$. A@sadar, $R_t$ va reprezenta \textbf{c\^ a@stigul}(return), pe care @in mod natural dorim s@a-l maximiz@am. Dar c\^ astigul se poate @intinde pan@a la infinit, ca s@a rezolv@am aceast@a dilema a infinitului, vom introduce @in formul@a factorul de atenuarea ($\gamma$).
 
-$$ R_t = r_{t+1} + \gamma r_{t+2} + \gamma^{2} r_{t+3} + \gamma^{3} r_{t+4} + ... $$
-
+$$
+\begin{array}{rcl}
+	R_t & = & r_{t+1} + \gamma r_{t+2} + \gamma^{2} r_{t+3} + \gamma^{3} r_{t+4} + ... \\
+	& = & r_{t+1} + \gamma \left( r_{t+2} + \gamma r_{t+3} + \gamma^{2} r_{t+4} + ...  \right) \\
+	& = & r_{t+1} + \gamma R_{t+1} \\
+\end{array}
+$$
 Factorul de atenuare ar@at@a c\^ at de importante sunt recompensele pentru efectuarea unei strategii cu c\^ a@stig pe termen lung sau scurt. Acest factor ia valori @intre 0 @si 1. Valoriile mai apropiate de 0, dau mai mult@a prioritate ac@tiunilor care ob@tin recompense mari imediate, ignorand ac@tiunile mai slabe, dar care pot avea un c\^ a@stig mare pe o perioada mai lung@a de timp. Pentru valorile mai apropiate de 1, ac@tiunile care duc la un c\^ a@stig mai mare pe perioade lungi vor fi mai importante.
 
 Dac@a am avea un agent pe post de v@anz@ator, un factor de atenuare mic ar face ca agentul s@a v@and@a produsele c\^ at mai repede la pre@tul curent cel mai mare. Un factor de atenuare mare ar schimba complet strategiea, @si anume c@a agentul va as@tepta s@a v\^ and@a la cel bun pre@t posibil dintr-o perioada de timp. Dac@a am face o lichidare de stoc, atunci v@anzarea produselor c\^ at mai rapid@a ar avea prioritatea, deci agentul ar trebuii s@a aleag@a recompensele imediate. Pentru v@anz@ari de produse care @i@si cre@sc valoarea @in timp; precum operele de art@a, imobiliare, titluri financiare (ac@tiuni, obliga@tiuni) - am dorii ca agentul s@a a@stepte un pre@t bun de v\^ anzare.
 
-\section{Ecua@tia Bellman}
+Pentru alegerea unei ac@tiuni, vom stabilii o \textbf{strategie} $\pi$ (policy), care este o func@tie ce returneaz@a ac@tiunea pe care trebuie s@a o ia agentul la o anumit@a stare. A@sadar, avem $\pi: S \rightarrow A, \pi(s) = a $ pentru $ s \in S, a \in A$.
 
+Fiecarei st@ari @ii putem asocia o \textbf{func@tie valoare} (function value) $V(s)$, valoarea dat@a de aceasta ne va arat@a c\^ at de bun@a este starea @in care se afl@a agentul. Pentru o strategie $\pi$, aceasta are forma:
 
+$$
+\begin{array}{rcl}
+	V^{\pi}(s) & = &  E_{\pi} \left[ R_t | s_t = s \right] \\
+	& = & E_{\pi} \left[ r_{t+1} + \gamma R_{t+1} | s_t = s, s_{t+1} = s^{\prime} \right] \\
+	& = &  E_{\pi} \left[ r_{t+1}| s_t = s \right] + \gamma E_{\pi} \left[  R_{t+1} | s_{t+1} = s^{\prime} \right] \\
+	& = & E_{\pi} \left[ r_{t+1}| s_t = s \right] + \gamma V^{\pi}(s^{\prime})
+\end{array}
+$$
+
+\noindent Prin urmare, $V^{\pi}(s)$ va fi c\^ a@stigul a@steptat c\^ and se @incepe din starea $s$, iar ac@tiunile sunt date de c\^atre strategia $\pi$.
+
+S@a presupunem c@a avem un magazin @si dorim s@a stabilim pre@tul unui produs pentru o anumit@a zi. Definim starea ca find perechea dintre zi @si pre@t, $S = \left\lbrace  s | s = (zi, pre\c t) \right\rbrace$. Av\^ and o strategie $\pi$ aleatoare, pentru ziua a 5-a, avem urm@atoarele op@tiuni descrise @in tabelul \ref{tab:pret-magazin}.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Pre@t (lei) & Stare ($s$) & C\^ a@stigul a@steptat ($V^{\pi}(s)$) \\
+			\hline
+			15 & $s(5,15)$ & 0.3 \\
+			\hline
+			8 & $s(5,8)$ & 1.6 \\
+			\hline
+			3 & $s(5,3)$ & 6.9 \\
+			\hline
+			1 & $s(5,1)$ & 10 \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Recompensele a@steptate pentru fiecare pre@t}
+	\label{tab:pret-magazin}
+\end{table}
+
+Prin scurta analiz@a a tabelului, observ@am c@a agentul decide c@a pre@tul de un leu pentru acel produs va fi cel mai bun. Dac@a am fi luat @in considere @si alte valori pentru reprezentarea st@ari, valori precum: stocul disponibil, rat@a de v\^ anzare zilnic@a, @si am avea acelea@si valori pentru $V^{\pi}(s)$, putem deduce faptul c@a agentul sugereaz@a s@a avem o lichidare de stoc, av\^and @in vedere c@a a ales cel mai mic pre@t.
 
 \section{Q-Learning}
+
+Noi dorim ca agentul s@a ia cele mai bune decizii pentru @indeplinirea sarcinilor, deci am vrea s@a g@asim o strategie optim@a $\pi^*$ @si func@tia valoare optim@a $V^{*}$ care ne ofer@a cel mai mare c\^ a@stig dintre toate celelalte:  $$V^{*}(s) = max_{\pi} V^{\pi}(s)$$
+
+Pe l@ang@a func@tia valoare $V$, vom avea @si func@tia $Q$ care indic@a c\^ at de bun@a este o ac@tiune pentru o stare av\^and strategia $\pi$. Aceasta este de forma:
+
+$$ Q^{\pi}(s, a) = E_{\pi} \left[ R_t | s_t = s, a_t = a \right]$$
+
+Lu\^and exemplul din tabelul \ref{tab:pret-magazin}, putem exemplifica valorile Q prin adaugarea ac@tiunilor: cre@stere pre@t ($\uparrow$), sc@adere pre@t ($\downarrow$) @si p@astrare pre@t ($=$). De asemenea, punem @si condi@tia ca pre@tul s@a nu fie mai mic dec\^at un leu, pentru aceast@a situa@tie nu dorim ca produsul s@a ajung@a s@a fie gratuit.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Pre@t (lei) & Stare ($s$) & Ac@tiune($a$) & Valoare Q ($Q^{\pi}(s, a)$) \\
+			\hline
+			8 & $s(5,8)$ & $\uparrow$ & -30 \\ 
+			\hline
+			8 & $s(5,8)$ & $=$ & -10 \\
+			\hline
+			8 & $s(5,8)$ & $\downarrow$ & 0 \\
+			\hline
+			3 & $s(5,8)$ & $\uparrow$ & -10 \\ 
+			\hline
+			3 & $s(5,8)$ & $=$ & 25 \\
+			\hline
+			3 & $s(5,8)$ & $\downarrow$ & 35 \\
+			\hline
+			1 & $s(5,8)$ & $\uparrow$ & -30 \\ 
+			\hline
+			1 & $s(5,8)$ & $=$ & 100 \\
+			\hline
+			1 & $s(5,8)$ & $\downarrow$ & -120 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Valorile Q pentru fiecare pre@t @si ac@tiune}
+	\label{tab:pret-magazin-q}
+\end{table}
+
+Din tabelul \ref{tab:pret-magazin-q} se poate eviden@tia mai detaliat alegerea pre@tului de 1 leu, aceasta av\^and cea mai mare valoare. De asemenea, se pot observa valori negative la ridicarea pre@tului, odat@a cobor\^ at pre@tul, agentul are @sanse mici s@a-l creasc@a. Daca agentul ar fi pornit cu pre@tul din ziua a 4-a, presupun\^ and c@a ar fi cel de 8 lei, @in ziua a 5-a l-ar fi cobor\^ at p\^ an@a la un leu dac@a strategia noastr@a este s@a alegem valoarea Q cea mai mare atunci c\^and decidem ce ac@tiune vom lua. De men@tionat faptul c@a ac@tiunea de cobor\^ are a pre@tului sub un leu are o valoarea extrem de mic@a, asta datorit@a condi@tiei impuse la @inceput. Agentul este complet descurajat s@a ia acea ac@tiune. Aceast@a tactic@a de descurajare o vom folosii @si @in aplica@tie pentru rezolvarea labirintului. Ac@tiunile care fac agentul s@a intre @in obstacole vor avea asociate recompense negative.
+
+Pentru estimarea acestor Q valori vom folosii @inv@a@tarea bazat@a pe diferen@te temporale. Pentru func@tia valoarea $V$ aceasta arat@a astfel:
+
+$$V^{\pi}(s_t) = V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) = V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right) ,$$
+
+\noindent unde $s_t$ @si $r_t$ sunt starea @si respectiv recompensa la pasul $t$, $\alpha$ este o constant@a numit@a @in general rata de @inv@a@tare (learning rate). $R_t = r_{t+1} + \gamma V^{\pi}(s_{t+1}) $ reprezint@a noua informa@tie
 
 %%CAPITOLUL 4
 %%
@@ -445,8 +531,6 @@ Elementele de baz@a vor fi construite folosind Svelte, acestea find: butoane, c@
 Algoritmii de @inv@a@tare vor fi construi@ti folosind func@tile oferite de c@atre Tensorflow, aceastea oferind urm@atoarele capabilit@ati: crearea de straturi cu diverse func@tionalit@a@ti, func@tii de activare, algoritimi de optimizare, metode utilitare de salvare @si de creare a unor modele secven@tiale formate din mai multe straturi de neuroni.
 
 \section{Structur@a}
-
-
 
 
 
