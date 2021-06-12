@@ -380,21 +380,31 @@ In cazul agentului nostru, dac@a ne-am imagina traseul ca find un lan@t Markov, 
 A@sadar, dac@a ne-am dorii ca agentul s@a foloseasc@a aceasta idee pentru stabilirea unui drum pentru rezolvarea obiectivului trebuie s@a stabilim o strategie de parcurgere a grafului.
 O strategie simpl@a ar fi una de tip {\sl Greddy}, @si anume agentul alege mereu ac@tiunea/muchia cu probabilitatea cea mai mare. Pentru ca aceasta strategie s@a aib@a succes trebuie ca valorile probabilit@atilor act@iunilor s@a conduc@a c@atre obiectiv @in urma parcugerii grafului.
 
+Pentru a controla comportamentul agentului @in mediul de lucru, vom folosii un sistem de recompense pentru fiecare decizie luat@a. Dac@a dorim ca agentul sa evite anumite situa@tii precum luare de ac@tiuni care conduc la coliziuni cu anumite obiecte, vom asocia acestor decizii recompense negative. \^In contrast, dac@a dorim ca agentul s@a fac@a anumite ac@tiuni care duc la \^indeplinirea obiectivelor, acestor decizii li se vor asocia recompense pozitive.
+
+A@sadar, dorim ca pe parcursul simul@arii agentul s@a acumuleze c\^ at mai multe recompense pozitive @si s@a sle evite pe c\^ at mai mult posibil pe cele negative. Acestu lucrul @il vom numi optimizare, iar procesul de antrenament implic@a modificarea re@telei neurale astfel @inc\^ cat ac@tiunile rezultate din datele de intrare s@a maximizeze recompensele acumulate.
+
 Peste lan@tul Markov putem contrui un model matematic pentru modelarea procesului de decizie al agentului. Acest model con@tine urm@atoarele elemente:
 
 \begin{itemize}
 	\item Mul@timea st@arilor (S)
 	\item Mul@timea ac@tiunilor (A)
-	\item Probabilitatea de tranzi@tie dintr-o stare @in alta pentru o ac@tiune ($P_{s s^{\prime}}^a$)
-	\item Probabilitatea de a primi o recompens@a @in urma tranzi@tiei ($R_{s s^{\prime}}^a$)
+	\item Probabilitatea de tranzi@tie dintr-o stare @in alta pentru o ac@tiune ($P(s^{\prime}|s, a)$)
+	\item Recompensa primit@a @in urma tranzi@tiei dintr-o stare @in alta pentru o ac@tiune ($R(s^{\prime}|s, a)$)
 	\item Factor de atenuare, pondere care exprim@a importan@ta recompenselor imediate @si viitoare ($\gamma$)
 \end{itemize}
 
-Pentru a controla comportamentul agentului @in mediul de lucru, vom folosii un sistem de recompense pentru fiecare decizie luat@a. Dac@a dorim ca agentul sa evite anumite situa@tii precum luare de ac@tiuni care conduc la coliziuni cu anumite obiecte, vom asocia acestor decizii recompense negative. \^In contrast, dac@a dorim ca agentul s@a fac@a anumite ac@tiuni care duc la \^indeplinirea obiectivelor, acestor decizii li se vor asocia recompense pozitive.
+Recompensele acumulate la fiecare pas pot sunt exprimate de formula: 
 
-A@sadar, dorim ca pe parcursul simul@arii agentul s@a acumuleze c\^ at mai multe recompense pozitive @si s@a sle evite pe c\^ at mai mult posibil pe cele negative. Acestu lucrul @il vom numi optimizare, iar procesul de antrenament implic@a modificarea re@telei neurale astfel @inc\^ cat ac@tiunile rezultate din datele de intrare s@a maximizeze recompensele acumulate.
+$$ R_t = r_{t+1} + r_{t+2} + ... \,,$$ 
 
+\noindent unde $r_{t+1}$ este recompensa primit@a prin efectuarea unei ac@tiuni la pasul $t_1$. A@sadar, $R_t$ va reprezenta \textbf{c\^ a@stigul}(return), pe care @in mod natural dorim s@a-l maximiz@am. Dar c\^ astigul se poate @intinde pan@a la infinit, ca s@a rezolv@am aceast@a dilema a infinitului, vom introduce @in formul@a factorul de atenuarea ($\gamma$).
 
+$$ R_t = r_{t+1} + \gamma r_{t+2} + \gamma^{2} r_{t+3} + \gamma^{3} r_{t+4} + ... $$
+
+Factorul de atenuare ar@at@a c\^ at de importante sunt recompensele pentru efectuarea unei strategii cu c\^ a@stig pe termen lung sau scurt. Acest factor ia valori @intre 0 @si 1. Valoriile mai apropiate de 0, dau mai mult@a prioritate ac@tiunilor care ob@tin recompense mari imediate, ignorand ac@tiunile mai slabe, dar care pot avea un c\^ a@stig mare pe o perioada mai lung@a de timp. Pentru valorile mai apropiate de 1, ac@tiunile care duc la un c\^ a@stig mai mare pe perioade lungi vor fi mai importante.
+
+Dac@a am avea un agent pe post de v@anz@ator, un factor de atenuare mic ar face ca agentul s@a v@and@a produsele c\^ at mai repede la pre@tul curent cel mai mare. Un factor de atenuare mare ar schimba complet strategiea, @si anume c@a agentul va as@tepta s@a v\^ and@a la cel bun pre@t posibil dintr-o perioada de timp. Dac@a am face o lichidare de stoc, atunci v@anzarea produselor c\^ at mai rapid@a ar avea prioritatea, deci agentul ar trebuii s@a aleag@a recompensele imediate. Pentru v@anz@ari de produse care @i@si cre@sc valoarea @in timp; precum operele de art@a, imobiliare, titluri financiare (ac@tiuni, obliga@tiuni) - am dorii ca agentul s@a a@stepte un pre@t bun de v\^ anzare.
 
 \section{Ecua@tia Bellman}
 
