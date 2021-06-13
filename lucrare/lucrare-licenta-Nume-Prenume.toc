@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.1}Introducere}{13}{}%
 \contentsline {section}{\numberline {2.2}Structur\u {a}}{13}{}%
 \contentsline {section}{\numberline {2.3}Func\c {t}ii de activare \c {s}i metode de optimizare}{16}{}%
-\contentsline {section}{\numberline {2.4}Tensorflow}{16}{}%
+\contentsline {section}{\numberline {2.4}Tensorflow}{18}{}%
 \contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{19}{}%
 \contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{19}{}%
 \contentsline {section}{\numberline {3.2}Q-Learning}{21}{}%

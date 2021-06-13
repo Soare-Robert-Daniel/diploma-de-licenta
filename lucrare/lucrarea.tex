@@ -311,29 +311,27 @@ Exemple de tipuri de re@tele:
 
 
 \section{Func@tii de activare @si metode de optimizare}
-Func@tia de activare ajut@a re@teaua neuronal@a pentru @in@a@tarea de tipare complexe aflate @in setul de date analizat. Alegerea unei func@tii de activare este critic@a pentru performan@ta re@telei, @in special cazul problemelor neliniare.
+Func@tia de activare ajut@a re@teaua neuronal@a pentru @inv@a@tarea de tipare complexe aflate @in setul de date analizat. Alegerea unei func@tii de activare este critic@a pentru performan@ta re@telei, @in special pentru cazul problemelor neliniare.
 
 Unele din cele mai folosite func@tii sunt:
 
-$$
-\begin{array}{rlcc}
-	{\rm Identitate} & \varphi (x) &=& x \\
-	{\rm Binary \, Step} & \varphi (x) &=& \left\lbrace
+\begin{align}
+	{\rm Identitate} \quad \varphi (x) &= x \\
+	{\rm Binary \, Step} \quad \varphi (x) &= \left\lbrace
 		\begin{array}{lc}
 			1 & x \geq 0 \\
 			0 & x < 0
 		\end{array}
 	\right. \\
-	{\rm Logistic, Sigmoid} & \varphi (x) &=& \displaystyle\frac{1}{1 + e^{-x}} \\
-	{\rm Rectified\, liniar\, unit (ReLU)}& \varphi (x) &=& \left\lbrace
+	{\rm Logistic, Sigmoid} \quad \varphi (x) &= \displaystyle\frac{1}{1 + e^{-x}} \\
+	{\rm Rectified\, liniar\, unit (ReLU)} \quad \varphi (x) &= \left\lbrace
 		\begin{array}{lc}
 			x & x \geq 0 \\
 			0 & x < 0
 		\end{array}
-	\right. \\
-	{\rm Softplus} & \varphi (x) &=& \ln ( 1 + e^x) \\
-\end{array}
-$$
+	\right. \label{eq:relu} \\
+	{\rm Softplus} \quad \varphi (x) &= \ln ( 1 + e^x) 
+\end{align}
 
 Func@tiile de activare pot aproape orice func@tie liniar@a sau neliniar@a, dar unele  (precum cele enumerate anterior) ofer@a mai multe beneficii dec@at altele @in contextul antren@arii unei re@tele.
 
@@ -342,6 +340,89 @@ Crearea unei re@tele neuronale artificiale presupune alegerea tipurilor de strat
 Acest lucru duce la problema de optimizare a re@telei (g@asirea unor valori potrivite pentru ponderile sinaptice) astfel \^inc\^ at rezultatul aproxim@arii s@a fie unul satisf@ac\^ ator. Acest proces este referit uzual ca {\sl antrenare (training)}. Antrenarea este unul dintre cele mai dificile capitole al acestui domeniu, alegerea unui algoritm potrivit poate beneficii extraordinarea @in privin@ta g@asii unor valori optimale pentru ponderile sinaptice.
 
 Re@telele neuronale artificiale folosite @in industrie (aplica@tii de recunoa@stere a obiectelor @in imagini; programe pentru traduceri, recunoa@steri de voce ) au o complexitate extrordinar@a at@at din punct de vedere al arhitecturii, care poate const@a dintr-un mix de diferite tipuri de re@tele, c\^ at @si al nivelului imens de date (de ordinul milioanelor de terabi@ti). Antrenarea acestora poate dura c\^ ateva zile sau c\^ ateva luni, @in cazuri rare fiind vorba de ani. A@sdar, un algoritm de optimizare eficient are un rol crucial @in acest proces.
+
+Ca s@a putem optimiza trebuie s@a avem o metric@a dup@a care s@a evalu@am performan@ta, aceasta poart@a de denumirea de \textbf{func@tie de cost sau pierdere} (cost/loss function). Aceasta se calculeaz@a folosind datele rezultate la rularea re@telei @si cele pe care dorim s@a ale avem. 
+
+@In func@tie de arhitectura re@telei, unele func@tii de cost au o performan@t@a mai bun@a dec\^ at celelalte. C\^ ateva exemple:
+
+\begin{enumerate}
+	\item Probleme de regresie
+	\begin{enumerate}
+		\item Eroarea medie
+		\item Eroarea p@atratic@a medie
+		\item Eroare medie absolut@a
+	\end{enumerate}
+	\item Clasific@ari binare
+	\begin{enumerate}
+		\item Binary Cross-Entropy
+		\item Eroare Hinge
+		\item Eroare p@atratic@a Hinge
+	\end{enumerate}
+	\item Clasific@ari multi-clas@a
+	\begin{enumerate}
+		\item Multi-Class Cross-Entropy
+		\item Sparse Multiclass Cross-Entropy
+		\item Kullback Leibler Divergence
+	\end{enumerate}
+\end{enumerate}
+
+S@a presupunem c@a avem tabelul \ref{tab:nn-functie} cu rezultatele unei re@tele care @incerc@a s@a aproximeze urm@atoare func@tie:
+
+\begin{equation} \label{eq:f}
+	f:[-1, 1]\rightarrow \mathcal{R}, f(x) = \displaystyle\frac{1}{x^2+1}
+\end{equation}
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Date de intrare ($x$) & Rezultat estimat ($\hat{y}$) & Rezultat dorit ($y$) \\
+			\hline
+			-1 & -1.23 & 0.5 \\
+			\hline
+			-0.5 & 0.5 & 0.8 \\
+			\hline
+			0 & 3 & 1 \\
+			\hline
+			0.5 & -5 & 0.8 \\ 
+			\hline
+			1 & 0.1 & 0.5 \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Valorile estimate pentru func@tia $f(x)$ (\ref{eq:f})}
+	\label{tab:nn-functie}
+\end{table}
+
+Aplic\^ and eroare medie absolut@a @si eroarea p@atratic@a medie ca func@tii de cost @in tabelul \ref{tab:nn-functie}, ob@tinem urm@atoarele rezultate @in tabelul \ref{tab:nn-erori}\,.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Func@tie de cost & Formul@a & Valoarea erorii \\
+			\hline
+			Eroare medie absolut@a & $\displaystyle\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i| $ & -1.25 \\
+			\hline
+			Eroarea p@atratic@a medie & $\displaystyle\frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2 $ & 8.18 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Valorile erorii pentru valorile din tabelul \ref{tab:nn-functie}}
+	\label{tab:nn-erori}
+\end{table}
+
+Rezultatele ob@tinute din func@tiile cost le putem folosii pentru adjustarea ponderilor sinaptice @si a deplas@arii. Algoritmii care ne ajut@a s@a minimiz@am func@tia de cost ii vom numi \textbf{algoritmi de optimizare}. Pentru re@tele de tip Deep Feed Forward (DFF), cea mai comun@a metode de adjustare este cea a propag@arii inverse, unde valoarea erorii este transmis@a @in straturile interioare la fiecare neuron. 
+
+Optimizarea re@telei neuronale este unul din cel mai complexe capitole ale domeniului de @inv@a@tare automat@a. Pentru lucrul cu re@tele vom folosii biblioteca Tensorflow, care dispunde de toate cele necesare. Algoritmi de optimizare prezen@ti @in aceast@a bibliotec@a sunt:
+
+\begin{itemize}
+	\item Adam
+	\item AdaDelta
+	\item AdaGrad
+	\item AdaMax
+	\item Stochastic gradient descent (SGD)
+\end{itemize} 
 
 \section{Tensorflow}
 Tensorflow este o platform@a dedicat@a dezvolt@arii modelelor de @inv@a@tare automat@a. Acest@a a fost creat@a ini@tial de c@atre Google pentru a accelara dezvoltarea domeniului prin oferirea de programe ajut@atoare pentru crearea rapid@a a protipurilor. Datorit@a calit@atii superioare a programelor de prototipare @si a usurin@tei de utilizare, acesta a devenit o platform@a popular@a at\^ at @in mediul academic c\^ at @si industrial.
@@ -395,18 +476,20 @@ Peste lan@tul Markov putem contrui un model matematic pentru modelarea procesulu
 \end{itemize}
 
 Recompensele acumulate la fiecare pas de timp sunt exprimate de formula: 
+\begin{equation}
+	R_t = r_{t+1} + r_{t+2} + ... \,,
+\end{equation}
 
-$$ R_t = r_{t+1} + r_{t+2} + ... \,,$$ 
 
 \noindent unde $r_{t+1}$ este recompensa primit@a prin efectuarea unei ac@tiuni la pasul $t_1$. A@sadar, $R_t$ va reprezenta \textbf{c\^ a@stigul}(return), pe care @in mod natural dorim s@a-l maximiz@am. Dar c\^ astigul se poate @intinde pan@a la infinit, ca s@a rezolv@am aceast@a dilema a infinitului, vom introduce @in formul@a factorul de atenuarea ($\gamma$).
 
-$$
-\begin{array}{rcl}
-	R_t & = & r_{t+1} + \gamma r_{t+2} + \gamma^{2} r_{t+3} + \gamma^{3} r_{t+4} + ... \\
-	& = & r_{t+1} + \gamma \left( r_{t+2} + \gamma r_{t+3} + \gamma^{2} r_{t+4} + ...  \right) \\
-	& = & r_{t+1} + \gamma R_{t+1} \\
-\end{array}
-$$
+
+\begin{align}
+	R_t & =  r_{t+1} + \gamma r_{t+2} + \gamma^{2} r_{t+3} + \gamma^{3} r_{t+4} + ... \\
+	& =  r_{t+1} + \gamma \left( r_{t+2} + \gamma r_{t+3} + \gamma^{2} r_{t+4} + ...  \right) \\
+	& =  r_{t+1} + \gamma R_{t+1} \\
+\end{align}
+
 Factorul de atenuare ar@at@a c\^ at de importante sunt recompensele pentru efectuarea unei strategii cu c\^ a@stig pe termen lung sau scurt. Acest factor ia valori @intre 0 @si 1. Valoriile mai apropiate de 0, dau mai mult@a prioritate ac@tiunilor care ob@tin recompense mari imediate, ignorand ac@tiunile mai slabe, dar care pot avea un c\^ a@stig mare pe o perioada mai lung@a de timp. Pentru valorile mai apropiate de 1, ac@tiunile care duc la un c\^ a@stig mai mare pe perioade lungi vor fi mai importante.
 
 Dac@a am avea un agent pe post de v@anz@ator, un factor de atenuare mic ar face ca agentul s@a v@and@a produsele c\^ at mai repede la pre@tul curent cel mai mare. Un factor de atenuare mare ar schimba complet strategiea, @si anume c@a agentul va as@tepta s@a v\^ and@a la cel bun pre@t posibil dintr-o perioada de timp. Dac@a am face o lichidare de stoc, atunci v@anzarea produselor c\^ at mai rapid@a ar avea prioritatea, deci agentul ar trebuii s@a aleag@a recompensele imediate. Pentru v@anz@ari de produse care @i@si cre@sc valoarea @in timp; precum operele de art@a, imobiliare, titluri financiare (ac@tiuni, obliga@tiuni) - am dorii ca agentul s@a a@stepte un pre@t bun de v\^ anzare.
@@ -415,14 +498,13 @@ Pentru alegerea unei ac@tiuni, vom stabilii o \textbf{strategie} $\pi$ (policy),
 
 Fiecarei st@ari @ii putem asocia o \textbf{func@tie valoare} (function value) $V(s)$, valoarea dat@a de aceasta ne va arat@a c\^ at de bun@a este starea @in care se afl@a agentul. Pentru o strategie $\pi$, aceasta are forma:
 
-$$
-\begin{array}{rcl}
-	V^{\pi}(s) & = &  E_{\pi} \left[ R_t | s_t = s \right] \\
-	& = & E_{\pi} \left[ r_{t+1} + \gamma R_{t+1} | s_t = s, s_{t+1} = s^{\prime} \right] \\
-	& = &  E_{\pi} \left[ r_{t+1}| s_t = s \right] + \gamma E_{\pi} \left[  R_{t+1} | s_{t+1} = s^{\prime} \right] \\
-	& = & E_{\pi} \left[ r_{t+1}| s_t = s \right] + \gamma V^{\pi}(s^{\prime})
-\end{array}
-$$
+
+\begin{align}
+	V^{\pi}(s) & =   E_{\pi} \left[ R_t | s_t = s \right] \\
+	& =  E_{\pi} \left[ r_{t+1} + \gamma R_{t+1} | s_t = s, s_{t+1} = s^{\prime} \right] \\
+	& =   E_{\pi} \left[ r_{t+1}| s_t = s \right] + \gamma E_{\pi} \left[  R_{t+1} | s_{t+1} = s^{\prime} \right] \\
+	& =  E_{\pi} \left[ r_{t+1}| s_t = s \right] + \gamma V^{\pi}(s^{\prime})
+\end{align}
 
 \noindent Prin urmare, $V^{\pi}(s)$ va fi c\^ a@stigul a@steptat c\^ and se @incepe din starea $s$, iar ac@tiunile sunt date de c\^atre strategia $\pi$.
 
@@ -452,11 +534,17 @@ Prin scurta analiz@a a tabelului, observ@am c@a agentul decide c@a pre@tul de un
 
 \section{Q-Learning}
 
-Noi dorim ca agentul s@a ia cele mai bune decizii pentru @indeplinirea sarcinilor, deci am vrea s@a g@asim o strategie optim@a $\pi^*$ @si func@tia valoare optim@a $V^{*}$ care ne ofer@a cel mai mare c\^ a@stig dintre toate celelalte. Vom folosii principiul de optimalitatea al lui Richard E. Bellman \cite{bellman-theory}, care afirm@a c@a: ``Strategia optim@a are propietatea c@a indiferent de starea sau decizia ini@tial@a, deciziile care r@am\^ an@a trebuie s@a formeze o strategie optim@a @in ceea ce prive@ste starea rezultat@a din prima decizie``.  $$V^{*}(s) = max_{\pi} V^{\pi}(s)$$
+Noi dorim ca agentul s@a ia cele mai bune decizii pentru @indeplinirea sarcinilor, deci am vrea s@a g@asim o strategie optim@a $\pi^*$ @si func@tia valoare optim@a $V^{*}$ care ne ofer@a cel mai mare c\^ a@stig dintre toate celelalte. Metodele de g@asire sunt inspirate din principiul de optimalitatea al lui Richard E. Bellman \cite{bellman-theory}, care afirm@a c@a: ``Strategia optim@a are propietatea c@a indiferent de starea sau decizia ini@tial@a, deciziile care r@am\^ an@a trebuie s@a formeze o strategie optim@a @in ceea ce prive@ste starea rezultat@a din prima decizie``.  
+
+\begin{equation}
+	V^{*}(s) = max_{\pi} V^{\pi}(s)
+\end{equation}
 
 Pe l@ang@a func@tia valoare $V$, vom avea @si func@tia $Q$ care indic@a c\^ at de bun@a este o ac@tiune pentru o stare av\^and strategia $\pi$. Aceasta este de forma:
 
-$$ Q^{\pi}(s, a) = E_{\pi} \left[ R_t | s_t = s, a_t = a \right]$$
+\begin{equation}
+	Q^{\pi}(s, a) = E_{\pi} \left[ R_t | s_t = s, a_t = a \right]
+\end{equation}
 
 Lu\^and exemplul din tabelul \ref{tab:pret-magazin}, putem exemplifica valorile Q prin adaugarea ac@tiunilor: cre@stere pre@t ($\uparrow$), sc@adere pre@t ($\downarrow$) @si p@astrare pre@t ($=$). De asemenea, punem @si condi@tia ca pre@tul s@a nu fie mai mic dec\^at un leu, pentru aceast@a situa@tie nu dorim ca produsul s@a ajung@a s@a fie gratuit.
 
@@ -472,17 +560,17 @@ Lu\^and exemplul din tabelul \ref{tab:pret-magazin}, putem exemplifica valorile 
 			\hline
 			8 & $s(5,8)$ & $\downarrow$ & 0 \\
 			\hline
-			3 & $s(5,8)$ & $\uparrow$ & -10 \\ 
+			3 & $s(5,3)$ & $\uparrow$ & -10 \\ 
 			\hline
-			3 & $s(5,8)$ & $=$ & 25 \\
+			3 & $s(5,3)$ & $=$ & 25 \\
 			\hline
-			3 & $s(5,8)$ & $\downarrow$ & 35 \\
+			3 & $s(5,3)$ & $\downarrow$ & 35 \\
 			\hline
-			1 & $s(5,8)$ & $\uparrow$ & -30 \\ 
+			1 & $s(5,1)$ & $\uparrow$ & -30 \\ 
 			\hline
-			1 & $s(5,8)$ & $=$ & 100 \\
+			1 & $s(5,1)$ & $=$ & 100 \\
 			\hline
-			1 & $s(5,8)$ & $\downarrow$ & -120 \\
+			1 & $s(5,1)$ & $\downarrow$ & -120 \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -496,23 +584,20 @@ Pentru estimarea acestor Q valori vom folosii @inv@a@tarea bazat@a pe diferen@te
 
 % $$V^{\pi}(s_t) = V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) = V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right) ,$$
 
-$$
-\begin{array}{rcl}
-	V^{\pi}(s_t) & = & V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) \\
-	 & = & V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right)
-\end{array}
-$$
+
+\begin{align}
+	V^{\pi}(s_t) & =  V^{\pi}(s_t) + \alpha * \left( R_t - V^{\pi}(s_t) \right) \\
+	 & =  V^{\pi}(s_t) + \alpha * \left( r_{t+1} + \gamma V^{\pi}(s_{t+1})  - V^{\pi}(s_t) \right)
+\end{align}
 
 \noindent unde $s_t$ @si $r_t$ sunt starea @si respectiv recompensa la pasul $t$, $\alpha$ este o constant@a numit@a @in general rata de @inv@a@tare (learning rate) @si preiau valori din intervalul 0 @si 1, similar cu factorul de atenuare. $R_t = r_{t+1} + \gamma V^{\pi}(s_{t+1}) $ reprezint@a noua informa@tie, format@a din recompensa imediat@a primit@a la efectuarea ac@tiunii @si c\^ astigul a@steptat pentru urm@toare stare. Diferen@ta dintre aceasta @si valoarea veche reprezint@a valoarea @inv@a@tat@a, iar @inmul@tirea cu constanta $\alpha$ ne arat@a c\^ at prealu@am din aceasta noua valuare.
 
 @In mod similar, aplic@am @si pentru valoarea Q:
 
-$$
-\begin{array}{rcl}
-	Q^{\pi}(s_t, a_t) & = & Q^{\pi}(s_t, a_t) + \alpha * \left( R_t - Q^{\pi}(s_t, a_t) \right) \\
-	 & = & Q^{\pi}(s_t, a_t) + \alpha * \left( r_{t+1} + \gamma Q^{\pi}(s_{t+1}, a_t)  - Q^{\pi}(s_t, a_t) \right)
-\end{array}
-$$
+\begin{align}
+	Q^{\pi}(s_t, a_t) & =  Q^{\pi}(s_t, a_t) + \alpha * \left( R_t - Q^{\pi}(s_t, a_t) \right) \\
+	 & =  Q^{\pi}(s_t, a_t) + \alpha * \left( r_{t+1} + \gamma Q^{\pi}(s_{t+1}, a_t)  - Q^{\pi}(s_t, a_t) \right)
+\end{align}
 
  De asemenea, definim @si strategia $\varepsilon$-greedy pe care vom folosii @in aplic@tia din aceast@a lucrare, care are urm@atoarele caracteristici:
 
@@ -533,7 +618,9 @@ Algoritmul Q-Learning este format din urm@atori pa@sii:
 		\begin{enumerate}[1.]
 			\item Alegem ac@tiunea $a$ folosind strategia aleas@a (presupunem ca este $\varepsilon$-greedy)
 			\item Execut@am ac@tiunea $a$ @si primim recompensa $r$ @si urm@atoarea stare $s^{\prime}$
-			\item Actualiz@am valoarea Q a st@arii curente @in func@tie de noile informa@tii: $$Q^{\pi}(s, a) \leftarrow Q^{\pi}(s, a) + \alpha \left[ r(s,a) + \gamma max_{a^{\prime}} Q^{\pi}(s^{\prime}, a^{\prime}) - Q^{\pi}(s, a) \right] $$
+			\item Actualiz@am valoarea Q a st@arii curente @in func@tie de noile informa@tii: \begin{equation}
+			Q^{\pi}(s, a) \leftarrow Q^{\pi}(s, a) + \alpha \left[ r(s,a) + \gamma max_{a^{\prime}} Q^{\pi}(s^{\prime}, a^{\prime}) - Q^{\pi}(s, a) \right]
+\end{equation}			
 			\item Trecem la urm@atoarea stare: $s = s^{\prime}$
 		\end{enumerate}
 		\item Repet@am pa@sii pan@a cand se ajunge la o stare terminal@a
