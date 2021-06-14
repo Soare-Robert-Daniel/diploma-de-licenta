@@ -10,16 +10,16 @@
 \contentsline {section}{\numberline {2.2}Structur\u {a}}{13}{}%
 \contentsline {section}{\numberline {2.3}Func\c {t}ii de activare \c {s}i metode de optimizare}{16}{}%
 \contentsline {section}{\numberline {2.4}Tensorflow}{18}{}%
-\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{21}{}%
-\contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{21}{}%
-\contentsline {section}{\numberline {3.2}Q-Learning}{23}{}%
-\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{27}{}%
-\contentsline {section}{\numberline {4.1}Introducere}{27}{}%
-\contentsline {section}{\numberline {4.2}Structur\u {a}}{28}{}%
-\contentsline {section}{\numberline {4.3}Simulator}{29}{}%
-\contentsline {section}{\numberline {4.4}Agent}{31}{}%
-\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{34}{}%
-\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{39}{}%
-\contentsline {chapter}{Concluzii finale}{40}{}%
-\contentsline {chapter}{Bibliografie}{42}{}%
-\contentsline {chapter}{Index}{43}{}%
+\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{23}{}%
+\contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{23}{}%
+\contentsline {section}{\numberline {3.2}Q-Learning}{25}{}%
+\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{29}{}%
+\contentsline {section}{\numberline {4.1}Introducere}{29}{}%
+\contentsline {section}{\numberline {4.2}Structur\u {a}}{30}{}%
+\contentsline {section}{\numberline {4.3}Simulator}{31}{}%
+\contentsline {section}{\numberline {4.4}Agent}{33}{}%
+\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{36}{}%
+\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{41}{}%
+\contentsline {chapter}{Concluzii finale}{42}{}%
+\contentsline {chapter}{Bibliografie}{44}{}%
+\contentsline {chapter}{Index}{45}{}%

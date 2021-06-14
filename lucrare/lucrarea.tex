@@ -273,7 +273,15 @@ $$
 	\end{bmatrix}
 $$
 
-Rezultatele acestui strat pot fi transmise c\^ atre un alt strat care poate avea o alt@a func@tie de activare, astfel putem crea modele matematice mai complexe. Aceast@a @in@siruire de straturi se nume@ste {\sl re@tea (network)}. Straturile intermediare sunt deseori referite ca {\sl straturi ascunse} (\textsl{hidden layers}). Iar o re@tea cu foarte multe straturi asunse poart@a denumirea de {\sl profund@a (deep)}.
+Rezultatele acestui strat pot fi transmise c\^ atre un alt strat care poate avea o alt@a func@tie de activare, astfel putem crea modele matematice mai complexe. Aceast@a @in@siruire de straturi se nume@ste {\sl re@tea (network)}. Straturile intermediare sunt deseori referite ca {\sl straturi ascunse} (\textsl{hidden layers}). Iar o re@tea cu foarte multe straturi asunse poart@a denumirea de {\sl profund@a (deep)} (Figura \ref{nn:schema-basic}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.55]{nn-schema-basic}
+	\caption{Structura unei re@tele neuronale profunde}
+	\label{nn:schema-basic}
+\end{figure}
+
 
 Re@tele pot fi structurate @si sub forma unui graf. Fiecare neuron find repezentat de un nod, iar muchiile grafului sunt conexiunile dintre neuroni. Dac@a graful suport nu con@tine cicluri, spunem c@a este uni-directional - o denumire uzual@a peste acest tip de re@tea este {\sl feed-forward (FF)} (denumire pe care o vom folosii @si @in restul acestei lucr@ari). De asemenea, neuroni pot fi interconecta@ti (graful suport con@tine cicluri), fapt care poate oferii re@telei mai mult@a putere de modelare. Acest tip de re@tea este denumit @in general {\sl recurrent neural network (RNN)}
 
@@ -298,15 +306,6 @@ Exemple de tipuri de re@tele:
 	\item Support Vector Machine (SVM)
 	\item Deep Belief Network (DBN)
 \end{itemize}
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.4]{nn_schema_1}
-	\caption{Structura unei re@tele neuronale}
-	\label{nn:schema}
-\end{figure}
-
 
 
 
@@ -402,7 +401,7 @@ Aplic\^ and eroare medie absolut@a @si eroarea p@atratic@a medie ca func@tii de 
 			\hline
 			Func@tie de cost & Formul@a & Valoarea erorii \\
 			\hline
-			Eroare medie absolut@a & $\displaystyle\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i| $ & -1.25 \\
+			Eroarea medie absolut@a & $\displaystyle\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i| $ & -1.25 \\
 			\hline
 			Eroarea p@atratic@a medie & $\displaystyle\frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2 $ & 8.18 \\
 			\hline
@@ -508,6 +507,40 @@ tf.image.resizeBilinear(d, [4, 4]).print();
 */	
 \end{lstlisting}
 
+Av\^ and exemplul anterior ca demonstrare a unor func@tii de baz@a din Tensorflow, o s@a construim un mic@a re@tea neuronal@a format@a din doua straturi a c\^ ate 2 neuroni cu c\^ ate 2 ponderi sinaptice, fiecare strat av\^ and o alt@a func@tie de activare, iar deplasarea va fi prezent@a doar pentru primul strat. Datele de intrare vor fi reprezentate de un vector cu dou@a valori.
+
+\begin{lstlisting}[language=Java, caption=Exemple de folosire a bibliotecii Tensorflow, label={lst:exemple-tensor-nn}]
+// Inițiem un tensor cu datele de intrare
+const x0 = tensor2d([[1], [2]]);
+// Inițiem un 2 tensori cu câte 2 neuroni
+// Fiecare linie reprezintă ponderile sinaptice al unui neuron
+const w1 = tensor2d([
+    [2, 3],
+    [-3, 0],
+]);
+const w2 = tensor2d([
+    [-1, 0.25],
+    [2, -0.8],
+]);
+// Inițiem un tensor cu valorile pentru deplasare de la primul strat
+// Al doilea îl vom omite
+const b1 = tensor2d([[0.5], [-1]]);
+// Facem sumarea semnalelor ponderate pentru fiecare neuron
+// și adăugăm deplasarea
+const y1 = tf.dot(w1, x0).add(b1);
+// Afișăm rezultatul
+y1.print(); // [[8.5], [-4 ]]
+// Aplicăam funcție de activare Binary Step
+const x1 = tf.step(y1);
+x1.print(); // [[1], [0]]
+// Rezultatul de primul strat îl folosesc ca date de intrare
+// pentru al doilea
+const y2 = tf.dot(w2, x1);
+y2.print(); // [[-1], [2 ]]
+// Aplic o altă funcție de activare și anume ReLU
+const x2 = tf.relu(y2);
+x2.print(); // [[0], [2]]
+\end{lstlisting}
 
 %%CAPITOLUL 3
 %%
