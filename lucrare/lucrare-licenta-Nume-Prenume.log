@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  14 JUN 2021 18:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  15 JUN 2021 20:27
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -332,7 +332,10 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 [4
 
 
-] [5]
+]
+Underfull \vbox (badness 1072) has occurred while \output is active []
+
+ [5]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -352,12 +355,6 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [9]
-Overfull \hbox (1.0095pt too wide) in paragraph at lines 143--144
-\OT1/cmr/m/n/10.95 folosite si pro-duse de catre al-go-ritmi al-go-rit-mii ^
-nva[]are. Aceasta ges-tionare a informa[]iilor,
- []
-
-
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -377,7 +374,7 @@ Capitolul 2.
 [13
 
 ]
-Overfull \hbox (4.46246pt too wide) in paragraph at lines 224--225
+Overfull \hbox (4.46246pt too wide) in paragraph at lines 235--236
 []\OT1/cmr/m/it/10.95 Fara func[]ia de ac-ti-vare, per-cep-tronul ac[]ioneaz
 a pre-cum o func[]ie liniara.
  []
@@ -385,7 +382,7 @@ a pre-cum o func[]ie liniara.
 <./imagini//nn-schema-basic.png, id=62, 763.85374pt x 423.5825pt>
 File: ./imagini//nn-schema-basic.png Graphic file (type png)
 <use ./imagini//nn-schema-basic.png>
-Package pdftex.def Info: ./imagini//nn-schema-basic.png  used on input line 280
+Package pdftex.def Info: ./imagini//nn-schema-basic.png  used on input line 291
 .
 (pdftex.def)             Requested size: 420.12085pt x 232.97108pt.
 
@@ -416,6 +413,17 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [17]
+<./imagini//grafic-pierderi.png, id=78, 387.4475pt x 279.0425pt>
+File: ./imagini//grafic-pierderi.png Graphic file (type png)
+<use ./imagini//grafic-pierderi.png>
+Package pdftex.def Info: ./imagini//grafic-pierderi.png  used on input line 441
+.
+(pdftex.def)             Requested size: 232.47029pt x 167.42679pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -427,7 +435,10 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[19]
+[19 <./imagini//grafic-pierderi.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -447,7 +458,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 ]
 Capitolul 3.
 [23]
-Overfull \hbox (9.11514pt too wide) in paragraph at lines 577--578
+Overfull \hbox (9.11514pt too wide) in paragraph at lines 597--598
 []\OT1/cmr/m/n/10.95 Recompensa primita ^n urma tranzi[]iei dintr-o stare ^n
  alta pen-tru o ac[]iune ($\OML/cmm/m/it/10.95 R\OT1/cmr/m/n/10.95 (\OML/cmm/m/
 it/10.95 s[]\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 s; a\OT1/cmr/m/n/10.95 )$)
@@ -461,7 +472,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 
 [24]
 
-LaTeX Warning: Command \c invalid in math mode on input line 614.
+LaTeX Warning: Command \c invalid in math mode on input line 634.
 
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
@@ -488,27 +499,27 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 ]
 Capitolul 4.
 
-Overfull \hbox (7.46794pt too wide) in paragraph at lines 764--765
+Overfull \hbox (7.46794pt too wide) in paragraph at lines 785--786
 \OT1/cmr/m/n/10.95 in-tro-duc-ere a datelor, tabele pen-tru prezentarea informa
 []iilor, con-tainere pen-tru pozi[]ionare.
  []
 
 [29]
-<./imagini//app-labirint-imagine.png, id=120, 722.7pt x 722.7pt>
+<./imagini//app-labirint-imagine.png, id=122, 722.7pt x 722.7pt>
 File: ./imagini//app-labirint-imagine.png Graphic file (type png)
 <use ./imagini//app-labirint-imagine.png>
 Package pdftex.def Info: ./imagini//app-labirint-imagine.png  used on input lin
-e 837.
+e 857.
 (pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./imagini//app-labirint-imagine-cu-mutare.png, id=121, 722.7pt x 722.7pt>
+<./imagini//app-labirint-imagine-cu-mutare.png, id=123, 722.7pt x 722.7pt>
 File: ./imagini//app-labirint-imagine-cu-mutare.png Graphic file (type png)
 <use ./imagini//app-labirint-imagine-cu-mutare.png>
 Package pdftex.def Info: ./imagini//app-labirint-imagine-cu-mutare.png  used on
- input line 848.
+ input line 868.
 (pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
@@ -570,7 +581,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [40]
-Overfull \hbox (22.60533pt too wide) in paragraph at lines 1251--1252
+Overfull \hbox (22.60533pt too wide) in paragraph at lines 1275--1276
 \OT1/cmr/m/n/10.95 interfe[]e in-ter-ac-tive pen-tru uti-liza-tor. Aceste poate
  vedea du-rata antre-na-men-tu-lui, performan[]a
  []
@@ -608,13 +619,13 @@ Overfull \hbox (302.80562pt too wide) in paragraph at lines 26--26
 ])
 (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux)) ) 
 Here is how much of TeX's memory you used:
- 5132 strings out of 479618
- 67477 string characters out of 2874899
- 1095239 words of memory out of 3000000
- 22225 multiletter control sequences out of 15000+200000
+ 5142 strings out of 479618
+ 67730 string characters out of 2874899
+ 1096307 words of memory out of 3000000
+ 22235 multiletter control sequences out of 15000+200000
  412496 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,14n,74p,1010b,1807s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,14n,74p,1010b,1854s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Robert\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/ty
@@ -631,9 +642,9 @@ iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmtt9.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (46 pages, 410779 bytes).
+Output written on lucrare-licenta-Nume-Prenume.pdf (46 pages, 426562 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
+ 237 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
