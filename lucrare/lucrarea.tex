@@ -434,14 +434,53 @@ Optimizarea re@telei neuronale este unul din cel mai complexe capitole ale domen
 	\item Stochastic gradient descent (SGD)
 \end{itemize} 
 
-@In figura \ref{fig:grafic-pierderi} putem observa o compara@tie dintre dou@a metode de optimizare (Adam @si SGD) pentru atrenarea re@telei de aproximarea a func@tiei $f$ (\ref{eq:f}). Re@teaua este format@a din 3 straturi: primul strat con@tine 32 de neuroni @si folo@se@ste func@tia de activare \textsl{ReLU} (\ref{eq:relu}), al doilea are 16 neuroni @si tot func@tia ReLU, iar al treilea strat are doar un singur neuron (avem nevoie doar o singur@a valoare) cu func@tia de activare identitate(\ref{eq:liniar}). Analiz\^ and figura, putem observa c@a SGD are o performan@ta mai bun@a la @inceput, dar @in timp Adam ajunge mai repede la varianta optim@a.
+@In figura \ref{fig:grafic-simplu-nn-no-train} putem observa rezultatul estim@arilor aproximarea func@tiei $f$ (\ref{eq:f}). Re@teaua este format@a din 3 straturi: primul strat con@tine 32 de neuroni @si folo@se@ste func@tia de activare \textsl{ReLU} (\ref{eq:relu}), al doilea are 16 neuroni @si tot func@tia ReLU, iar al treilea strat are doar un singur neuron (avem nevoie doar o singur@a valoare) cu func@tia de activare identitate (\ref{eq:liniar}).
 
 \begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{grafic-simplu-nn-no-train}
+	\caption{Estimarea unei func@tii cu o re@tea neantrenat@a}
+	\label{fig:grafic-simplu-nn-no-train}
+\end{figure}
+
+Pentru atrenarea re@telei vom folosii Adam @si SGD. Setul de date e intrare va consta din 2000 de puncte din intervalul $[-1, 1]$, iar datele de compara@tie vor consta din valorile func@tiei $f$ (\ref{eq:f}) @in aceste puncte.
+
+Analiz\^ and figura \ref{fig:grafic-pierderi}, putem observa c@a Adam are cea mai bun@a perfoman@ta fa@t@a de SGD, acesta ajung\^ and mai repede la starea optim@a @intr-un mai mic de episoade/epoci. Figura \ref{fig:grafic-simplu-nn-train} reprezint@a rezultatul estim@arilor pentru re@taua neuronal@a care folose@ste algoritmul Adam.
+ 
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{grafic-pierderi}
 	\caption{Compara@tia performan@tei a doi algoritmi de optmizare}
 	\label{fig:grafic-pierderi}
 \end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{grafic-simplu-nn-train}
+	\caption{Estimarea unei func@tii cu o re@tea antrenat@a}
+	\label{fig:grafic-simplu-nn-train}
+\end{figure}
+
+Pentru a test c\^ at de puternic@a este capacitatea de modelare a re@telei neuronale alese pentru func@tia $f$, vom alege s@a aproximeze valorile unei suprafe@te @in loc de o simpl@a func@tie unidimensional@a. Acest@a suprafa@t@a are urm@atoarea formul@a:
+
+\begin{align} \label{eq:suprafata}
+	g: \mathcal{R} \times \mathcal{R} \to \mathcal{R}, \quad
+	g(x, y) = \displaystyle\frac{7xy}{e^{x^2 + y^2}}
+\end{align} 
+
+Datale de intrare vor fi alc@atuite din perechi de tipul $(x, y),$ unde $x \in [-2, 2], y \in [-2, 2]$. Intervalele lui $x$ @si $y$ au fost @imp@ar@tite fiecare @in 500 de puncte echidistante. Num@arul total de perechi este 250.000, iar datele de compara@tie vor fi numere asociate fiecare perechi, acestea reprezint@a valoarea suprafe@tei @in acel punct dat de pereche. 
+
+Uit\^ andune @in figura \ref{fig:grafic-suprafata}, observ@am c@a re@teaua a avut succes @in aproximarea re@telei. Dar cel mai important lucrul este faptul c@a noi la @inceput am facut o re@teau pentru un anumit tip de problem@a @si anume s@a aproximize valorile unei func@tii unidimensionale, structura re@telei @si a num@arului de neuroni au fost date astfel @incat s@a existe suficient de multa putere de modelare. Iar prin trecerea la estimarea unei suprafe@te am putut demonstra c@a puterea re@telei poate s@a dep@a@sesc@a domeniul pentru care aceasta fost construit@a in@tial.
+
+Aceast@a observa@tie este extrem de important@a, deoarece acesta prezint@a capacitatea mare de flexibilitate @in modelare a valorilor unei probleme. Acela@si model al re@telei put\^ and s@a rezolve probleme din domenii diferite. Dac@a am avea un o arhitectur@a care poate rezolva o secven@te de numere date de un senzor, este posibil ca aceast@a s@a poat@a rezolva @si o secven@ta de cuvinte. Posibilit@a@tile sunt nelimitate, fapt care prezint@a @si interesul mare acordat de c@atre companii @si societ@a@tile academice.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.55]{grafic-suprafata}
+	\caption{Estimarea unei suprafe@te}
+	\label{fig:grafic-suprafata}
+\end{figure}
+
 
 \section{Tensorflow}
 Tensorflow este o platform@a dedicat@a dezvolt@arii modelelor de @inv@a@tare automat@a. Acesta a fost creat ini@tial de c@atre Google pentru a accelera dezvoltarea domeniului prin oferirea de programe ajut@atoare pentru crearea rapid@a a protipurilor. Datorit@a calit@atii superioare a programelor de prototipare @si a usurin@tei de utilizare, acesta a devenit o platform@a popular@a at\^ at @in mediul academic c\^ at @si industrial.
