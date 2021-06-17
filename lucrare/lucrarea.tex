@@ -25,13 +25,13 @@ Analiza se va face cu ajutorul unei aplica@tii web interactive @in care vom simu
 
 \hspace{0.2cm}
 
-@In primul capitol este descris termenul de @inv@a@tare automat@a, care sunt subdomeniile sale, cum este folosit @in @industire @si ce presupune acesta. 
+@In primul capitol este descris termenul de @inv@a@tare automat@a, exemple de subdomenii principale @si algoritmi specifici. Descrierea industriei @si uneltelor dezvoltate de c\^ atre acestea pentru accelerarea progresului @in studiine academice @si produse menite s@a rezolve probleme complexe. Descrierea domeniul de \textsl{Big Data} @si ce presupune acesta.
 
-@In al doilea capitol este descris@a structura de baz@a a unei re@tele neuronale @si a elementelor din care este compus@a. Exemplificarea utiliz@arii ei prin exemple de cod.
+@In al doilea capitol este descris@a structura de baz@a a unei re@tele neuronale, elementele din care acest@a este format@a. Exemplificarea modului de func@tionare al componentelor cu ajutorul tabelelor @si a figurilor cu diagrame. Prezentarea practic@a a func@tionlit@a@tilor cu ajutorul bibliotecii Tensorflow.
 
-@In al treilea capitol se va descrie algoritmul de @inv@a@tare Q-Learning @si cum se folose@ste pentru conferii rela@tii dintre datele de intrare @si cele ie@sire astfel @in\^ at s@a ob@tinem rezultatele dorite.
+@In al treilea capitol se va descrie algoritmul de @inv@a@tare Q-Learning @si cum se folose@ste pentru definirea unor rela@tii dintre datele de intrare @si cele ie@sire astfel @in\^ at s@a ob@tinem rezultatele dorite. Descriere procesului Markov @in folosirea @in definirea algoritmului Q-Learning @si semnifica@tilor pentru parametrii care influen@teaz@a strategiile agentului.
 
-@In al patrulea capitol se va descrie structura aplica@tiei web, a componentelor sale @si modul cum acestea interac@tioneaz@a. Sunt prezentate elementele de cod componente care descriu ideile @si algoritmii prezenta@ti @in capitolele precedente.
+@In al patrulea capitol se va descrie structura aplica@tiei. Modul cum a fost construit@a sub form@a de pagin@a web folosind biblioteci de tip reactiv. Explicarea modului de lucru @si a graficelor care arat@a perfoman@tele @si resursele consumate @in timpul sesiunilor de antrenament.
 
 \newpage
 
@@ -908,6 +908,16 @@ Toate aceste imaginii sunt generate folosind biblioteca Konva care ne permite at
 	\caption{Reprezentarea vizual@a a labirintului dup@a o serie de ac@tiuni ale agentului}
 	\label{fig:labirint-imagine-cu-mutare}
 \end{figure}
+
+Interac@tiunea dintre clasele \textbf{Board} @si \textbf{BoardUI} cu celalte componente precum: \textbf{Env}, \textbf{Agent} @si \textbf{Memory}, este descris@a de figura \ref{fig:agent-simulator-data-flow}. S@age@tile reprezint@a modul cum acestea fac schimb de date. Clasa \textbf{Env} prime@ste date de la orice clas@a @si poate s@a trasmit@a la to@ti mai pu@tin clasei \textbf{BoardUI} care acesta are interac@tiune doar cu \textbf{Board}, astfel \textbf{Env} preia doar reprezentarea grafic@a a labirintului.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{agent-simulator-data-flow}
+	\caption{Reprezentarea modului de inteac@tiune dintre clase}
+	\label{fig:agent-simulator-data-flow}
+\end{figure}
+
 
 
 \section{Simulator}

@@ -16,10 +16,10 @@
 \contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{31}{}%
 \contentsline {section}{\numberline {4.1}Introducere}{31}{}%
 \contentsline {section}{\numberline {4.2}Structur\u {a}}{32}{}%
-\contentsline {section}{\numberline {4.3}Simulator}{33}{}%
-\contentsline {section}{\numberline {4.4}Agent}{35}{}%
-\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{38}{}%
-\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{43}{}%
+\contentsline {section}{\numberline {4.3}Simulator}{34}{}%
+\contentsline {section}{\numberline {4.4}Agent}{36}{}%
+\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{39}{}%
+\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{44}{}%
 \contentsline {chapter}{Concluzii finale}{44}{}%
 \contentsline {chapter}{Bibliografie}{46}{}%
 \contentsline {chapter}{Index}{47}{}%
