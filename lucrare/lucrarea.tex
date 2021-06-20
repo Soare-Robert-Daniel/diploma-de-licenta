@@ -25,13 +25,13 @@ Analiza se va face cu ajutorul unei aplica@tii web interactive @in care vom simu
 
 \hspace{0.2cm}
 
-@In primul capitol este descris termenul de @inv@a@tare automat@a, exemple de subdomenii principale @si algoritmi specifici. Descrierea industriei @si uneltelor dezvoltate de c\^ atre acestea pentru accelerarea progresului @in studiine academice @si produse menite s@a rezolve probleme complexe. Descrierea domeniul de \textsl{Big Data} @si ce presupune acesta.
+@In primul capitol este descris termenul de @inv@a@tare automat@a, exemple de subdomenii principale @si algoritmi specifici. Descrierea industriei @si uneltelor dezvoltate de c\^ atre acestea pentru accelerarea progresului @in domeniu. Aceste unelte fiind folosite @si @in mediile academice pentru cercetare. Descrierea domeniul de \textsl{Big Data} @si ce presupune acesta.
 
-@In al doilea capitol este descris@a structura de baz@a a unei re@tele neuronale, elementele din care acest@a este format@a. Exemplificarea modului de func@tionare al componentelor cu ajutorul tabelelor @si a figurilor cu diagrame. Prezentarea practic@a a func@tionlit@a@tilor cu ajutorul bibliotecii Tensorflow.
+Al doilea capitol este o mic@a introducere pentru re@tele neuronale. Sunt descrise elementele componente (neuroni, straturi) @si modul lor de func@tionare. Cum parametrii interni (ponderi sinaptice, func@tii de activare, etc) influent@eaz@a rezultatul produs de c@atre re@tea. Prezentarea practic@a a func@tionlit@a@tilor cu ajutorul bibliotecii Tensorflow @si construirea de modele pentru exemplificarea modului de utilizare.
 
-@In al treilea capitol se va descrie algoritmul de @inv@a@tare Q-Learning @si cum se folose@ste pentru definirea unor rela@tii dintre datele de intrare @si cele ie@sire astfel @in\^ at s@a ob@tinem rezultatele dorite. Descriere procesului Markov @in folosirea @in definirea algoritmului Q-Learning @si semnifica@tilor pentru parametrii care influen@teaz@a strategiile agentului.
+@In al treilea capitol se va descrie algoritmul de @inv@a@tare Q-Learning @si cum se folose@ste pentru definirea unor rela@tii dintre datele de intrare @si cele ie@sire astfel @in\^ at s@a ob@tinem rezultatele dorite. Descriere procesului Markov @in folosirea @in definirea algoritmului Q-Learning @si semnifica@tilor pentru parametrii care influen@teaz@a strategiile agentului. Descrierea pa@silor care alc@atuiesc algoritmul @si exemplelor ale modului de ac@tionare @in interpretarea rezultatelor.
 
-@In al patrulea capitol se va descrie structura aplica@tiei. Modul cum a fost construit@a sub form@a de pagin@a web folosind biblioteci de tip reactiv. Explicarea modului de lucru @si a graficelor care arat@a perfoman@tele @si resursele consumate @in timpul sesiunilor de antrenament.
+@In al patrulea capitol se va descrie structura aplica@tiei. Tehnologiile folosite @si modul cum a fost construit@a sub form@a de pagin@a web folosind biblioteci de tip reactiv. Explicarea modului de intereac@tiune ale claselor component prin diagrame @si exemple de cod. Construirea graficelor care arat@a perfoman@tele @si resursele consumate @in timpul sesiunilor de antrenament. 
 
 \newpage
 
@@ -47,10 +47,18 @@ Analiza se va face cu ajutorul unei aplica@tii web interactive @in care vom simu
 
 	@Inv@a@tarea automat@a este o ramur@a a @inteligen@tei artificiale care se ocup@a cu studiul tehnicilor @si metodelor prin care se ofer@a unui calculator abilitatea de a @inv@a@ta. Prin @inv@a@tare ne referim la posibilitatea de a oferii o decizie @in baza unor cuno@stin@te deduse din experien@tele anterioare ob@tinute @in urma unui proces de antrenare.
 
- Multe tehnici din @inv@a@tarea automat@a au la baz@a modelul de interac@tiune al neuronului, descris de c@atre Donal Hebb @in cartea sa {\sl The Organization of Behavior} \cite{donald-hebb-book}. Termenul de @inv@a@tare automat@a (@in englez@a {\sl machine learning}) a aparut @in anul 1953, dat de Arthur Samuel, creatorul unui program de jucat checker, capabil s@a ia decizii bazate pe experien@tele anterioare \cite{arthur-samuel}. @In anul 1957, Frank Rosenblatt creaz@a Perceptron-ul (folosindu-se de observa@tiile din lucr@arile lui Donald Hebb @si Arthur Samuel), utilizat @in crearea unui calculatorul capabil s@a recunoasc@a forme @intr-o imagine . Perceptron-ul, care este echivalent cu un singur neuron, de unul singur are o putere destul de limitat@a, dar odat@a cu cu  utilizarea sa @in combina@tii de mai multe straturi a dat na@stere structura denumit@a re@tea neuronal@a. 
+ Multe tehnici din @inv@a@tarea automat@a au la baz@a modelul de interac@tiune al neuronului, descris de c@atre Donal Hebb @in cartea sa {\sl The Organization of Behavior} \cite{donald-hebb-book}. Termenul de @inv@a@tare automat@a (@in englez@a {\sl machine learning}) a aparut @in anul 1953, dat de Arthur Samuel, creatorul unui program de jucat checker, capabil s@a ia decizii bazate pe experien@tele anterioare \cite{arthur-samuel}. @In anul 1957, Frank Rosenblatt creaz@a Perceptron-ul (folosindu-se de observa@tiile din lucr@arile lui Donald Hebb @si Arthur Samuel), utilizat @in crearea unui calculatorul capabil s@a recunoasc@a forme @intr-o imagine . Perceptron-ul, care este echivalent cu un singur neuron, de unul singur are o putere destul de limitat@a, dar odat@a cu cu  utilizarea sa @in combina@tii de mai multe straturi a dat na@stere la structura denumit@a re@tea neuronal@a. 
  
  De-a lungul timpului, acest domeniu a avut o evolu@tie @inceat@a, un factor important find capabilit@a@tile limitate de procesarea ale calculatoarelor. Dar odat@a cu avansurile tehnologice, cercetarea @in acest domeniu a @inceput s@a fie din ce @in ce mai activ@a, @in ultimii ani culmin\^ and cu evenimente care au atras interesului publicului general, precum: IBM's Deep Blue, IBM's Watson, Google's Deepmind @si Google's AlphaGo.
- 
+
+Alte exemple de tehnologi sunt:
+
+\begin{itemize}
+	\item GPT (Generative Pre-trained Transformer) - folosit pentru predic@tia limbajului natural. Capabil s@a genereze texte care cu greu pot fi diferen@tiate de cel uman. De asemenea, prezint@a posibilitatea de genereare a codului ma@sin@a folosind descrieri @in limbaj natural.
+	\item Deepfake - model care poate s@a genereze videoclipuri @si imagini false. Acesta poate avea un impact devastator, deoarece este capabil de creare con@tinutui audio-vizual folosind imaginile unei persoane, care s@a transmit@a mesaje false de natur@a politic@a. Capabilit@a@tile tehnologiei au prezentate prin creare unor clipuri false folosind fe@te marilor lideri mondiali.
+	\item Fake Celebrities - model capabil s@a genereze portrete ale unor oameni care nu exist@a. Acesta a fost antrenat folosind setul de date CelebA care const@a @in peste 30.000 de mii de poze a diverselor celebrit@a@ti. Acest model a fost create @in laboratoarele NVIDIA 
+	\cite{nvidia-gan}  
+\end{itemize}
  
 \newpage
 
@@ -913,24 +921,60 @@ Interac@tiunea dintre clasele \textbf{Board} @si \textbf{BoardUI} cu celalte com
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{agent-simulator-data-flow}
+	\includegraphics[scale=0.55]{agent-simulator-data-flow}
 	\caption{Reprezentarea modului de inteac@tiune dintre clase}
 	\label{fig:agent-simulator-data-flow}
 \end{figure}
 
 
 
+
+
 \section{Simulator}
+
+\index{Q-Learning}
 
 Simulatorul actioneaz@a ca o interfa@ta @intre agent @si mediul reprezentat de labirint. Acesta are rolul s@a furnizeze informa@tii c\^ atre agent, precum: codificarea curent@a a labirintului sau reprezentarea sa sub form@a de imagine; dac@a simularea este terminat@a; recompensa pentru fiecare ac@tiune luat@a.
 
-Clasa \textbf{Env} este cea care define@ste structura modului de ac@tionare a simulatorului. Acesta define@ste trei func@tii principale, iar principiul lor de func@tionare este inspirat dup@a standardul definit de c\^ atre OpenAi Gym \cite{open-ai-gym-env-format}. A@sadar avem urm@atoarele func@tii:
+Clasa \textbf{Env} este cea care define@ste structura modului de ac@tionare al simulatorului. Acesta define@ste trei func@tii principale, iar principiul lor de func@tionare este inspirat dup@a standardul definit de c\^ atre OpenAi Gym \cite{open-ai-gym-env-format}. A@sadar avem urm@atoarele func@tii:
 
 \begin{itemize}
 	\item reset - acest@a func@tie aduce mediul simulat la starea ini@tial@a (figura \ref{fig:labirint-imagine}) @si ruturnez@a aceast@a stare sub forma dorit@a (codificare sau imagine).
 	\item step(ac@tiune) - aceasta transmite ac@tiunea luat@a de agent c\^ atre clasa \textbf{Board}, dup@a ac@tiunea este procesat@a, clasa \textbf{Board} transmite inapoi valoare recompensei al acelei ac@tiuni dac@a este valid@a, altfel doar anun@ta invaliditatea. Dupa preluarea rezultatului, se decide care este recompensa @si dac@a simularea s-a incheiat @in urma aceste ac@tiuni. Valorile noi starii, a recompensei @si a semnalului de terminare sunt returnate la finalul evalu@arii.
 	\item actionSample - aceas@ta func@tie returneaz@a o ac@tiune aleatorie disponibil@a @in mediul simulat
 \end{itemize}
+
+Clasa \textbf{Trainer} este care se ocup@a de antrenarea agentului prin aplicarea algoritmului de Q-Learning
+
+St@arile mediului simulat vor fi furnizate de c@atre clasele \textbf{Board} (codificarea labirintului) @si \textbf{BoardUI} (imaginiea vizual@a a labirintului). Aceste vor fi furnizate de c@atre func@tiile \texttt{reset} (starea ini@tiala@a) @si \texttt{step} (starea @in urma ac@tiunilor). Agentul comunic@a cu simulatorul numai prin intermediul func@tiei \texttt{step} @in care trebuie s@a ofere o ac@tiune. Interac@tiunea este reprezentat@a @in figura 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.64]{agent-simulator-inter}
+	\caption{Schimbul de date dintr agent @si simulator}
+	\label{fig:agent-simulator-inter}
+\end{figure}
+
+@In tabelul \ref{fig:tabel-recompense} avem valorile recompenselor pentru fiecare ac@tinune @si eveniment.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|c|c|} 
+			\hline
+			Eveniment & Recompens@a \\
+			\hline
+			Atingerea obiectivului & 100 \\
+			\hline
+			Intrarea @intr-un obstacol & -100 \\
+			\hline
+			Intrarea pe o pozi@tie liber@a & 0 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Valorile recompenselor}
+	\label{fig:tabel-recompense}
+\end{table}
+
 
 
 
@@ -1327,20 +1371,130 @@ Av\^ and programul complet, vom folosii datele analitice furnizate pentru creare
 
 Toat@a aplica@tia este conceput@a ca un site web, iar marele avantaj al acestui lucru este c@a putem dezvolta o interfa@t@a interactiv@a complex@a destinat@a utilizatorului, @in care acesta poate interac@tiona foarte u@sor cu modele de @inv@a@tare @si vizualiza datele care au rezultat @in urma simul@arii folosind grafice care sunt actualizate @intr-un timp extrem de scurt.
 
-Dup@a ini@tierea aplica@tiei, va aparea o imagine cu reprezentarea grafic@a a labirintului prin clasa \texttt{BoardUI} @si un tabel care prezint@a codificarea sa dat de clasa \texttt{Board}. Pentru ini@tierea agentului trebuie s@a apas@am pe butonul \textsl{Ini@tializeaz@a un now agent}.
+Toat@a acest@a aplica@tie este contruit@a folosind limbajul de programare Javascript. Limbaj utilizat de toate programele de navigare web (Chrome, Firefox) pentru prezentarea con@tinutului interactiv. Acesta a fost creat de c\^ atre Brendam Eich @in 1995 \cite{netscape}. De-a lungul anilor, acesta a avut o evolu@tie impresionant@a @si cu ajutorul libr@arilor de reactiv precum React (\cite{React}), Vue (\cite{Vue}), Angular (\cite{Angular}) @si Svelte (\cite{Svelte}) au c\^ a@stigat o popularite extraordinar@a @in creare de aplica@tii interactive multi-platform@a.
 
-Odat@a ap@asat butonul, observ@am ca am avem disponibile urm@atoarele butoane:
+Aplica@tia folose@ste biblioteca Svelte pentru construirea interfe@tei de utilizator. Biblioteca folose@ste o structur@a special@a care usureaz@a crearea de site-uri web prin manipularea DOM-ului (\textsl{Document Object Model}). DOM-ul este interfa@t@a care trateaz@a documentele XML (\textsl{Extensible Markup Language}) sau HTML (\textsl{HyperText Markup Language}) ca o structur@a de tip arbore unde fiecare nod este un obiect care reprezeint@a o parte a documentului.
+
+Biblioteca folose@ste metode reactive pentru actualizarea variabielelor, astfel orice schimbare a informa@tiei @intr-un c\^ amp de date se reflect@a c\^ atre celelalte variabile. Un mic exemplu este codul \ref{svelte-exemplu}, unde starea ini@tial@a este precum @in figura \ref{fig:exemplu-svelte-1}.
+
+\begin{lstlisting}[language=Java, caption={Exemplu de utilizare a bibliotecii Svelte}, label={svelte-exemplu}]
+<script>
+	// Inițiere variabilă internă
+	let text = 'text'; 
+</script>
+
+<!-- Câmp de introdus date -->
+<input bind:value={text}>
+<!-- Afișare text în pagină -->
+<h1>Acesta este un {text}</h1>
+\end{lstlisting}
+
+Variabila intern@a \texttt{text} este ini@tializat@a cu valoarea \texttt{'text'}, odat@a introdusa o noua valoare @si anume \texttt{'m@ar'}, textul afi@sat @in pagin@a se actualizeaz@a imediat cu noua valoare precum @in figura \ref{fig:exemplu-svelte-2}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{exemplu-svelte-1}
+	\caption{Stare @init@ial@a a unei aplica@tii Svelte}
+	\label{fig:exemplu-svelte-1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{exemplu-svelte-2}
+	\caption{Exemplificare func@tiilor reactive pentru o aplica@tie Svelte}
+	\label{fig:exemplu-svelte-2}
+\end{figure}
+
+Svelte prezint@a de asemenea func@tii de stilizare a componentelor vizuale prin folosirea comenzilor de CSS (\textsl{Cascading Style Sheets}). Fi@sirele de cod surs@a folosesc extensia \texttt{.svelte}, iar componentele define pot compuse sau derivate din alte componente. Lucrul care ne permite refolosirea lor pentru reducerea dimensiuni codului @si dezvoltare rapid@a.
+
+Av\^ and Svelte ca baz@a de construc@tie pentru interfa@ta, pentru creare de grafice pentru vizualizarea datelor vom folosii biblioteca Echarts. Aceasta face parte din \textsl{Apache Software Foundation} @si este disponibil@a gratuit tutoror. Aceasta prezint@a o multitudine de func@tii pentru creare de diagrame. Exemple de diagrame pot fi observate @in figura \ref{fig:echarts-exemplu-2} 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{echarts-exemplu-2}
+	\caption{Exemple de diagrame Echarts \cite{diagrame-exemplu}}
+	\label{fig:echarts-exemplu-2}
+\end{figure}
+
+Av\^and toate aceste biblioteci putem dezvolta o aplica@tie web interactiv@a complex@a @intr-un timp relativ mic, fapt ce ne permite s@a ne concentr@am resursele mai mult de dezvoltarea @si testarea agentului.
+
+Dup@a ini@tierea aplica@tiei, va aparea o imagine cu reprezentarea grafic@a a labirintului prin clasa \texttt{BoardUI} @si un tabel care prezint@a codificarea sa dat de clasa \texttt{Board}. Pentru ini@tierea agentului trebuie s@a apas@am unul dintre butoanele (figura \ref{fig:initializare}): \texttt{Ini@tializeaz@a agent(CODIFICAREA)} (pentru versiunea agentului care folose@ste starea intern@a a clasei \texttt{Board} ca date de intrare) sau \texttt{Ini@tializeaz@a agent(IMAGINI)} (pentru agentul care folose@ste imaginile date de clasa \texttt{BoardUI}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{initializare}
+	\caption{Ini@tializare agent}
+	\label{fig:initializare}
+\end{figure}
+
+
+Odat@a ap@asat butonul, observ@am ca am avem disponibile urm@atoarele butoane (figura \ref{fig:panou-control}):
 \begin{itemize}
 	\item Atrenare - buton care ini@tializeaz@a sesiunea de antrenament
 	\item Rulare - buton care ini@tiaz@a o sesiune de test pentru observarea progresului
 	\item Reset - buton care aduce labirintul la starea ini@tial@a
 \end{itemize}
 
-Pe lang@a aceste butoane, avem @si op@tiuni care ne permite s@a modific@am pozi@tia agentului cu ajutorlul mouse-lui sau s@a ad@aug@am un obstacol in labirint. @In dreapta labirintului sunt prezente etichete care ne arat@a dac@a agentul se afl@a @intr-o sesiune de antrenament, informa@tii legate de valoare ac@tiunilor din pozi@tia curent@a a agentului @in labirin @si un camp de date care ne permite s@a introducem num@arul de episoade al sesiunii de antrenament.
+Pe lang@a aceste butoane, avem @si op@tiuni care ne permit s@a modific@am pozi@tia agentului cu ajutorlul mouse-lui sau s@a ad@aug@am un obstacol in labirint. @In dreapta labirintului sunt prezente etichete care ne arat@a dac@a agentul se afl@a @intr-o sesiune de antrenament, informa@tii legate de valoare ac@tiunilor din pozi@tia curent@a a agentului @in labirin @si un camp de date care ne permite s@a introducem num@arul de episoade al sesiunii de antrenament.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{panou-control}
+	\caption{Panou de control}
+	\label{fig:panou-control}
+\end{figure}
 
 Dac@a ap@as@am pe butonul \textsl{Rulare}, observam un comportament aleatoriu din partea agentului, deoarece re@teauna neuronal@a nu este atrenat@a, iar valorile ponderilor sinaptice au fost ini@tiate aleatoriu.
 
-Odat@a ap@asat pe botonul \textsl{Antrenare}, observ@am c@a avem noi elemente vizuale. Acestea sunt cele care vor con@tine date despre performan@ta agentului @si al sesiunii de antrenament.  
+Odat@a ap@asat pe botonul \textsl{Antrenare}, observ@am c@a avem noi elemente vizuale. Acestea sunt cele care vor con@tine date despre performan@ta agentului @si al sesiunii de antrenament. @In pagin@a o s@a apar@a elemente adi@tionale care vor constitui partea de  analiz@a de date. 
+
+Figura \ref{fig:estimari-antrenament} arat@a datele despre durata medie a unui episod, num@arul de episoade completate @si estimarea timpului total de antrenament. Figura \ref{fig:board-inactiv} prezint@a vizualizarea mediului simulat @si valorile fiec@arei ac@tiuni din pozi@tia curent@a a agentului. Observ@am c@a valoarea pentru ac@tiunea \texttt{sus} care mut@a agentul cu o pozi@tie mai sus are valoarea cea mai mare. A@sadar acea este ac@tiune pe care agentul o consider@a cea mai bun@a. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{estimari-atrenament}
+	\caption{Estim@ari pentru o sesiune de antrenament}
+	\label{fig:estimari-antrenament}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{board-inactiv}
+	\caption{Vizualizarea mediului simulat @si a valorilor fiecarei @actiuni}
+	\label{fig:board-inactiv}
+\end{figure}
+
+Figura \ref{fig:date-de-intrare} arat@a datele de intrare ale st@arii mediului simulat prezentat de imaginea \ref{fig:board-inactiv}. Reprezentarea codific@arii labrintului este ar\^ atat sub forma unui tabel, unde pozi@tiile agentului @si ale obiectivului sunt colorate cu albastru, respectiv violet.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{date-de-intrare}
+	\caption{Reprezentare date de intrare: codificare @si imagine}
+	\label{fig:date-de-intrare}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{numar-tensori}
+	\caption{Num@arul de tensori disponibili pe parcusul fiec@arui episod}
+	\label{fig:numar-tensori}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{memorie-tensori}
+	\caption{Dimensiunea spa@tiului de memorie ocupat pe parcursul fiec@arui episod}
+	\label{fig:memorie-tensori}
+\end{figure}
+
+
+
+
+
+
+
+
 \addcontentsline{toc}{chapter}{Concluzii finale}
 
 \markboth{\bf Concluzii finale}{\bf Concluzii finale}
@@ -1357,9 +1511,15 @@ Odat@a ap@asat pe botonul \textsl{Antrenare}, observ@am c@a avem noi elemente vi
 
 Partea complex@a pentru rezolvarea sarcinei este procesarea datelor de intrare care sunt sub form@a de imagini. Dac@a am fi ales s@a rezolv@am aceast@a problem@a @intr-o manier@a clasic@a, @si anume prin analiza imaginior folosind tehnici de prelucrare a imaginilor (filtre pentru detectarea de muchii, analiza formelor geometrice) @si apoi transformarea lor @intr-un graf care s@a reprezinte modul de modelare al mediului simulat. Apoi a aplicat un algoritm care s@a ne ofere traseul pan@a la obiectiv.
 
-Utiliz\^ and re@tele neuronale nu am avut nevoie de o analiz@a asupra imaginilor sau a modului cum func@tioneaz@a simularea la ini@tiere, deoarece aceasta vor deduse de c@atre algoritmul Q-Learning pe parcursul procesului de antrenare care folo@ste de recompensele acumulate de agent @in urma ac@tiunilor sale pentru a stabilii care sunt cele mai bune decizii pentru fiecare situa@tie.
+Utiliz\^ and re@tele neuronale nu am avut nevoie de o analiz@a asupra imaginilor sau a modului cum func@tioneaz@a simularea la ini@tiere, deoarece aceasta vor fi deduse de c@atre algoritmul Q-Learning pe parcursul procesului de antrenare care folo@ste de recompensele acumulate de agent @in urma ac@tiunilor sale pentru a stabilii care sunt cele mai bune decizii pentru fiecare situa@tie.
 
 Folosind interfa@ta dedicat@a utlizatorului am putut observ@a cum decurge o sesiune de antrenament, cum se @imbun@at@a@tesc decizii date de re@tea, volumul de resurse consumate @si timpul necesar al @intregii opera@tiuni.
 
 Cu toate aceste avantaje, @inv@a@tarea automat@a nu este o solu@tie perfect@a, consumul mare de resurse @si timp, c\^ at @si natura ei de tip cutie neagr@a (faptul c@a nu putem observa ce se @intampl@a cu procesele interioare) fac ca aceasta s@a fie o solu@tie execelent@a mai mult pe partea de prototipuri pentru construc@tia sau testarea de produse derivate din idei complexe. 
+
+Pentru aplica@tia noastr@a, o alt@a solu@tie pentru rezolvarea problemei ar fi fost utilizarea re@telelor neuronale doar pentru transformarea imaginii @in codificarea labirintului. Aceast@a metod@a are avantajul c@a odat@a stabilit@a codificarea, putem aplica o solu@tie clasic@a de c@autare @in matrice (precum algoritmul lui Dijkstra) care ne ofere mereu un rezultat corect. 
+
+Domeniul de @inv@a@tare automat@a este vast @si cuprinz@ator, cu foarte posibilit@a@ti de inovare @si cercetare @in multe discipline.
+
+
 \index{concluzii}
