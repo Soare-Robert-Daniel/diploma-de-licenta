@@ -7,19 +7,19 @@
 \contentsline {section}{\numberline {1.5}Big Data}{11}{}%
 \contentsline {chapter}{\numberline {2}Re\c {t}ele neuronale artificiale}{15}{}%
 \contentsline {section}{\numberline {2.1}Introducere}{15}{}%
-\contentsline {section}{\numberline {2.2}Structur\u {a}}{15}{}%
+\contentsline {section}{\numberline {2.2}Structur\u {a}}{16}{}%
 \contentsline {section}{\numberline {2.3}Func\c {t}ii de activare \c {s}i metode de optimizare}{18}{}%
-\contentsline {section}{\numberline {2.4}Tensorflow}{24}{}%
-\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{27}{}%
-\contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{27}{}%
-\contentsline {section}{\numberline {3.2}Q-Learning}{29}{}%
-\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{33}{}%
-\contentsline {section}{\numberline {4.1}Introducere}{33}{}%
-\contentsline {section}{\numberline {4.2}Structur\u {a}}{34}{}%
-\contentsline {section}{\numberline {4.3}Simulator}{36}{}%
-\contentsline {section}{\numberline {4.4}Agent}{38}{}%
-\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{42}{}%
-\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{46}{}%
-\contentsline {chapter}{Concluzii finale}{50}{}%
-\contentsline {chapter}{Bibliografie}{54}{}%
-\contentsline {chapter}{Index}{56}{}%
+\contentsline {section}{\numberline {2.4}Tensorflow}{25}{}%
+\contentsline {chapter}{\numberline {3}Metode de \^{\i }nv\u {a}\c {t}are}{29}{}%
+\contentsline {section}{\numberline {3.1}Lan\c {t} \c {s}i proces Markov}{29}{}%
+\contentsline {section}{\numberline {3.2}Q-Learning}{31}{}%
+\contentsline {chapter}{\numberline {4}Aplica\c {t}ie}{35}{}%
+\contentsline {section}{\numberline {4.1}Introducere}{35}{}%
+\contentsline {section}{\numberline {4.2}Structur\u {a}}{36}{}%
+\contentsline {section}{\numberline {4.3}Simulator}{38}{}%
+\contentsline {section}{\numberline {4.4}Agent}{40}{}%
+\contentsline {section}{\numberline {4.5}Model de \^{\i }nv\u {a}\c {t}are}{44}{}%
+\contentsline {section}{\numberline {4.6}Interfa\c {t}\u {a} Utilizator}{48}{}%
+\contentsline {chapter}{Concluzii finale}{53}{}%
+\contentsline {chapter}{Bibliografie}{56}{}%
+\contentsline {chapter}{Index}{58}{}%

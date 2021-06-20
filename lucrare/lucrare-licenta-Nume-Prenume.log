@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  20 JUN 2021 18:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.18)  20 JUN 2021 19:55
 entering extended mode
 **./lucrare-licenta-Nume-Prenume.tex
 (lucrare-licenta-Nume-Prenume.tex
@@ -336,6 +336,12 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 Underfull \vbox (badness 1072) has occurred while \output is active []
 
  [5]
+Overfull \hbox (4.38574pt too wide) in paragraph at lines 30--31
+\OT1/cmr/m/n/10.95 mentele com-po-nente (neu-roni, stra-turi) si modul lor de 
+func[]ionare. De-scrierea parametrilor
+ []
+
+
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -384,19 +390,17 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
 ]
 Capitolul 2.
 [15]
-Overfull \hbox (4.46246pt too wide) in paragraph at lines 243--244
+Overfull \hbox (5.18608pt too wide) in paragraph at lines 228--229
+\OT1/cmr/m/n/10.95 re[]ele neu-ronale, de-scrierea parametrilor (de-n-u-mite s
+i \OT1/cmr/bx/n/10.95 hiper-parametri\OT1/cmr/m/n/10.95 ) si cum influen[]eaz
+a
+ []
+
+
+Overfull \hbox (4.46246pt too wide) in paragraph at lines 268--269
 []\OT1/cmr/m/it/10.95 Fara func[]ia de ac-ti-vare, per-cep-tronul ac[]ioneaz
 a pre-cum o func[]ie liniara.
  []
-
-<./imagini//nn-schema-basic.png, id=68, 763.85374pt x 423.5825pt>
-File: ./imagini//nn-schema-basic.png Graphic file (type png)
-<use ./imagini//nn-schema-basic.png>
-Package pdftex.def Info: ./imagini//nn-schema-basic.png  used on input line 299
-.
-(pdftex.def)             Requested size: 420.12085pt x 232.97108pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
@@ -404,39 +408,47 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [16]
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
+<./imagini//nn-schema-basic.png, id=71, 763.85374pt x 423.5825pt>
+File: ./imagini//nn-schema-basic.png Graphic file (type png)
+<use ./imagini//nn-schema-basic.png>
+Package pdftex.def Info: ./imagini//nn-schema-basic.png  used on input line 324
+.
+(pdftex.def)             Requested size: 420.12085pt x 232.97108pt.
 
-[17 <./imagini//nn-schema-basic.png>]
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
-[18]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[17]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[18 <./imagini//nn-schema-basic.png>]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [19]
-<./imagini//grafic-simplu-nn-no-train.png, id=85, 387.4475pt x 279.0425pt>
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[20]
+<./imagini//grafic-simplu-nn-no-train.png, id=88, 387.4475pt x 279.0425pt>
 File: ./imagini//grafic-simplu-nn-no-train.png Graphic file (type png)
 <use ./imagini//grafic-simplu-nn-no-train.png>
 Package pdftex.def Info: ./imagini//grafic-simplu-nn-no-train.png  used on inpu
-t line 449.
+t line 479.
 (pdftex.def)             Requested size: 232.47029pt x 167.42679pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<./imagini//grafic-pierderi.png, id=86, 393.47pt x 279.0425pt>
+<./imagini//grafic-pierderi.png, id=89, 393.47pt x 279.0425pt>
 File: ./imagini//grafic-pierderi.png Graphic file (type png)
 <use ./imagini//grafic-pierderi.png>
-Package pdftex.def Info: ./imagini//grafic-pierderi.png  used on input line 460
+Package pdftex.def Info: ./imagini//grafic-pierderi.png  used on input line 490
 .
 (pdftex.def)             Requested size: 236.0838pt x 167.42679pt.
 
@@ -444,24 +456,23 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[20]
-<./imagini//grafic-simplu-nn-train.png, id=90, 387.4475pt x 279.0425pt>
+[21 <./imagini//grafic-simplu-nn-no-train.png>]
+<./imagini//grafic-simplu-nn-train.png, id=94, 387.4475pt x 279.0425pt>
 File: ./imagini//grafic-simplu-nn-train.png Graphic file (type png)
 <use ./imagini//grafic-simplu-nn-train.png>
 Package pdftex.def Info: ./imagini//grafic-simplu-nn-train.png  used on input l
-ine 467.
+ine 497.
 (pdftex.def)             Requested size: 232.47029pt x 167.42679pt.
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[21 <./imagini//grafic-simplu-nn-no-train.png> <./imagini//grafic-pierderi.png>
- <./imagini//grafic-simplu-nn-train.png>]
-<./imagini//grafic-suprafata.png, id=97, 360.34625pt x 1124.2pt>
+[22 <./imagini//grafic-pierderi.png> <./imagini//grafic-simplu-nn-train.png>]
+<./imagini//grafic-suprafata.png, id=101, 360.34625pt x 1124.2pt>
 File: ./imagini//grafic-suprafata.png Graphic file (type png)
 <use ./imagini//grafic-suprafata.png>
-Package pdftex.def Info: ./imagini//grafic-suprafata.png  used on input line 48
+Package pdftex.def Info: ./imagini//grafic-suprafata.png  used on input line 51
 7.
 (pdftex.def)             Requested size: 198.19104pt x 618.31192pt.
 
@@ -472,7 +483,7 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[22]
+[23]
 Overfull \vbox (19.44055pt too high) has occurred while \output is active []
 
 
@@ -480,15 +491,10 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[23 <./imagini//grafic-suprafata.png>]
+[24 <./imagini//grafic-suprafata.png>]
 ("C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty"
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
-[24]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -499,11 +505,21 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [26]
-Capitolul 3.
-[27
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[27]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[28
 
 ]
-Overfull \hbox (9.11514pt too wide) in paragraph at lines 644--645
+Capitolul 3.
+[29]
+Overfull \hbox (9.11514pt too wide) in paragraph at lines 675--676
 []\OT1/cmr/m/n/10.95 Recompensa primita ^n urma tranzi[]iei dintr-o stare ^n
  alta pen-tru o ac[]iune ($\OML/cmm/m/it/10.95 R\OT1/cmr/m/n/10.95 (\OML/cmm/m/
 it/10.95 s[]\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 s; a\OT1/cmr/m/n/10.95 )$)
@@ -515,21 +531,11 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[28]
-
-LaTeX Warning: Command \c invalid in math mode on input line 681.
-
-
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
-[29]
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
 [30]
+
+LaTeX Warning: Command \c invalid in math mode on input line 712.
+
+
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -539,44 +545,54 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[32
+[32]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[33]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[34
 
 ]
 Capitolul 4.
 
-Overfull \hbox (7.46794pt too wide) in paragraph at lines 832--833
+Overfull \hbox (7.46794pt too wide) in paragraph at lines 864--865
 \OT1/cmr/m/n/10.95 in-tro-duc-ere a datelor, tabele pen-tru prezentarea informa
 []iilor, con-tainere pen-tru pozi[]ionare.
  []
 
-[33]
-<./imagini//app-labirint-imagine.png, id=141, 722.7pt x 722.7pt>
+[35]
+<./imagini//app-labirint-imagine.png, id=147, 722.7pt x 722.7pt>
 File: ./imagini//app-labirint-imagine.png Graphic file (type png)
 <use ./imagini//app-labirint-imagine.png>
 Package pdftex.def Info: ./imagini//app-labirint-imagine.png  used on input lin
-e 904.
+e 937.
 (pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./imagini//app-labirint-imagine-cu-mutare.png, id=142, 722.7pt x 722.7pt>
+<./imagini//app-labirint-imagine-cu-mutare.png, id=148, 722.7pt x 722.7pt>
 File: ./imagini//app-labirint-imagine-cu-mutare.png Graphic file (type png)
 <use ./imagini//app-labirint-imagine-cu-mutare.png>
 Package pdftex.def Info: ./imagini//app-labirint-imagine-cu-mutare.png  used on
- input line 915.
+ input line 950.
 (pdftex.def)             Requested size: 180.67455pt x 180.67455pt.
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[34]
-<./imagini//agent-simulator-data-flow.png, id=146, 302.12875pt x 427.5975pt>
+[36]
+<./imagini//agent-simulator-data-flow.png, id=152, 302.12875pt x 427.5975pt>
 File: ./imagini//agent-simulator-data-flow.png Graphic file (type png)
 <use ./imagini//agent-simulator-data-flow.png>
 Package pdftex.def Info: ./imagini//agent-simulator-data-flow.png  used on inpu
-t line 924.
+t line 959.
 (pdftex.def)             Requested size: 166.17131pt x 235.17935pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -586,21 +602,21 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[35 <./imagini//app-labirint-imagine.png> <./imagini//app-labirint-imagine-cu-m
+[37 <./imagini//app-labirint-imagine.png> <./imagini//app-labirint-imagine-cu-m
 utare.png>]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[36 <./imagini//agent-simulator-data-flow.png>]
-<./imagini//agent-simulator-inter.png, id=156, 683.55376pt x 285.065pt>
+[38 <./imagini//agent-simulator-data-flow.png>]
+<./imagini//agent-simulator-inter.png, id=163, 683.55376pt x 285.065pt>
 File: ./imagini//agent-simulator-inter.png Graphic file (type png)
 <use ./imagini//agent-simulator-inter.png>
 Package pdftex.def Info: ./imagini//agent-simulator-inter.png  used on input li
-ne 953.
+ne 991.
 (pdftex.def)             Requested size: 437.47292pt x 182.44096pt.
 
-Overfull \hbox (10.68158pt too wide) in paragraph at lines 953--954
+Overfull \hbox (10.68158pt too wide) in paragraph at lines 991--992
  [][] 
  []
 
@@ -609,25 +625,12 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[37 <./imagini//agent-simulator-inter.png>]
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
-[38]
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
-[39]
+[39 <./imagini//agent-simulator-inter.png>]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
@@ -638,19 +641,24 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  []
 
 [42]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [43]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
 [44]
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[45]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -658,8 +666,16 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[45]
-Overfull \hbox (22.60533pt too wide) in paragraph at lines 1368--1369
+[46]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
+
+[47]
+Overfull \hbox (22.60533pt too wide) in paragraph at lines 1417--1418
 \OT1/cmr/m/n/10.95 interfe[]e in-ter-ac-tive pen-tru uti-liza-tor. Aceste poate
  vedea du-rata antre-na-men-tu-lui, performan[]a
  []
@@ -669,40 +685,40 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[46]
-Overfull \hbox (1.04707pt too wide) in paragraph at lines 1378--1379
+[48]
+Overfull \hbox (1.04707pt too wide) in paragraph at lines 1428--1429
 []\OT1/cmr/m/n/10.95 Biblioteca foloseste metode re-ac-tive pen-tru ac-tu-aliz
 area vari-abielelor, ast-fel orice schim-
  []
 
-<./imagini//exemplu-svelte-1.png, id=190, 435.87843pt x 156.585pt>
+<./imagini//exemplu-svelte-1.png, id=196, 435.87843pt x 156.585pt>
 File: ./imagini//exemplu-svelte-1.png Graphic file (type png)
 <use ./imagini//exemplu-svelte-1.png>
-Package pdftex.def Info: ./imagini//exemplu-svelte-1.png  used on input line 13
-96.
+Package pdftex.def Info: ./imagini//exemplu-svelte-1.png  used on input line 14
+46.
 (pdftex.def)             Requested size: 174.34828pt x 62.63287pt.
-<./imagini//exemplu-svelte-2.png, id=191, 459.96844pt x 154.32657pt>
+<./imagini//exemplu-svelte-2.png, id=197, 459.96844pt x 154.32657pt>
 File: ./imagini//exemplu-svelte-2.png Graphic file (type png)
 <use ./imagini//exemplu-svelte-2.png>
 Package pdftex.def Info: ./imagini//exemplu-svelte-2.png  used on input line 14
-03.
+53.
 (pdftex.def)             Requested size: 183.98412pt x 61.72952pt.
 
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[47 <./imagini//exemplu-svelte-1.png> <./imagini//exemplu-svelte-2.png>]
-<./imagini//echarts-exemplu-2.png, id=197, 1018.55531pt x 608.2725pt>
+[49 <./imagini//exemplu-svelte-1.png> <./imagini//exemplu-svelte-2.png>]
+<./imagini//echarts-exemplu-2.png, id=204, 1018.55531pt x 608.2725pt>
 File: ./imagini//echarts-exemplu-2.png Graphic file (type png)
 <use ./imagini//echarts-exemplu-2.png>
 Package pdftex.def Info: ./imagini//echarts-exemplu-2.png  used on input line 1
-414.
+465.
 (pdftex.def)             Requested size: 407.4149pt x 243.30469pt.
-<./imagini//initializare.png, id=198, 898.10532pt x 905.63344pt>
+<./imagini//initializare.png, id=205, 898.10532pt x 905.63344pt>
 File: ./imagini//initializare.png Graphic file (type png)
 <use ./imagini//initializare.png>
-Package pdftex.def Info: ./imagini//initializare.png  used on input line 1425.
+Package pdftex.def Info: ./imagini//initializare.png  used on input line 1478.
 (pdftex.def)             Requested size: 269.43367pt x 271.69212pt.
 
 
@@ -713,11 +729,11 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[48 <./imagini//echarts-exemplu-2.png>]
-<./imagini//panou-control.png, id=203, 1160.83687pt x 227.34938pt>
+[50 <./imagini//echarts-exemplu-2.png>]
+<./imagini//panou-control.png, id=210, 1160.83687pt x 227.34938pt>
 File: ./imagini//panou-control.png Graphic file (type png)
 <use ./imagini//panou-control.png>
-Package pdftex.def Info: ./imagini//panou-control.png  used on input line 1442.
+Package pdftex.def Info: ./imagini//panou-control.png  used on input line 1495.
 
 (pdftex.def)             Requested size: 348.25374pt x 68.20534pt.
 
@@ -725,45 +741,55 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[49 <./imagini//initializare.png> <./imagini//panou-control.png>]
-<./imagini//estimari-atrenament.png, id=210, 1154.81438pt x 340.27126pt>
+[51 <./imagini//initializare.png> <./imagini//panou-control.png>]
+<./imagini//estimari-atrenament.png, id=216, 1154.81438pt x 340.27126pt>
 File: ./imagini//estimari-atrenament.png Graphic file (type png)
 <use ./imagini//estimari-atrenament.png>
 Package pdftex.def Info: ./imagini//estimari-atrenament.png  used on input line
- 1455.
+ 1508.
 (pdftex.def)             Requested size: 346.44699pt x 102.08215pt.
-<./imagini//board-inactiv.png, id=211, 1151.05031pt x 810.77907pt>
+<./imagini//board-inactiv.png, id=217, 1151.05031pt x 810.77907pt>
 File: ./imagini//board-inactiv.png Graphic file (type png)
 <use ./imagini//board-inactiv.png>
-Package pdftex.def Info: ./imagini//board-inactiv.png  used on input line 1462.
+Package pdftex.def Info: ./imagini//board-inactiv.png  used on input line 1515.
 
 (pdftex.def)             Requested size: 287.76187pt x 202.69427pt.
-<./imagini//date-de-intrare.png, id=212, 1153.30875pt x 636.87938pt>
+<./imagini//date-de-intrare.png, id=218, 1153.30875pt x 636.87938pt>
 File: ./imagini//date-de-intrare.png Graphic file (type png)
 <use ./imagini//date-de-intrare.png>
-Package pdftex.def Info: ./imagini//date-de-intrare.png  used on input line 147
-1.
+Package pdftex.def Info: ./imagini//date-de-intrare.png  used on input line 152
+4.
 (pdftex.def)             Requested size: 288.32648pt x 159.21945pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./imagini//numar-tensori.png, id=213, 1062.21844pt x 481.8pt>
+
+Overfull \hbox (1.26pt too wide) in paragraph at lines 1534--1535
+[]\OT1/cmr/m/n/10.95 Prin in-ter-mediul aces-tor grafice putem de-tecta daca a
+pare o prob-leme legata de numarul
+ []
+
+<./imagini//numar-tensori.png, id=219, 1062.21844pt x 481.8pt>
 File: ./imagini//numar-tensori.png Graphic file (type png)
 <use ./imagini//numar-tensori.png>
-Package pdftex.def Info: ./imagini//numar-tensori.png  used on input line 1478.
+Package pdftex.def Info: ./imagini//numar-tensori.png  used on input line 1538.
 
 (pdftex.def)             Requested size: 265.55396pt x 120.44969pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Overfull \hbox (2.43333pt too wide) has occurred while \output is active
+ $[]$
+ []
 
-<./imagini//memorie-tensori.png, id=214, 1072.75781pt x 493.845pt>
+[52 <./imagini//estimari-atrenament.png> <./imagini//board-inactiv.png>]
+<./imagini//memorie-tensori.png, id=225, 1072.75781pt x 493.845pt>
 File: ./imagini//memorie-tensori.png Graphic file (type png)
 <use ./imagini//memorie-tensori.png>
-Package pdftex.def Info: ./imagini//memorie-tensori.png  used on input line 148
+Package pdftex.def Info: ./imagini//memorie-tensori.png  used on input line 154
 6.
 (pdftex.def)             Requested size: 268.1888pt x 123.46094pt.
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
@@ -771,29 +797,23 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[50 <./imagini//estimari-atrenament.png> <./imagini//board-inactiv.png>]
+[53 <./imagini//date-de-intrare.png> <./imagini//numar-tensori.png>]
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[51 <./imagini//date-de-intrare.png> <./imagini//numar-tensori.png> <./imagini/
-/memorie-tensori.png>]
+[54 <./imagini//memorie-tensori.png>]) [55
+
+] (capbib.tex
 Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[52
-
-]) [53] (capbib.tex
-Overfull \hbox (2.43333pt too wide) has occurred while \output is active
- $[]$
- []
-
-[54
+[56
 
 
 
-] [55]
+] [57]
 Overfull \hbox (302.80562pt too wide) in paragraph at lines 60--60
  []\OT1/cmtt/m/n/10.95 https://www.europarl.europa.eu/news/ro/headlines/society
 /20210211STO97614/big-data-definitie-avantaje-provocari-infografice[] 
@@ -804,18 +824,18 @@ Overfull \hbox (2.43333pt too wide) has occurred while \output is active
  $[]$
  []
 
-[56] [57
+[58] [59
 
 
 ]) (lucrare-licenta-Nume-Prenume.aux (lucrarea.aux)) ) 
 Here is how much of TeX's memory you used:
  5301 strings out of 479618
  71859 string characters out of 2874899
- 1070538 words of memory out of 3000000
+ 1070566 words of memory out of 3000000
  22394 multiletter control sequences out of 15000+200000
  412496 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,14n,74p,1010b,1827s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,14n,74p,1010b,1807s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Robert\AppData
 \Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts
@@ -832,9 +852,9 @@ m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmtt9.pfb>
-Output written on lucrare-licenta-Nume-Prenume.pdf (57 pages, 1326010 bytes).
+Output written on lucrare-licenta-Nume-Prenume.pdf (59 pages, 1330172 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
+ 308 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

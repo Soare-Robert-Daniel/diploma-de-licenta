@@ -1,24 +1,48 @@
 \indexentry{\^{I}nv\u {a}\c {t}are automat\u {a}}{7}
-\indexentry{sectiune!S1.1}{7}
-\indexentry{\^{\i }nv\u {a}\c {t}area automat\u {a}}{7}
-\indexentry{\^{\i }nv\u {a}\c {t}area automat\u {a}}{9}
+\indexentry{\^{I}nv\u {a}\c {t}are automat\u {a}}{9}
 \indexentry{Tensorflow}{11}
-\indexentry{\^{\i }nv\u {a}\c {t}area automat\u {a}}{11}
-\indexentry{capitol!C2}{15}
+\indexentry{\^{I}nv\u {a}\c {t}are automat\u {a}}{11}
 \indexentry{\^{I}nv\u {a}\c {t}are automat\u {a}}{15}
 \indexentry{re\c {t}ea neuronal\u {a}}{15}
-\indexentry{ponderi sinaptice}{15}
-\indexentry{ponderi sinaptice}{15}
-\indexentry{deplasare}{15}
-\indexentry{func\c {t}ie de activare}{15}
-\indexentry{capitol!C3}{27}
-\indexentry{lan\c {t} Markov}{27}
-\indexentry{process Markov}{27}
-\indexentry{q-learning}{29}
-\indexentry{Tensorflow}{33}
-\indexentry{Q-Learning}{36}
-\indexentry{Tensorflow}{38}
+\indexentry{straturi}{16}
+\indexentry{func\c {t}ie de activare}{16}
+\indexentry{deplasare}{16}
+\indexentry{ponderi sinaptice}{16}
+\indexentry{straturi}{18}
+\indexentry{func\c {t}ie de activare}{18}
+\indexentry{deplasare}{18}
+\indexentry{ponderi sinaptice}{18}
+\indexentry{Tensorflow}{25}
+\indexentry{lan\c {t} Markov}{29}
+\indexentry{process Markov}{29}
+\indexentry{q-learning}{31}
+\indexentry{Tensorflow}{35}
+\indexentry{Svelte}{35}
+\indexentry{Echarts}{35}
+\indexentry{Board}{36}
+\indexentry{BoardUI}{36}
+\indexentry{Konva}{36}
 \indexentry{q-learning}{38}
-\indexentry{q-learning}{43}
-\indexentry{Tensorflow}{43}
-\indexentry{concluzii}{53}
+\indexentry{Board}{38}
+\indexentry{BoardUI}{38}
+\indexentry{Env}{39}
+\indexentry{Tensorflow}{40}
+\indexentry{q-learning}{40}
+\indexentry{Agent}{40}
+\indexentry{straturi}{40}
+\indexentry{func\c {t}ie de activare}{40}
+\indexentry{deplasare}{40}
+\indexentry{ponderi sinaptice}{40}
+\indexentry{Agent}{42}
+\indexentry{Memory}{44}
+\indexentry{q-learning}{45}
+\indexentry{Tensorflow}{45}
+\indexentry{Trainer}{45}
+\indexentry{Agent}{45}
+\indexentry{Env}{45}
+\indexentry{Svelte}{48}
+\indexentry{Echarts}{50}
+\indexentry{Board}{50}
+\indexentry{BoardUI}{50}
+\indexentry{Trainer}{52}
+\indexentry{Memory}{52}

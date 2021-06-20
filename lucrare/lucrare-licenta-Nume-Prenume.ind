@@ -1,17 +1,62 @@
 \begin{theindex}
 
-  \item \^{I}nv\u {a}\c {t}are automat\u {a}, 7, 13
+  \item \^{I}nv\u {a}\c {t}are automat\u {a}, 7, 9, 11, 15
 
   \indexspace
 
-  \item capitol
-    \subitem C2, 13
-    \subitem C3, 19, 21
-  \item concluzii, 25
+  \item Agent, 38, 40, 43
 
   \indexspace
 
-  \item sectiune
-    \subitem S1.1, 7
+  \item Board, 34, 36, 48
+  \item BoardUI, 34, 36, 48
+
+  \indexspace
+
+  \item deplasare, 15, 18, 38
+
+  \indexspace
+
+  \item Echarts, 33, 48
+  \item Env, 37, 43
+
+  \indexspace
+
+  \item func\c {t}ie de activare, 15, 18, 38
+
+  \indexspace
+
+  \item Konva, 34
+
+  \indexspace
+
+  \item lan\c {t} Markov, 27
+
+  \indexspace
+
+  \item Memory, 42, 50
+
+  \indexspace
+
+  \item ponderi sinaptice, 15, 18, 38
+  \item process Markov, 27
+
+  \indexspace
+
+  \item q-learning, 29, 36, 38, 43
+
+  \indexspace
+
+  \item re\c {t}ea neuronal\u {a}, 15
+
+  \indexspace
+
+  \item straturi, 15, 18, 38
+  \item Svelte, 33, 46
+
+  \indexspace
+
+  \item Tensorflow, 11, 24, 33, 38, 43
+  \item Trainer, 43, 50
 
 \end{theindex}
