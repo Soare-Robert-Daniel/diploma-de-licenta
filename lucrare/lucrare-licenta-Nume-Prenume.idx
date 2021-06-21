@@ -12,37 +12,39 @@
 \indexentry{func\c {t}ie de activare}{18}
 \indexentry{deplasare}{18}
 \indexentry{ponderi sinaptice}{18}
-\indexentry{Tensorflow}{25}
-\indexentry{lan\c {t} Markov}{29}
-\indexentry{process Markov}{29}
-\indexentry{q-learning}{31}
-\indexentry{Tensorflow}{35}
-\indexentry{Svelte}{35}
-\indexentry{Echarts}{35}
+\indexentry{Tensorflow}{23}
+\indexentry{lan\c {t} Markov}{27}
+\indexentry{process Markov}{27}
+\indexentry{q-learning}{30}
+\indexentry{Tensorflow}{33}
+\indexentry{Svelte}{33}
+\indexentry{Echarts}{33}
+\indexentry{Board}{34}
+\indexentry{BoardUI}{34}
+\indexentry{q-learning}{34}
+\indexentry{Konva}{34}
+\indexentry{Konva}{35}
+\indexentry{q-learning}{35}
 \indexentry{Board}{36}
 \indexentry{BoardUI}{36}
-\indexentry{Konva}{36}
-\indexentry{q-learning}{38}
-\indexentry{Board}{38}
-\indexentry{BoardUI}{38}
-\indexentry{Env}{39}
-\indexentry{Tensorflow}{40}
-\indexentry{q-learning}{40}
-\indexentry{Agent}{40}
-\indexentry{straturi}{40}
-\indexentry{func\c {t}ie de activare}{40}
-\indexentry{deplasare}{40}
-\indexentry{ponderi sinaptice}{40}
-\indexentry{Agent}{42}
-\indexentry{Memory}{44}
-\indexentry{q-learning}{45}
-\indexentry{Tensorflow}{45}
-\indexentry{Trainer}{45}
-\indexentry{Agent}{45}
-\indexentry{Env}{45}
-\indexentry{Svelte}{48}
-\indexentry{Echarts}{50}
-\indexentry{Board}{50}
-\indexentry{BoardUI}{50}
-\indexentry{Trainer}{52}
-\indexentry{Memory}{52}
+\indexentry{Env}{37}
+\indexentry{Tensorflow}{39}
+\indexentry{q-learning}{39}
+\indexentry{Agent}{39}
+\indexentry{straturi}{39}
+\indexentry{func\c {t}ie de activare}{39}
+\indexentry{deplasare}{39}
+\indexentry{ponderi sinaptice}{39}
+\indexentry{Agent}{41}
+\indexentry{Memory}{42}
+\indexentry{q-learning}{44}
+\indexentry{Tensorflow}{44}
+\indexentry{Trainer}{44}
+\indexentry{Agent}{44}
+\indexentry{Env}{44}
+\indexentry{Svelte}{47}
+\indexentry{Echarts}{48}
+\indexentry{Board}{48}
+\indexentry{BoardUI}{48}
+\indexentry{Trainer}{50}
+\indexentry{Memory}{50}

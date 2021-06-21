@@ -322,7 +322,7 @@ Rezultatele acestui strat pot fi transmise c@atre un alt strat care poate avea o
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.55]{nn-schema-basic}
-	\caption{Structura unei re@tele neuronale profunde}
+	\caption{Structura unei re@tele neuronale profunde de tip FF}
 	\label{nn:schema-basic}
 \end{figure}
 
@@ -499,7 +499,7 @@ Analiz\^ and figura \ref{fig:grafic-pierderi}, putem observa c@a Adam are cea ma
 	\label{fig:grafic-simplu-nn-train}
 \end{figure}
 
-Pentru a test c\^ at de puternic@a este capacitatea de modelare a re@telei neuronale alese pentru func@tia $f$, vom alege s@a aproximeze valorile unei suprafe@te @in loc de o simpl@a func@tie unidimensional@a. Acest@a suprafa@t@a are urm@atoarea formul@a:
+Pentru a testa c\^ at de puternic@a este capacitatea de modelare a re@telei neuronale alese pentru func@tia $f$, vom alege s@a aproximeze valorile unei suprafe@te @in loc de o simpl@a func@tie unidimensional@a. Acest@a suprafa@t@a are urm@atoarea formul@a:
 
 \begin{align} \label{eq:suprafata}
 	g: \mathcal{R} \times \mathcal{R} \to \mathcal{R}, \quad
@@ -508,11 +508,11 @@ Pentru a test c\^ at de puternic@a este capacitatea de modelare a re@telei neuro
 
 Datale de intrare vor fi alc@atuite din perechi de tipul $(x, y),$ unde $x \in [-2, 2], y \in [-2, 2]$. Intervalele lui $x$ @si $y$ au fost @imp@ar@tite fiecare @in 500 de puncte echidistante. Num@arul total de perechi este 250.000, iar datele de compara@tie vor fi numere asociate fiecare perechi, acestea reprezint@a valoarea suprafe@tei @in acel punct dat de pereche. 
 
-Uit\^ andune @in figura \ref{fig:grafic-suprafata}, observ@am c@a re@teaua a avut succes @in aproximarea re@telei. Dar cel mai important lucrul este faptul c@a noi la @inceput am facut o re@teau pentru un anumit tip de problem@a @si anume s@a aproximize valorile unei func@tii unidimensionale, structura re@telei @si a num@arului de neuroni au fost date astfel @incat s@a existe suficient de multa putere de modelare. Iar prin trecerea la estimarea unei suprafe@te am putut demonstra c@a puterea re@telei poate s@a dep@a@sesc@a domeniul pentru care aceasta fost construit@a in@tial.
+Uit\^ andu-ne @in figura \ref{fig:grafic-suprafata}, observ@am c@a re@teaua a avut succes @in aproximarea re@telei. Dar cel mai important lucrul este faptul c@a noi la @inceput am facut o re@teau pentru un anumit tip de problem@a @si anume s@a aproximize valorile unei func@tii unidimensionale, structura re@telei @si a num@arului de neuroni au fost date astfel @incat s@a existe suficient de multa putere de modelare. Iar prin trecerea la estimarea unei suprafe@te am putut demonstra c@a puterea re@telei poate s@a dep@a@sesc@a domeniul pentru care aceasta fost construit@a in@tial.
 
 Aceast@a observa@tie este extrem de important@a, deoarece acesta prezint@a capacitatea mare de flexibilitate @in modelare a valorilor unei probleme. Acela@si model al re@telei put\^ and s@a rezolve probleme din domenii diferite. Dac@a am avea un o arhitectur@a care poate rezolva o secven@te de numere date de un senzor, este posibil ca aceast@a s@a poat@a rezolva @si o secven@ta de cuvinte. Posibilit@a@tile sunt nelimitate, fapt care prezint@a @si interesul mare acordat de c@atre companii @si societ@a@tile academice.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.55]{grafic-suprafata}
 	\caption{Estimarea unei suprafe@te}
@@ -652,10 +652,18 @@ x2.print(); // [[0], [2]]
 \index{process Markov}
 
 La baza modelului de @inv@a@tare pe care il vom folosi @in atrenarea agentului stau principiile fundamentale ale lan@tului Markov @si a procesului Markov.
-Proprietatea Markov afirm@a c@a viitorul depinde numai de prezent si nu de trecut. Un lan@t Markov este un model probabilistic care depinde numai de starea curenta pentru a prezice o stare viitoare. A@sadar, un lan@t Markov respect@a propietatea Markov.
+Proprietatea Markov afirm@a c@a viitorul depinde numai de prezent si nu de trecut. Un lan@t Markov este un model pro\-ba\-bi\-lis\-tic care depinde numai de starea curenta pentru a prezice o stare viitoare. A@sadar, un lan@t Markov respect@a propietatea Markov.
 Trecerea de la o stare la alta se nume@ste tranzi@tie, iar probabilitatea ei poart@a denumirea de probabilitate de tranzi@tie.
 
-De cele mai multe ori, lan@tul Markov este reprezentat sub form@a de graf orientat al c@arui muchii reprezint@a probabilit@a@tile de tranzi@tie dintre varfuri. Suma probailit@a@tilor de tranzi@tie ale unui varf c@atre celelalte v\^ arfuri este mereu 1.
+De cele mai multe ori, lan@tul Markov este reprezentat sub form@a de graf orientat al c@arui muchii reprezint@a probabilit@a@tile de tranzi@tie dintre varfuri. Suma probailit@a@tilor de tranzi@tie ale unui varf c@atre celelalte v\^ arfuri este mereu 1 (figura \ref{fig:markov-chain}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.55]{markov-chain}
+	\caption{Reprezentarea lan@tului Markov}
+	\label{fig:markov-chain}
+\end{figure}
+
 
 @In cazul agentului nostru, dac@a ne-am imagina traseul ca find un lan@t Markov, atunci pozi@tiile din traseu ar fi v\^ arfurile grafului, iar misc@arile agentului ar reprezenta muchiile. Putem asocia fiecarei mi@scare o probabilitate, iar parcurgerea grafului reprezint@a un posibil drum c@atre obiectiv.
 
@@ -869,6 +877,9 @@ Algoritmii de @inv@a@tare vor fi construi@ti folosind func@tile oferite de c@atr
 
 \index{Board}
 \index{BoardUI}
+\index{q-learning}
+\index{Konva}
+
 Labirintul este de forma unei matrici, fiecare celul@a @indepline@ste un anumit rol: drum, obstacol, ie@sire, etc. Clasa principala dedicat@a definirii structurii de reprezentare a la\-bi\-rin\-tului este denumit@a \textbf{Board}. Aceast@a clas@a define@ste mediul simulat @si intereac@tiunile disponibile pentru agent.
 
 Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, un obstacol cifra 2, iar pentru ie@sire cifra 3. Pentru pozi@tile agentului, la codificarea celulei de matrice se va adauga prefixul 1. Exemple de definiri al mediului simulat prin codificare se pot observa @in tabelul~\ref{tab:codific-lab}.
@@ -928,6 +939,35 @@ Pentru codificare vom avea urm@atoarele reguli: spa@tiul liber va avea cifra 1, 
 	\label{tab:codific-lab}
 \end{table}
 
+De asemenea, fiecare celul@a din codificare are asociat@a o valoare care va reprezenta recompensa @in urma acțiuni de intrare @in acea stare. Acestea sunt necesare pentru algoritmul de Q-Learning, iar valoarea este exemplificat@a @in figura \ref{tab:recompense-lab}. Pentru spa@tiile libere vom avea recompensa negativ@a -1, pentru obstacole -100, iar pentru obiectiv 100. A@sadar, pentru maximizarea recompensei agentul trebuie s@a ajung@a la obiectiv @intr-un num@ar c\^ at mai mic de pa@si. 
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{cc}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				11 & 1 & 2 \\
+				\hline
+				1 & 2 & 2 \\
+				\hline
+				1 & 1 & 3 \\
+				\hline
+			\end{tabular} & 
+			\begin{tabular}{|c|c|c|}
+				\hline
+				-1 & -1 & -100 \\
+				\hline
+				-1 & -100 & -100 \\
+				\hline
+				-1 & -1 & 100 \\
+				\hline
+			\end{tabular}
+		\end{tabular}
+	\end{center}
+	\caption{Codificarea labirintului (st\^ anga) @si recompensele asociate (dreapta)}
+	\label{tab:recompense-lab}
+\end{table}
+
 Sunt disponibile patru ac@tiuni pe care agentul poate s@a le ia: sus, jos, st\^ anga @si dreapta. Ca o ac@tiune s@a fie valid@a, aceasta trebuie s@a @indeplineasc@a urm@atoarea condi@tie: ac@tiunea nu trebuie s@a fac@a agentul s@a ias@a din labirint atunci c\^ and se afl@a la margine. Dac@a se @int\^ ampl@a acest lucru, clasa {\bf Board} va pastra pozi@tia agentului @si va transmitele faptul c@a mutare este invalid@a celorlalte componente, astfel @inc\^ at acestea s@a poat@a stabili o recompens@a ca pe viitor agentul s@a evite astfel de situa@tii.
 
 Reprezentarea labirintului sub form@a de imagine este dat@a de clasa \textbf{BoardUI}. Aceasta are rolul s@a creeze reprezentarea vizual@a a labirintului folosind datele furnizate de c\^ atre clasa \textbf{Board}. Aceast@a reprezentare poate fi observat@a @in figura \ref{fig:labirint-imagine}. Agentul este prezentat sub forma unui cerc albastru, spa@tiul liber sub forma unui p@atrat gri, iar obiectivul cu un p@atrat violet.
@@ -954,7 +994,7 @@ Toate aceste imaginii sunt generate folosind biblioteca Konva care ne permite at
 
 Interac@tiunea dintre clasele \textbf{Board} @si \textbf{BoardUI} cu celalte componente precum: \textbf{Env}, \textbf{Agent} @si \textbf{Memory}, este descris@a de figura \ref{fig:agent-simulator-data-flow}. S@age@tile reprezint@a modul cum acestea fac schimb de date. Clasa \textbf{Env} prime@ste date de la orice clas@a @si poate s@a trasmit@a la to@ti mai pu@tin clasei \textbf{BoardUI} care acesta are interac@tiune doar cu \textbf{Board}, astfel \textbf{Env} preia doar reprezentarea grafic@a a labirintului.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.55]{agent-simulator-data-flow}
 	\caption{Reprezentarea modului de inteac@tiune dintre clase}
@@ -986,7 +1026,7 @@ Clasa \textbf{Trainer} este care se ocup@a de antrenarea agentului prin aplicare
 
 St@arile mediului simulat vor fi furnizate de c@atre clasele \textbf{Board} (codificarea labirintului) @si \textbf{BoardUI} (imaginiea vizual@a a labirintului). Aceste vor fi furnizate de c@atre func@tiile \texttt{reset} (starea ini@tiala@a) @si \texttt{step} (starea @in urma ac@tiunilor). Agentul comunic@a cu simulatorul numai prin intermediul func@tiei \texttt{step} @in care trebuie s@a ofere o ac@tiune. Interac@tiunea este reprezentat@a @in figura 
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.64]{agent-simulator-inter}
 	\caption{Schimbul de date dintr agent @si simulator}
@@ -1005,7 +1045,7 @@ St@arile mediului simulat vor fi furnizate de c@atre clasele \textbf{Board} (cod
 			\hline
 			Intrarea @intr-un obstacol & -100 \\
 			\hline
-			Intrarea pe o pozi@tie liber@a & 0 \\
+			Intrarea pe o pozi@tie liber@a & -1 \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -1016,51 +1056,65 @@ St@arile mediului simulat vor fi furnizate de c@atre clasele \textbf{Board} (cod
 
 \index{Env}
 
+Forma clasei \textbf{Env} arat@a astfel:
+
 \begin{lstlisting}[language=Java, caption=Definirea clasei Env]
 class Env {
+    // Lista de acțiuni disponibile
     ACTIONS = ['UP', 'DOWN', 'RIGHT', 'LEFT']
+    // Semnal care marchează dacă din acțiunea luată a rezultat o stare invalidă
     invalidState = false
     /**
-     * 
+     * Inițiere componente
      * @param {Board} board 
+     * @param {BoardUI} boardUI
      */
-    constructor(board) {
+    constructor(board, boardUI, canvasTo) {
         this.board = board
+        this.boardUI = boardUI
     }
 
-    //
+    // Setează pozițiile inițiale ale agentului
     setAgentStartPosition(pos) {
         this.board.playerDefaultPos = pos
     }
 
-    // 
-    step(action) {
+    // Aplică acțiunea dată asupra mediului simulat
+    async step(action) {
+        // Trimit acțiunea și salvez semnalul primit pentru validare
         this.invalidState = !this.board.move(this.ACTIONS[action])
-        return  this.board.getBoardState(), this._getReward(), this._isDone()]
+        // Preiau imaginea mediului care reprezintă noua stare
+        const image = await this.boardUI.getImage()
+        // Aplic tranformări pentru reducerea dimensiunii
+        const imageBoardState = prepareImage(image, { width: 50, height: 50 })
+        // Returnez noua stare, recompensa și semnalez dacă simularea s-a încheiat
+        return [imageBoardState, this._getReward(), this._isDone()]
     }
 
-    //
-    reset() {
+    // Aduc mediul simulat la starea inițială pe care o și returnez
+    async reset() {
         this.board.playerReset()
-        return this.board.getBoardState()
+        const image = await this.boardUI.getImage()
+        const imageBoardState = prepareImage(image, { width: 50, height: 50 })
+        return imageBoardState
     }
 
-    //
+    // Returnează o acțunea aleatorie din lista de acțiuni disponibile
     actionSample() {
         return Math.floor(Math.random() * this.ACTIONS.length)
     }
 
-    //
+    // Calculez recompensa în funcție validitatea acțiuni și valoarea celulei
     _getReward() {
         return (this.invalidState && !this.board.isOnExit() && -100) || this.board.getPlayerCellValue()
     }
 
-    //
+    // Verific dacă siumlarea s-a incheiat și semnalez
     _isDone() {
         return this.board.isOnExit() || this.invalidState
     }
 
-    //
+    // Funcție de clonare a clasei
     clone() {
         return new Env(this.board.clone())
     }
@@ -1517,7 +1571,7 @@ Figura \ref{fig:estimari-antrenament} arat@a datele despre durata medie a unui e
 	\label{fig:board-inactiv}
 \end{figure}
 
-Figura \ref{fig:date-de-intrare} arat@a datele de intrare ale st@arii mediului simulat prezentat de imaginea \ref{fig:board-inactiv}. Reprezentarea codific@arii labrintului este ar\^ atat@a sub forma unui tabel, unde pozi@tiile agentului @si ale obiectivului sunt colorate cu albastru, respectiv violet.
+Figura \ref{fig:date-de-intrare} arat@a datele de intrare ale st@arii mediului simulat prezentat de imaginea \ref{fig:board-inactiv}. Reprezentarea codific@arii labrintului este ar\^ atat@a sub forma unui tabel, unde pozi@tiile agentului @si ale obiectivului sunt colorate cu albastru, respectiv violet. De asemenea, este disponibil @si un c\^ amp de date unde putem introduce num@arul total de episoade pentru sesiunea de antrenament.
 
 \begin{figure}[h]
 	\centering
@@ -1533,6 +1587,8 @@ De asemenea, avem diagrame care s@a monitorizeze resursele consumate. Figura \re
 
 Prin intermediul acestor grafice putem detecta dac@a apare o probleme legat@a de num@arul de resurse consumate. Trebuie s@a fim aten@ti la aceste detalii, doarece @in timpul dezvolt@ari este posibil s@a omitem s@a cur@a@tam anumite variabile @si astfel s@a aglomer@am memoria fizic@a RAM. Astfel de cazuri pot duce la @inchiderea brusc@a a aplica@tiei.
 
+Figura \ref{fig:recomp-acc} ne arat@a performan@ta agentului @in privin@ta atingerii obiectivului @si maximiz@arii recompenselor. Observ@am ca pentru cele 126 de episoade, recompensele accumulate @in fiecare episod (@si anume c\^ astigul) a fost mereu negativ@a. Putem presupune ca arhitectura aleas@a pentru rea@teaua neuronal@a nu este performant@a sau are nevoie de mai multe episoade pentru antrenare.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.25]{numar-tensori}
@@ -1546,6 +1602,13 @@ Prin intermediul acestor grafice putem detecta dac@a apare o probleme legat@a de
 	\includegraphics[scale=0.25]{memorie-tensori}
 	\caption{Dimensiunea spa@tiului de memorie ocupat pe parcursul fiec@arui episod}
 	\label{fig:memorie-tensori}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.25]{recomp-acc}
+	\caption{Recompensele acumulate de agent @in fiecare episod}
+	\label{fig:recomp-acc}
 \end{figure}
 
 
