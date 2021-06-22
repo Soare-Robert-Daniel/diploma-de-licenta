@@ -11,7 +11,6 @@
 
 @Inv@a@tarea automat@a a devenit un subiect de interes din ce @in ce mai important, aceast@a fiind utilizat@a @in vaste domenii, precum: industria auto, alimentar@a, agricol@a, bancar@a, aerospa@tial@a @si mai cu seam@a @in industria tehnologiei informa@tiei. Unul din rolurile ei cele mai importante const@a @in analiza @si clasificarea datelor, predic@tia unor evenimente @in baza unor fapte deja @int@amplate, crearea unui profil virtual pentru un grup de utilizatori, etc.
 
-
 Datorit@a marei conectivit@a@ti dintre oamenii din ziua de ast@azi; sistemele politice, economice @si rela@tiile interumane au devenit extrem de complexe. Totul a devenit interconectat. O ideea a unui singur individ poate fi transmis@a pe tot globul p@am\^ antesc, aceast@a idee put\^ and s@a afecteze milioane de oameni \^ in diverse locuri @si a c\^ arui impact politic @si economic sunt greu de estimat. De asemenea, un incident economic local, un dezastru natural, sau un conflic politic dintre dou@a @t@ari pot avea efecte devastatoare asupra economiei globale @si a structurii geopolitice curente.
 
 Fiecare eveniment din ziua de ast@azi are o influen@t@a mai mic@a sau mai mare aupra acestei mari re@tele de sisteme ale civiliza@tiei umane. @Intrebarea natural@a la aceast@a dilem@a este: putem face o estimare asupra acestor evenimente @si ale cazurilor lor speciale? Se poate, @si asta datorit@a faptului ca multe evenimente sunt monitorizate @si @inregistrate, precum: tranzac@tiile bancare, documente legislative @si juridice, vremea, traseele @si destina@tiile automobilelor de transport marf@a (ma@sini personale, avioane, vapoare), discursuri @si opinii @in re@telele sociale, date medicale din dispozitive inteligente (telefoane mobile, ceasuri @si br@a@t@ari), date provenite din simul@ari virtuale sau experimente. 
@@ -53,7 +52,7 @@ Al doilea capitol este o mic@a introducere pentru re@tele neuronale. Sunt descri
 Alte exemple de tehnologi sunt:
 
 \begin{itemize}
-	\item GPT (Generative Pre-trained Transformer) - folosit pentru predic@tia limbajului natural. Capabil s@a genereze texte care cu greu pot fi diferen@tiate de cel uman. De asemenea, prezint@a posibilitatea de genereare a codului ma@sin@a folosind descrieri @in limbaj natural.
+	\item GPT (Generative Pre-trained Transformer) - folosit pentru predic@tia limbajului na\-tu\-ral. Capabil s@a genereze texte care cu greu pot fi diferen@tiate de cel uman. De asemenea, prezint@a posibilitatea de genereare a codului ma@sin@a folosind descrieri @in limbaj natural.
 	\item Deepfake - model care poate s@a genereze videoclipuri @si imagini false. Acesta poate avea un impact devastator, deoarece este capabil de creare con@tinutui audio-vizual folosind imaginile unei persoane, care s@a transmit@a mesaje false de natur@a politic@a. Capabilit@a@tile tehnologiei au prezentate prin creare unor clipuri false folosind fe@te marilor lideri mondiali.
 	\item Fake Celebrities - model capabil s@a genereze portrete ale unor oameni care nu exist@a. Acesta a fost antrenat folosind setul de date CelebA care const@a @in peste 30.000 de mii de poze a diverselor celebrit@a@ti. Acest model a fost create @in laboratoarele NVIDIA 
 	\cite{nvidia-gan}  
@@ -248,7 +247,7 @@ Vectorul de intrare este format din structuri de date, acestea put\^ and repreze
 
 	Un neuron artificial care ac@tioneaz@a precum o poarta logic@a {\bf SAU}(OR) pentru dou@a numere binare are forma:
 $$
-	y = \varphi ( x_1 + x_2 - 0.5 )z
+	y = \varphi ( x_1 + x_2 - 0.5 )z,
 $$
 \noindent unde $x = \{ x_i | x_i \in \{0, 1\} \}$, $y \in \{0, 1\}$, $w_1 = 1$, $w_2 = 1$,$b = -0.5$, iar func@tia de activare este: 
 $$
@@ -1087,7 +1086,7 @@ class Env {
         const image = await this.boardUI.getImage()
         // Aplic tranformări pentru reducerea dimensiunii
         const imageBoardState = prepareImage(image, { width: 50, height: 50 })
-        // Returnez noua stare, recompensa și semnalez dacă simularea s-a încheiat
+        // Returnez nouă stare, recompensa și semnalez dacă simularea s-a încheiat
         return [imageBoardState, this._getReward(), this._isDone()]
     }
 
@@ -1165,7 +1164,7 @@ rn.predict(tf.tensor2d([[0, 0, 1]])).print(); // [[-0.9657576],]
 rn.predict(tf.tensor2d([[1, 1, 1]])).print(); // [[0.891173],]
 \end{lstlisting}
 
-Se poate observa c@a pe linia 8 se va afi@sa suma valorilor de pe liniile 2, 4, 6. Vom adauga o func@tie de activare @si anume ReLU (\textsl{Rectified Linear Unit}), descris@a @in capitolul 2. Acesta func@tie de activare transforma valorile negative @in valoarea 0, astfel av\^ and un rol de filtrare a valorilor negative. Exemplu:
+Se poate observa c@a pe linia 8 se va afi@sa suma valorilor de pe liniile 2, 4, 6. Vom adauga o func@tie de activare @si anume ReLU (\textsl{Rectified Linear Unit}), descris@a @in capitolul 2. Acest@a func@tie de activare transform@a valorile negative @in valoarea 0, astfel av\^ and un rol de filtrare a valorilor negative. Exemplu:
 
 \begin{lstlisting}[language=Java, caption={Exemplu de evaluare a unei simple rețele neuronale cu funcție de activare}]
 const rn = tf.sequential();
@@ -1176,7 +1175,7 @@ rn.predict(tf.tensor2d([[0, 0, 1]])).print(); // [[0.3614732],]
 rn.predict(tf.tensor2d([[1, 1, 1]])).print(); // [[0],]
 \end{lstlisting}
 
-Se observ@a faptul a doua pondere sinaptic@a are o valoarea negativ@a fa@t@a de celelalte dou@a, iar din linia 6, reiese faptul c@a aceasta este mult mai mare decat suma celorlalte dou@a, cea ce duce ca rezultatul final s@a fie 0. Interpretarea valorilor ob@tinute este un factor important @in in@telegerea re@telei neuronale. Din exempul anterior, a doua pondere sinaptic@a are o influen@ta mult mai mare asupra rezultatului dec\^ at restul. Dac@a dorim ca aceasta s@a aiba o influen@ta mult mai mica, trebuie s@a folosim procedeul de antrenare a re@telei care ne va calibra valorile acestor ponderi sinaptice, astel @inc\^ at s@a ob@tinem o valoare finala mult mai aproape de cea ce dorim.
+Se observ@a faptul a doua pondere sinaptic@a are o valoarea negativ@a fa@t@a de celelalte dou@a, iar din linia 6, reiese faptul c@a aceasta este mult mai mare decat suma celorlalte dou@a, cea ce duce ca rezultatul final s@a fie 0. Interpretarea valorilor ob@tinute este un factor important @in in@telegerea re@telei neuronale. Din exempul anterior, a doua pondere sinaptic@a are o influen@ta mult mai mare asupra rezultatului dec\^ at restul. Dac@a dorim ca aceasta s@a aiba o influen@ta mult mai mica, trebuie s@a folosim procedeul de antrenare a re@telei care ne va calibra valorile acestor ponderi sinaptice, astel @inc\^ at s@a ob@tinem o valoare final@a mult mai aproape de cea ce dorim.
 
 Pentru antrenarea re@telei neuronale vom folosii func@tia \texttt{fit} din \texttt{sequential}. De asemenea, trebuie s@a alegem @si o un optimizator care va fi \texttt{adam}, iar pentru calculul erori vom folosii metoda celor mai mici p@atrate (mean square error). Vom folosii modelul anterior pentru exemplificare @si vom antrena re@teaua astfel @incat prima pondere sinaptic@a s@a fie cat mai aproape de 0 ca valoare.
 
@@ -1588,6 +1587,10 @@ De asemenea, avem diagrame care s@a monitorizeze resursele consumate. Figura \re
 Prin intermediul acestor grafice putem detecta dac@a apare o probleme legat@a de num@arul de resurse consumate. Trebuie s@a fim aten@ti la aceste detalii, doarece @in timpul dezvolt@ari este posibil s@a omitem s@a cur@a@tam anumite variabile @si astfel s@a aglomer@am memoria fizic@a RAM. Astfel de cazuri pot duce la @inchiderea brusc@a a aplica@tiei.
 
 Figura \ref{fig:recomp-acc} ne arat@a performan@ta agentului @in privin@ta atingerii obiectivului @si maximiz@arii recompenselor. Observ@am ca pentru cele 126 de episoade, recompensele accumulate @in fiecare episod (@si anume c\^ astigul) a fost mereu negativ@a. Putem presupune ca arhitectura aleas@a pentru rea@teaua neuronal@a nu este performant@a sau are nevoie de mai multe episoade pentru antrenare.
+
+Av\^and toate aceste statistici, putem s@a mut@am agentul @in diferite pozi@tii init@iale @si s@a observ@am cum ac@tioneaz@a. De asemenea, putem schimba @si structura agentului @in codul surs@a pentru a teste diferite tipuri de arhitecturi, am putea adauga straturi de convolu@tie (DCN) pentru o procesare mai avansat@a a imaginilor, straturi recurent (RNN) pentru analiza secven@telor, etc.
+
+
 
 \begin{figure}[h]
 	\centering

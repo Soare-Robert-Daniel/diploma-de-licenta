@@ -4,7 +4,7 @@
 
   \indexspace
 
-  \item Agent, 38, 40, 43
+  \item Agent, 39, 41, 44
 
   \indexspace
 
@@ -13,20 +13,20 @@
 
   \indexspace
 
-  \item deplasare, 15, 18, 38
+  \item deplasare, 16, 18, 39
 
   \indexspace
 
   \item Echarts, 33, 48
-  \item Env, 37, 43
+  \item Env, 37, 44
 
   \indexspace
 
-  \item func\c {t}ie de activare, 15, 18, 38
+  \item func\c {t}ie de activare, 16, 18, 39
 
   \indexspace
 
-  \item Konva, 34
+  \item Konva, 34, 35
 
   \indexspace
 
@@ -38,12 +38,12 @@
 
   \indexspace
 
-  \item ponderi sinaptice, 15, 18, 38
+  \item ponderi sinaptice, 16, 18, 39
   \item process Markov, 27
 
   \indexspace
 
-  \item q-learning, 29, 36, 38, 43
+  \item q-learning, 30, 34, 35, 39, 44
 
   \indexspace
 
@@ -51,12 +51,12 @@
 
   \indexspace
 
-  \item straturi, 15, 18, 38
-  \item Svelte, 33, 46
+  \item straturi, 16, 18, 39
+  \item Svelte, 33, 47
 
   \indexspace
 
-  \item Tensorflow, 11, 24, 33, 38, 43
-  \item Trainer, 43, 50
+  \item Tensorflow, 11, 23, 33, 39, 44
+  \item Trainer, 44, 50
 
 \end{theindex}
